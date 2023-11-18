@@ -1,0 +1,36 @@
+---
+const base_url = import.meta.env.SITE
+const { pageTitle, page_url, card_file} = Astro.props;
+
+const url = base_url + page_url
+const card_url = base_url + card_file
+---
+<head>
+    <head prefix="og: https://ogp.me/ns#">
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content="" />
+    <meta property="og:site_name" content="184" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Il_______l" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content={card_url} />
+    <meta property="og:image" content={card_url} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} >
+    <meta name=”robots” content=”noindex,nofollow”>
+    <title>{pageTitle}</title>
+    {/*
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-V2CZPRNBRC"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-V2CZPRNBRC');
+    </script>
+    */}
+</head>

@@ -1,0 +1,17 @@
+.header {
+    padding: 0;
+    margin: 10;
+    /* position: static;
+    top:0px;
+    left:0px;
+    height: 20px; */
+}
+
+.header img {
+    width: 100%;
+    background-size: 100%, 100%;
+    background-repeat: no-repeat, no-repeat;
+    position: static;
+    top:0px;
+    z-index: 100;
+}

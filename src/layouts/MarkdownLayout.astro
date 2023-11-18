@@ -1,0 +1,18 @@
+---
+import '../styles/postsformat.css';
+
+import BaseLayout from './BlogLayout.astro';
+const { frontmatter } = Astro.props;
+const pageTimestamp = frontmatter.pubDate.slice(0,10);
+const pageUrl = "/post/" + String(pageTimestamp);
+const cardUrl = "/public/cards/" + String(pageTimestamp) + ".png";
+const pageTags = frontmatter.tags;
+---
+<BaseLayout 
+    pageTitle={frontmatter.title},
+    pageUrl={pageUrl}
+    cardUrl={cardUrl}
+    >
+    <ul class="tags">{pageTags.map((item:string) => <li>{item}</li>)}</ul><p/>
+    <slot />
+</BaseLayout>

@@ -1,0 +1,17 @@
+---
+import '../styles/blog.css';
+
+const { pageTitle, pageUrl, cardUrl } = Astro.props;
+import Metadatas from '../components/Metadatas.astro';
+import Header from '../components/header/main.astro';
+import Fotter from '../components/footer/main.astro';
+---
+<html lang="ja">
+  <Metadatas pageTitle={pageTitle}, page_url={pageUrl}, card_file={cardUrl} />
+  <body>
+    <Header />
+    <h1>{pageTitle}</h1>
+    <slot />
+    <Fotter />
+  </body>
+</html>
