@@ -1,9 +1,14 @@
 ---
 import './main.css';
-// import { Image } from 'astro:assets';
-import img_header from './header.png';
+import '../../styles/shape01.css';
 
+// import { Image } from 'astro:assets';
+import img_header_bg from './header.png';
+import img_header_fg from './header-lamp.png';
+const { header_str } = Astro.props;
 ---
 <div class="header">
-    <img src={img_header.src} alt=""/>
+    <span class="header-title shape01">{header_str}</span>
+    <div class="header-fg"><img  src={img_header_fg.src} alt=""/></div>
+    <div class="header-bg"><img  src={img_header_bg.src} alt=""/></div>
 </div>

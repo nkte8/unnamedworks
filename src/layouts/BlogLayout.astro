@@ -9,9 +9,11 @@ import Fotter from '../components/footer/main.astro';
 <html lang="ja">
   <Metadatas pageTitle={pageTitle}, page_url={pageUrl}, card_file={cardUrl} />
   <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Fotter />
+    <Header header_str="untitled blog" />
+    <div class="contents">
+      <h1>{pageTitle}</h1>
+      <slot />
+      <Fotter />
+    </div>
   </body>
 </html>

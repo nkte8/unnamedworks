@@ -1,17 +1,20 @@
 html {
     background-color: #fff;
     font-size: 15px;
+    font-family: sans-serif;
 }
   
 body {
-    margin: 0px;
     line-height: 1.2;
     color: #222;
+    max-width: 1000px;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .contents {
-    text-align: center;
-    margin: 0px;
+    margin: 50px;
 }
 
 .front img {
