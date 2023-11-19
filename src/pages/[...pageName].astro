@@ -4,25 +4,31 @@
 // → 基本的にはpropsで子ページに値を渡す必要がある（ファイル名で使われている変数はparamsとして利用できる）
 // https://docs.astro.build/en/core-concepts/routing/#example-dynamic-pages-at-multiple-levels
 // const { pageName } = Astro.params;
-const { pageindex, pageindex_formatted } = Astro.props;
+const { pageindex, pageTitle } = Astro.props;
 
 // 1ページに表示する個別投稿へのリンクの数
 export const linkscount = 4
+
 export interface staticPath {
     params: {
         pageName: string | undefined,
     },
     props: {
         pageindex: number,
-        pageindex_formatted: string, 
+        pageTitle: string, 
     }
 }
 
-export const allPosts = await Astro.glob('./post/*.md');
+export const allPosts = await Astro.glob('./posts/*.md');
+const sortedPosts = allPosts.sort((a, b) => {
+  const aDate = new Date(a.frontmatter.pubDate);
+  const bDate = new Date(b.frontmatter.pubDate);
+  return bDate.getTime() - aDate.getTime();
+});
+
 export const postName_prefix = "posts-"
 // markdownの総数を1ページに表示するリンクの数で割って
 // 必要な生成ページ数を定義
-export const pagescount = Math.ceil(allPosts.length / linkscount);
 export async function getStaticPaths() {
     let staticPaths: staticPath[] = [];
 
@@ -30,7 +36,7 @@ export async function getStaticPaths() {
     staticPaths.push({
             props: {
                 pageindex: 0,
-                pageindex_formatted: String(1).padStart(2, '0'),
+                pageTitle: IndexTitle,
             },
             params: {
                 pageName: undefined,
@@ -41,7 +47,7 @@ export async function getStaticPaths() {
         staticPaths.push({
             props: {
                 pageindex: i,
-                pageindex_formatted: String(i + 1).padStart(2, '0'),
+                pageTitle: "Post [" + String(i + 1).padStart(2, '0') + "]",
             },
             params: {
                 pageName: postName_prefix + String(i + 1).padStart(2, '0'),
@@ -52,13 +58,20 @@ export async function getStaticPaths() {
 }
 
 const currentindex = pageindex * linkscount;
+const lastindex = currentindex + linkscount;
+
+export const pagescount = Math.ceil(allPosts.length / linkscount);
 
 const show_newer = pageindex !== 0
 const url_newer = "/" + postName_prefix + String(pageindex).padStart(2, '0');
 
+const url = "/" + postName_prefix + String(pageindex + 1).padStart(2, '0');
+
 const show_paster = pageindex !== pagescount - 1
 const url_paster = "/" + postName_prefix + String(pageindex + 2).padStart(2, '0');
 
+const pageindex_formatted = String(pageindex + 1).padStart(2, '0');
+const pagescount_formatted =  String(pagescount).padStart(2, '0');
 // 今後の実装次第では利用する予定のコード
 // （ページ一覧として 01 02 03 ...といったリストの作成 ）
 // function range(start:number, end:number):number[] {
@@ -69,19 +82,23 @@ const url_paster = "/" + postName_prefix + String(pageindex + 2).padStart(2, '0'
 //     return r;
 // }
 
-const pageTitle = "posts [" + String(pageindex_formatted) + "]"
-const url = "/" + "posts-" + String(pageindex_formatted);
+// indexページのURL
+export const IndexTitle = "untitled blog" 
 
 const card_name = "/cards/main.png"
 import BaseLayout from '../layouts/BlogLayout.astro';
-import Articlelist from '../components/articlelist/main.astro';
 import '../styles/lookup_objs.css'
 ---
 <BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
-    <Articlelist currentindex={currentindex}, linkscount={linkscount} />
+
+    <ul>
+        {sortedPosts.slice(currentindex, lastindex).map(
+            (post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>
+        )}
+    </ul>
     <div class="lookup-buttons">
         <div class="left">{show_newer && <a href={url_newer}>次へ</a>}</div>
-        <div class="center">{pageindex_formatted}</div>
+        <div class="center">{pageindex_formatted}/{pagescount_formatted}</div>
         <div class="right">{show_paster && <a href={url_paster}>前へ</a>}</div>
     </div>
 </BaseLayout>
