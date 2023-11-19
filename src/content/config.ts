@@ -3,10 +3,9 @@ import { z, defineCollection } from 'astro:content';
 // 2. コレクションを定義
 const blogCollection = defineCollection({ 
     type: 'content',
-    schema: 
-        z.object({
+    schema: z.object({
             title: z.string(),
-            tags: z.array(z.string()),
+            tags: z.array(z.string()).optional(),
             pubDate: z.date(),
         }),
     });

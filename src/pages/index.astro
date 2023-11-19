@@ -1,20 +1,24 @@
 ---
-const url = Astro.url.pathname;
-const card_name = "/cards/main.png"
+// const url = Astro.url.pathname;
+// const card_name = "/cards/main.png"
 
-const pageTitle = "untitled works";
+// const pageTitle = "untitled works";
 
-export const allPosts = await Astro.glob('./posts/*.md');
-const sortedPosts = allPosts.sort((a, b) => {
-  const aDate = new Date(a.frontmatter.pubDate);
-  const bDate = new Date(b.frontmatter.pubDate);
-  return bDate.getTime() - aDate.getTime();
-});
+// export const allPosts = await Astro.glob('./posts/*.md');
+// const sortedPosts = allPosts.sort((a, b) => {
+//   const aDate = new Date(a.frontmatter.pubDate);
+//   const bDate = new Date(b.frontmatter.pubDate);
+//   return bDate.getTime() - aDate.getTime();
+// });
 
-import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
-const entry = (await getEntry("posts","helloworld")) ;
-const { Content } = await entry.render();
+const entry = await getCollection('posts');
+entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// 日付が最も新しいエントリーを拾ってくる
+const filteredPosts = entry[0];
+const { Content } = await filteredPosts.render();
 ---
 
 <Content />
