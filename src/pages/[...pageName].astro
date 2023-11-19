@@ -85,18 +85,41 @@ const pagescount_formatted =  String(pagescount).padStart(2, '0');
 // indexページのURL
 export const IndexTitle = "untitled blog" 
 
-const card_name = "/cards/main.png"
+// 検索ページのOGPカード
+const card_dir = "/" + "cards/"
+const card_name = card_dir + "main.png"
 import BaseLayout from '../layouts/BlogLayout.astro';
-import '../styles/lookup_objs.css'
+
+import '../styles/pagelist.css'
 ---
 <BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
 
-    <ul>
-        {sortedPosts.slice(currentindex, lastindex).map(
-            (post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>
-        )}
-    </ul>
-    <div class="lookup-buttons">
+    <div class="postlist">
+        <ul>
+            {sortedPosts.slice(currentindex, lastindex).map((post) => 
+                <li>
+                    <div class="postlist-item">
+                        {post.url !== undefined && 
+                            <div class="postlist-image">
+                                <img src={card_dir + post.url.split('/').at(-1) + ".png"} />
+                            </div>}
+                            <div class="postlist-text">
+                                <div class="postlist-link">
+                                    <a href={post.url}>{post.frontmatter.title}</a>
+                                </div>
+                                <div class="postlist-date">
+                                    Public-date: {post.frontmatter.pubDate.slice(0,10)}
+                                </div>
+                                <ul class="tags">
+                                    {post.frontmatter.tags.map((item:string) => <li>{item}</li>)}
+                                </ul>
+                            </div>
+                    </div>
+                </li>
+            )}
+        </ul>
+    </div>
+    <div class="pagelist-buttons">
         <div class="left">{show_newer && <a href={url_newer}>次へ</a>}</div>
         <div class="center">{pageindex_formatted}/{pagescount_formatted}</div>
         <div class="right">{show_paster && <a href={url_paster}>前へ</a>}</div>

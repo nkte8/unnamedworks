@@ -14,7 +14,8 @@ body {
 }
 
 .contents {
-    margin: 50px;
+    margin: 15px;
+    /* padding-left: 1%; */
 }
 
 .front img {

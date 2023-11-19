@@ -1,9 +1,9 @@
 ---
-const base_url = import.meta.env.SITE
+// const base_url = import.meta.env.SITE
 const { pageTitle, page_url, card_file} = Astro.props;
 
-const url = base_url + page_url
-const card_url = base_url + card_file
+const url = new URL(page_url , Astro.url);
+const card_url = new URL(card_file , Astro.url);
 ---
 <head>
     <head prefix="og: https://ogp.me/ns#">
