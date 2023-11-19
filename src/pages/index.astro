@@ -1,0 +1,20 @@
+---
+const url = Astro.url.pathname;
+const card_name = "/cards/main.png"
+
+const pageTitle = "untitled works";
+
+export const allPosts = await Astro.glob('./posts/*.md');
+const sortedPosts = allPosts.sort((a, b) => {
+  const aDate = new Date(a.frontmatter.pubDate);
+  const bDate = new Date(b.frontmatter.pubDate);
+  return bDate.getTime() - aDate.getTime();
+});
+
+import { getEntry } from "astro:content";
+
+const entry = (await getEntry("posts","helloworld")) ;
+const { Content } = await entry.render();
+---
+
+<Content />

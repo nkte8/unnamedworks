@@ -26,22 +26,22 @@ const sortedPosts = allPosts.sort((a, b) => {
   return bDate.getTime() - aDate.getTime();
 });
 
-export const postName_prefix = "posts-"
+export const postName_prefix = "postlist_"
 // markdownの総数を1ページに表示するリンクの数で割って
 // 必要な生成ページ数を定義
 export async function getStaticPaths() {
     let staticPaths: staticPath[] = [];
 
     // indexページの生成
-    staticPaths.push({
-            props: {
-                pageindex: 0,
-                pageTitle: IndexTitle,
-            },
-            params: {
-                pageName: undefined,
-            }    
-    })  
+    // staticPaths.push({
+    //         props: {
+    //             pageindex: 0,
+    //             pageTitle: IndexTitle,
+    //         },
+    //         params: {
+    //             pageName: undefined,
+    //         }    
+    // })  
 
     for (let i = 0; i < pagescount; i++){
         staticPaths.push({
@@ -81,9 +81,6 @@ const pagescount_formatted =  String(pagescount).padStart(2, '0');
 //     }
 //     return r;
 // }
-
-// indexページのURL
-export const IndexTitle = "untitled blog" 
 
 // 検索ページのOGPカード
 const card_dir = "/" + "cards/"

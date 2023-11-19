@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* a:hover {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+a,a:visited {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: bold;
+    transform: scale(1.0);
+} */
+
+.menu-layout {
+    width: 100%;
+    text-align: center;
+    display: flex;
+}
+
+.menu-layout .menu{
+    list-style: none;
+    display: flex;
+    margin: auto;
+    padding:0;
+    left: 0;
+    right: 0;
+}
+
+.menu-layout .menu li {
+    margin: 0px 2px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    text-align: center;
+    width: 150px;
+}

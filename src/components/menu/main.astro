@@ -1,0 +1,21 @@
+---
+import './main.css';
+const links = [
+    {   src: "home",
+        link: "/"},
+    {   src: "articles",
+        link: "/postlist_01"},
+]
+
+---
+<div class="menu-layout">
+    <ul class="menu">
+        {links.map((item) =>
+            <li>
+                <a href={item.link}>
+                    {item.src}
+                </a>
+            </li> 
+        )}
+    </ul>
+</div>
