@@ -1,17 +1,16 @@
 ---
 import '../styles/blog.css';
 
-const { pageTitle, pageUrl, cardUrl } = Astro.props;
+const { pageTitle, page_url, card_name } = Astro.props;
 import Metadatas from '../components/Metadatas.astro';
 import Header from '../components/header/main.astro';
 import Fotter from '../components/footer/main.astro';
 ---
 <html lang="ja">
-  <Metadatas pageTitle={pageTitle}, page_url={pageUrl}, card_file={cardUrl} />
+  <Metadatas pageTitle={pageTitle}, page_url={page_url}, card_file={card_name} />
   <body>
     <Header header_str="untitled blog" />
     <div class="contents">
-      <h1>{pageTitle}</h1>
       <slot />
       <Fotter />
     </div>

@@ -1,0 +1,87 @@
+---
+// 子ページにパラメータを渡したい場合はpropsを使う必要がある
+// paramsは子ページ生成時に利用された値のみ評価されるため、ファイル名生成に使われなかった値は切り捨てられる様子？
+// → 基本的にはpropsで子ページに値を渡す必要がある（ファイル名で使われている変数はparamsとして利用できる）
+// https://docs.astro.build/en/core-concepts/routing/#example-dynamic-pages-at-multiple-levels
+// const { pageName } = Astro.params;
+const { pageindex, pageindex_formatted } = Astro.props;
+
+// 1ページに表示する個別投稿へのリンクの数
+export const linkscount = 4
+export interface staticPath {
+    params: {
+        pageName: string | undefined,
+    },
+    props: {
+        pageindex: number,
+        pageindex_formatted: string, 
+    }
+}
+
+export const allPosts = await Astro.glob('./post/*.md');
+export const postName_prefix = "posts-"
+// markdownの総数を1ページに表示するリンクの数で割って
+// 必要な生成ページ数を定義
+export const pagescount = Math.ceil(allPosts.length / linkscount);
+export async function getStaticPaths() {
+    let staticPaths: staticPath[] = [];
+
+    // indexページの生成
+    staticPaths.push({
+            props: {
+                pageindex: 0,
+                pageindex_formatted: String(1).padStart(2, '0'),
+            },
+            params: {
+                pageName: undefined,
+            }    
+    })  
+
+    for (let i = 0; i < pagescount; i++){
+        staticPaths.push({
+            props: {
+                pageindex: i,
+                pageindex_formatted: String(i + 1).padStart(2, '0'),
+            },
+            params: {
+                pageName: postName_prefix + String(i + 1).padStart(2, '0'),
+            }    
+        })
+    }
+    return staticPaths;
+}
+
+const currentindex = pageindex * linkscount;
+
+const show_newer = pageindex !== 0
+const url_newer = "/" + postName_prefix + String(pageindex).padStart(2, '0');
+
+const show_paster = pageindex !== pagescount - 1
+const url_paster = "/" + postName_prefix + String(pageindex + 2).padStart(2, '0');
+
+// 今後の実装次第では利用する予定のコード
+// （ページ一覧として 01 02 03 ...といったリストの作成 ）
+// function range(start:number, end:number):number[] {
+//     let r:number[] = [];
+//     for (let i = start; i < end; i++) {
+//         r.push(i);
+//     }
+//     return r;
+// }
+
+const pageTitle = "posts [" + String(pageindex_formatted) + "]"
+const url = "/" + "posts-" + String(pageindex_formatted);
+
+const card_name = "/cards/main.png"
+import BaseLayout from '../layouts/BlogLayout.astro';
+import Articlelist from '../components/articlelist/main.astro';
+import '../styles/lookup_objs.css'
+---
+<BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
+    <Articlelist currentindex={currentindex}, linkscount={linkscount} />
+    <div class="lookup-buttons">
+        <div class="left">{show_newer && <a href={url_newer}>次へ</a>}</div>
+        <div class="center">{pageindex_formatted}</div>
+        <div class="right">{show_paster && <a href={url_paster}>前へ</a>}</div>
+    </div>
+</BaseLayout>

@@ -1,0 +1,36 @@
+.lookup-buttons {
+    text-align: center;
+    width: 90%;
+    /* position: relative; */
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.lookup-buttons .left {
+    /* position: absolute;
+    left: 0; */
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+}
+
+.lookup-buttons .center {
+    /* position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto; */
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+
+}
+.lookup-buttons .right {
+    /* position: absolute;
+    right: 0;
+    margin: auto; */
+    display: inline-block;
+    width: 30%;
+    text-align: left;
+}
+
