@@ -1,24 +1,35 @@
-# portfolio
+# README.md
 
-ポートフォリオ用サイト（Profileサイト）のソースコード
+# 管理方法  
 
-# 実行方法
+## astroの実行方法
 
-astroの実行
+- astroのセットアップ
 ```
-# init
 docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:lts npm install
+```
 
-# shell debug
+- node.jsコンテナを起動
+```
 docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:lts /bin/bash
+```
+
+- nodejs実行方法
+```
+# 仮想DOM実行(astro SSRモード起動)
 npm run dev
+# 静的サイトジェネレート(astro SSG build)
+npm run build
 ```
 
-ロリポップftpサーバへのアップロード
-```
-# ローカルwebサーバへのデプロイ確認
+## サーバへのアップロード方法
+
+ローカルwebサーバへのデプロイ  
+```sh
 ./up2local.sh
+```
 
-# .netrc でレンタルサーバへアクセスする情報が記載されていること
+ftpサーバへのアップロード
+```sh
 ./up2server.sh
 ```
