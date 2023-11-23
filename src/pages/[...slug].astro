@@ -1,12 +1,12 @@
 ---
-import { getCollection, getEntryBySlug } from 'astro:content';
-// 1. コレクションエントリーごとに新しいパスを生成
+import { getCollection } from 'astro:content';
 
+// 1. コレクションエントリーごとに新しいパスを生成
+// const baseurl = String(Astro.url.pathname).split("/").slice(0,-1).join("/") + "/"
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('posts');
   let aroud_info:any = [];
-  let staticPaths:any = [];
 
   let sorted = blogEntries.sort(
     (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
   return sorted.map((entry,index) => ({
     params:{
-      slug: entry.slug
+      slug: baseurl + entry.slug
     },
     props: {
       entry,
@@ -33,11 +33,16 @@ export async function getStaticPaths() {
 
 const { entry, prev, next } = Astro.props;
 const { Content } = await entry.render();
-import '../styles/pagelist.css'
+import '@/styles/pagelist.css'
+import BaseLayout from '@/layouts/MarkdownLayout.astro'
+
+export const baseurl = "/post/"
 ---
-<Content />
-<div class="pagelist-buttons">
-  <div class="left">{next !== undefined && <a href={next.slug}>&lt; {next.title}</a>}</div>
-  <div class="center">{entry.data.title}</div>
-  <div class="right">{prev !== undefined && <a href={prev.slug}>{prev.title} &gt;</a>}</div>
-</div>
+<BaseLayout frontmatter={entry.data}>
+    <Content />
+    <div class="pagelist-buttons">
+      <div class="left">{next !== undefined && <a href={ next.slug}>&lt; {next.title}</a>}</div>
+      <div class="center">{entry.data.title}</div>
+      <div class="right">{prev !== undefined && <a href={ prev.slug}>{prev.title} &gt;</a>}</div>
+    </div>
+</BaseLayout>

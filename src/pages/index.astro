@@ -20,12 +20,18 @@ entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const filteredPost = entry[0];
 const prevPost = entry[1];
 const { Content } = await filteredPost.render();
-import '../styles/pagelist.css'
+import '@/styles/pagelist.css'
+import BaseLayout from '@/layouts/MarkdownLayout.astro'
+
+export const baseurl = "/post/"
 ---
+<BaseLayout frontmatter={filteredPost.data}>
 
 <Content />
 <div class="pagelist-buttons">
     <div class="left"></div>
     <div class="center">{filteredPost.data.title}</div>
-    <div class="right">{prevPost !== undefined && <a href={prevPost.slug}>{prevPost.data.title} &gt;</a>}</div>
+    <div class="right">{prevPost !== undefined && <a href={baseurl + prevPost.slug}>{prevPost.data.title} &gt;</a>}</div>
   </div>
+
+</BaseLayout>

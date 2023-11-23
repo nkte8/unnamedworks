@@ -1,9 +1,9 @@
 ---
-import '../styles/postsformat.css';
+import '@/styles/postsformat.css';
 
 import BaseLayout from './BlogLayout.astro';
 const { frontmatter } = Astro.props;
-const pageTimestamp = frontmatter.pubDate.slice(0,10);
+const pageTimestamp = frontmatter.pubDate.toISOString().split('T')[0];
 const pageUrl = Astro.url.pathname;
 
 // OGPカードはcards配下にファイル名と同じ名前.pngで作成する
