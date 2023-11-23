@@ -41,8 +41,8 @@ export const baseurl = "/post/"
 <BaseLayout frontmatter={entry.data}>
     <Content />
     <div class="pagelist-buttons">
-      <div class="left">{next !== undefined && <a href={ next.slug}>&lt; {next.title}</a>}</div>
+      <div class="left">{next !== undefined && <a href={baseurl + next.slug}>&lt; {next.title}</a>}</div>
       <div class="center">{entry.data.title}</div>
-      <div class="right">{prev !== undefined && <a href={ prev.slug}>{prev.title} &gt;</a>}</div>
+      <div class="right">{prev !== undefined && <a href={baseurl + prev.slug}>{prev.title} &gt;</a>}</div>
     </div>
 </BaseLayout>
