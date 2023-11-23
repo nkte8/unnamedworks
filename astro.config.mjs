@@ -6,7 +6,7 @@ import partytown from "@astrojs/partytown";
 // https://astro.build/config
 export default defineConfig({
   outDir: './docs',
-  site: 'https://blog.na74.net',
+  site: 'https://blog.unnamedworks.com',
   server: {
     port: 4321,
     host: true
