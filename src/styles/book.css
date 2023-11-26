@@ -1,21 +1,5 @@
 @media (min-aspect-ratio: 11/16) {
-    @keyframes ZoomUpInterface{
-        from {
-            opacity: 0;
-            transform: translateY(-5%);
-        }
-
-        to {
-            opacity: 1;
-            transform:  translateY(0%);
-        }
-    }
     .frame {
-        animation-timing-function:ease-in-out;
-        animation-name: ZoomUpInterface;
-        animation-duration: 0.8s;
-
-
         margin: auto;
         left: 0;
         right: 0;
@@ -49,22 +33,6 @@
 }
 
 @media (max-aspect-ratio: 11/16) {
-    @keyframes ZoomUpInterface{
-        from {
-            opacity: 0;
-            transform: scale(0.5, 0.5);
-        }
-      
-        30% {
-            opacity: 1;
-            transform: scale(1.0 , 1.0) ;
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1.45 , 1.45) translateY(5%);
-        }
-    }
 
     .frame-parent {
         position: relative;
@@ -73,10 +41,7 @@
     }
 
     .frame {
-        animation-timing-function:ease-in-out;
         transform: scale(1.45 ,1.45) translateY(5%);
-        animation-name: ZoomUpInterface;
-        animation-duration: 1.5s;
 
         margin: auto;
         position: relative;

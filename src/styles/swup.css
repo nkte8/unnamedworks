@@ -1,7 +1,7 @@
 .transition-main {
   transition-property: opacity, transform;
-  transition-duration: 250ms;
-  transition-timing-function: .8s cubic-bezier(0.5, 0, 0.15, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.5, 0, 0.15, 1);
   transform: translateX(0);
   opacity: 1;
   box-sizing: border-box;
@@ -9,7 +9,7 @@
 }
 
 .is-animating .transition-main {
-  /* opacity: 0.1; */
+  opacity: 0;
   transform: translateX(3em);
 }
 
@@ -19,7 +19,7 @@
 
 /* 反転版の処理 */
 .is-animating.to-left .transition-main {
-  /* opacity:  0.1; */
+  opacity:  0;
   transform: translateX(-3em);
 }
 
