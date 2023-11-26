@@ -23,3 +23,8 @@ pnpm-debug.log*
 
 # .htaccess
 .htaccess
+# robots.txt
+robots.txt
+
+# iine app
+public/newiine_app/*

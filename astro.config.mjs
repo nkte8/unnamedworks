@@ -16,8 +16,7 @@ export default defineConfig({
     partytown(),
     swup({
       theme: 'false',
-      smoothScrolling: false,
+      smoothScrolling: true,
       updateBodyClass: true,
-      reloadScripts: false,
     })]
 });
