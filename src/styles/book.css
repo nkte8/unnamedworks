@@ -21,14 +21,14 @@
     }
     
     .frame .in-frame {
-        font-size: 1.7vmin;
-        margin: 4% 0% 1% 1%;
+        font-size: 1.5vmin;
+        margin: 2% 0% 1% 1%;
         box-sizing: border-box;
         object-fit: cover;
         overflow-y: auto;
         overflow-wrap: break-word;
         overflow-x: hidden;
-        height: 98%;
+        height: 100%;
     }
 }
 

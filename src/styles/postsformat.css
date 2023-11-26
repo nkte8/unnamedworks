@@ -17,11 +17,6 @@
     color: #ddd;
 }
 
-div {
-    padding-bottom: 5px;
-}
-
-
 p img {
     display: block;
     margin: 0;
@@ -44,5 +39,4 @@ p img {
 
 .mdbody {
     box-sizing: border-box;
-    margin: 5% 1%;
 }

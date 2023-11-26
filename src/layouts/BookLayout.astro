@@ -13,6 +13,7 @@ import Metadatas from '../components/Metadatas.astro';
       <div class="frame">
         <div class="frame-padding">
           <div class="in-frame">
+            <slot name="menu"/>
             <main id="swup" class="transition-main">
                 <slot />
                 <slot name="pagelist_button" />

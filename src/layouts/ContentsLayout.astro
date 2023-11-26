@@ -17,7 +17,7 @@ const pageTitle = frontmatter.title;
     page_url={pageUrl},
     card_name={cardUrl}>
 
-    <slot name="menu" />
+    <slot name="menu" slot="menu" />
     <div style="font-style: italic;">Public date: {pageTimestamp}</div>
     <div class="mdbody">
         <slot name="page"/>
@@ -28,6 +28,6 @@ const pageTitle = frontmatter.title;
                 <span class="newiine_count"></span>
             </button>
         </div>
+        <slot name="pagelist_button" slot="pagelist_button" />
     </div>
-    <slot name="pagelist_button" slot="pagelist_button" />
 </BaseLayout>

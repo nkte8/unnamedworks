@@ -18,7 +18,7 @@ import BaseLayout from '@/layouts/BookLayout.astro'
 import Menu from '@/components/menu/main.astro'
 ---
 <BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
-    <Menu />
+    <Menu slot="menu" />
     <p>最新の投稿: <a href={baseurl + filteredPost.slug}>{filteredPost.data.title}</a></p>
     {oldestPost !== undefined &&
         <p>最古の投稿: <a href={baseurl + oldestPost.slug}>{oldestPost.data.title}</a></p>}

@@ -37,8 +37,10 @@ import BaseLayout from '@/layouts/ContentsLayout.astro'
 import Pagelist_buttons from '@/components/pagelist_buttons/main.astro'
 
 export const baseurl = "/post/"
+import Menu from '@/components/menu/main.astro'
 ---
 <BaseLayout frontmatter={entry.data}>
+  <Menu slot="menu" />
     <Content slot="page"/>
     <Pagelist_buttons slot="pagelist_button"
       baseurl={baseurl} 

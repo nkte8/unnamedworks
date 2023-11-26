@@ -6,8 +6,8 @@ ul {
 .pagelist-buttons {
     bottom: 5%;
     text-align: center;
-    width: 90%;
-    margin: 5% 0% 5% 0%;
+    width: 100%;
+    margin: 3% 0% 3% 0%;
 }
 
 .pagelist-buttons .left {

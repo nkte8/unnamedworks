@@ -5,7 +5,6 @@
   transform: translateX(0);
   opacity: 1;
   box-sizing: border-box;
-  height: 100%;
 }
 
 .is-animating .transition-main {
