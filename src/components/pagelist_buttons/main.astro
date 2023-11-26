@@ -1,0 +1,11 @@
+---
+const { nextlink, current, prevlink, baseurl } = Astro.props;
+import './main.css'
+
+---
+<div class="pagelist-buttons">
+    <div class="left">{nextlink !== undefined && nextlink !== false && <a href={baseurl + nextlink}>&lt; 後の記事</a>}</div>
+    <div class="center">{current.data.title}</div>
+    <div class="right">{prevlink !== undefined && prevlink !== false && <a href={baseurl + prevlink}>前の記事 &gt;</a>}</div>
+</div>
+  

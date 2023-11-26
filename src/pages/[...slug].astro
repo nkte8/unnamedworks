@@ -33,16 +33,12 @@ export async function getStaticPaths() {
 
 const { entry, prev, next } = Astro.props;
 const { Content } = await entry.render();
-import '@/styles/pagelist.css'
 import BaseLayout from '@/layouts/MarkdownLayout.astro'
+import Pagelist_buttons from '@/components/pagelist_buttons/main.astro'
 
 export const baseurl = "/post/"
 ---
 <BaseLayout frontmatter={entry.data}>
     <Content />
-    <div class="pagelist-buttons">
-      <div class="left">{next !== undefined && <a href={baseurl + next.slug}>&lt; {next.title}</a>}</div>
-      <div class="center">{entry.data.title}</div>
-      <div class="right">{prev !== undefined && <a href={baseurl + prev.slug}>{prev.title} &gt;</a>}</div>
-    </div>
 </BaseLayout>
+<Pagelist_buttons baseurl={baseurl} nextlink={next !== undefined && next.slug} prevlink={prev !== undefined && prev.slug}, current={entry} >

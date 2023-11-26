@@ -1,7 +1,7 @@
 .tags {
     list-style: none;
     display: flex;
-    margin: 0;
+    margin: 5px 0 50px 0;
     padding:0;
 }
 
@@ -19,4 +19,18 @@
 
 div {
     padding-bottom: 5px;
+}
+
+p img {
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
+    max-height: 1000px;
+    position: static;
+    z-index: 0;
+}
+
+.mdbody {
+    font-size: 16px;
+    margin: 5% 1%;
 }

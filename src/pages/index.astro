@@ -1,16 +1,4 @@
 ---
-// const url = Astro.url.pathname;
-// const card_name = "/cards/main.png"
-
-// const pageTitle = "untitled works";
-
-// export const allPosts = await Astro.glob('./posts/*.md');
-// const sortedPosts = allPosts.sort((a, b) => {
-//   const aDate = new Date(a.frontmatter.pubDate);
-//   const bDate = new Date(b.frontmatter.pubDate);
-//   return bDate.getTime() - aDate.getTime();
-// });
-
 import { getCollection } from "astro:content";
 
 const entry = await getCollection('posts');
@@ -20,18 +8,11 @@ entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const filteredPost = entry[0];
 const prevPost = entry[1];
 const { Content } = await filteredPost.render();
-import '@/styles/pagelist.css'
 import BaseLayout from '@/layouts/MarkdownLayout.astro'
-
+import Pagelist_buttons from '@/components/pagelist_buttons/main.astro'
 export const baseurl = "/post/"
 ---
 <BaseLayout frontmatter={filteredPost.data}>
-
 <Content />
-<div class="pagelist-buttons">
-    <div class="left"></div>
-    <div class="center">{filteredPost.data.title}</div>
-    <div class="right">{prevPost !== undefined && <a href={baseurl + prevPost.slug}>{prevPost.data.title} &gt;</a>}</div>
-  </div>
-
 </BaseLayout>
+<Pagelist_buttons baseurl={baseurl}, prevlink={prevPost !== undefined && prevPost.slug}, current={filteredPost} >
