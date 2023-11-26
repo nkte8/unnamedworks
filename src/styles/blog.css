@@ -1,6 +1,5 @@
 html {
     background-color: #fff;
-    font-size: 15px;
     font-family: sans-serif;
 }
   
@@ -13,13 +12,8 @@ body {
     margin: auto;
 }
 
-.contents {
-    margin: 15px;
-    /* padding-left: 1%; */
-}
-
 .front img {
-    max-width: 95%;
+    max-width: 100%;
     height: auto;
 }
 

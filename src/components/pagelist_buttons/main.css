@@ -4,12 +4,10 @@ ul {
 }
 
 .pagelist-buttons {
+    bottom: 5%;
     text-align: center;
     width: 90%;
-    /* position: relative; */
-    left: 0;
-    right: 0;
-    margin: auto;
+    margin: 5% 0% 5% 0%;
 }
 
 .pagelist-buttons .left {
@@ -39,69 +37,3 @@ ul {
     text-align: left;
 }
 
-.postlist {
-    width: 100%;
-    max-width: 700px;
-    margin: auto;
-    left: 0;
-    right: 0;
-}
-
-.postlist-item {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-.postlist-item .postlist-image {
-    width: 25%;
-    position: relative;
-    overflow: hidden;
-    height: 25%;
-    padding-bottom: 25%;
-    background: #000;
-}
-
-.postlist-item .postlist-image img {
-    position: absolute;
-    height: 125%;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    margin: auto;
-}
-
-.postlist-item .postlist-text {
-    width: 70%;
-    height: auto;
-    padding: 0;
-    top:0;
-    bottom: 0;
-    margin: auto;
-
-    /* overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;  */
-    line-height: 1.5;
-}
-
-.postlist-item .postlist-text .postlist-link {
-    font-size: 17px;
-}
-
-.postlist-item .postlist-text .postlist-date {
-    padding-left: 5px;
-    font-size: 13px;
-}
-
-
-/* <div class="postlist-description">
-{post.frontmatter.description}
-</div> */
-
-/* .postlist-item .postlist-text .postlist-description {
-    font-size: 12px;
-} */

@@ -1,7 +1,7 @@
 .tags {
     list-style: none;
     display: flex;
-    margin: 5px 0 50px 0;
+    margin: 5px 0 0px 0;
     padding:0;
 }
 
@@ -11,7 +11,7 @@
     padding: 5px 15px;
     border-radius: 50px;
     box-sizing: border-box;
-    font-size: 13px;
+    font-size: 12px;
     text-align: center;
     background-color: #333;
     color: #ddd;
@@ -21,16 +21,28 @@ div {
     padding-bottom: 5px;
 }
 
+
 p img {
+    display: block;
+    margin: 0;
     width: 100%;
     height: auto;
     max-width: 1000px;
     max-height: 1000px;
-    position: static;
     z-index: 0;
+    background: url(/loading.gif) center center no-repeat;
+    transition:0.3s ease-out;
+    mix-blend-mode: multiply;
+}
+
+@media (min-aspect-ratio: 11/16) {
+    p img:hover{
+        transform:scale(1.1,1.1);
+        transition:0.3s ease-out;
+    }
 }
 
 .mdbody {
-    font-size: 16px;
+    box-sizing: border-box;
     margin: 5% 1%;
 }
