@@ -17,6 +17,7 @@ const pageTitle = frontmatter.title;
     page_url={pageUrl},
     card_name={cardUrl}>
 
+    <slot name="menu" />
     <div style="font-style: italic;">Public date: {pageTimestamp}</div>
     <div class="mdbody">
         <slot name="page"/>
