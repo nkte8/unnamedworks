@@ -2,15 +2,15 @@
 import '@/styles/postsformat.css';
 
 import BaseLayout from './BookLayout.astro';
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 var pageTimestamp = frontmatter.pubDate.toISOString().split('T')[0];
 if (frontmatter.fakeDate !== undefined) {
     pageTimestamp = frontmatter.fakeDate.toISOString().split('T')[0];
 }
-const pageUrl = Astro.url.pathname;
+const pageUrl = slug;
 
 // OGPカードはcards配下にファイル名と同じ名前.pngで作成する
-const cardUrl = "/cards/" + pageUrl.split('/').at(-1) + ".png";
+const cardUrl = "/cards/" + slug + ".png";
 
 const pageTitle = frontmatter.title;
 // const pageTags = frontmatter.tags;

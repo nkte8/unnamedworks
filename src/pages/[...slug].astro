@@ -39,7 +39,7 @@ import Pagelist_buttons from '@/components/pagelink_buttons/main.astro'
 export const baseurl = "/post/"
 import Menu from '@/components/menu/main.astro'
 ---
-<BaseLayout frontmatter={entry.data}>
+<BaseLayout frontmatter={entry.data}, slug={entry.slug}>
   <Menu slot="header" />
     <Content slot="page"/>
     <Pagelist_buttons slot="footer"

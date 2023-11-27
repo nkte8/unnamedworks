@@ -14,7 +14,7 @@ export const baseurl = "/post/"
 import '@/styles/firstload.css'
 import Menu from '@/components/menu/main.astro'
 ---
-<BaseLayout frontmatter={filteredPost.data}>
+<BaseLayout frontmatter={filteredPost.data}, slug={filteredPost.slug}>
     <Menu slot="header" />
     <Content slot="page"/>
     <Pagelist_buttons slot="footer"
