@@ -13,10 +13,10 @@ import Metadatas from '../components/Metadatas.astro';
       <div class="frame">
         <div class="frame-padding">
           <div class="in-frame">
-            <slot name="menu"/>
+            <slot name="header"/>
             <main id="swup" class="transition-main">
                 <slot />
-                <slot name="pagelist_button" />
+                <slot name="footer" />
                 <script is:inline src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                 <script is:inline src="/newiine_app/newiine.js"></script>
             </main>

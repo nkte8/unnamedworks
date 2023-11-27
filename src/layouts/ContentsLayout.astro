@@ -17,11 +17,11 @@ const pageTitle = frontmatter.title;
     page_url={pageUrl},
     card_name={cardUrl}>
 
-    <slot name="menu" slot="menu" />
+    <slot name="header" slot="header" />
     <div style="font-style: italic;">Public date: {pageTimestamp}</div>
     <div class="mdbody">
         <slot name="page"/>
         {/* <ul class="tags">{pageTags.map((item:string) => <li>{item}</li>)}</ul> */}
-        <slot name="pagelist_button" slot="pagelist_button" />
+        <slot name="footer" slot="footer" />
     </div>
 </BaseLayout>
