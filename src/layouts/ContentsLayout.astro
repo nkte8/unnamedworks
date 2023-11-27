@@ -22,12 +22,6 @@ const pageTitle = frontmatter.title;
     <div class="mdbody">
         <slot name="page"/>
         {/* <ul class="tags">{pageTags.map((item:string) => <li>{item}</li>)}</ul> */}
-        <div style="text-align: right;">
-            <button type="submit" class="newiine_btn" data-iinename={pageTitle}>
-                <span class="material-icons-round">favorite</span>
-                <span class="newiine_count"></span>
-            </button>
-        </div>
         <slot name="pagelist_button" slot="pagelist_button" />
     </div>
 </BaseLayout>

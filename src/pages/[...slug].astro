@@ -43,8 +43,9 @@ import Menu from '@/components/menu/main.astro'
   <Menu slot="menu" />
     <Content slot="page"/>
     <Pagelist_buttons slot="pagelist_button"
-      baseurl={baseurl} 
-      nextlink={next !== undefined && next.slug} 
-      prevlink={prev !== undefined && prev.slug}, current={entry} >
+      baseurl={baseurl},
+      nextlink={next !== undefined && next.slug},
+      prevlink={prev !== undefined && prev.slug},
+      current={entry} >
 </BaseLayout>
 
