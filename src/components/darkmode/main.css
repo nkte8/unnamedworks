@@ -1,0 +1,14 @@
+html.dark {
+    background-color: #252525;
+    transition:background-color 0.5s;
+}
+html.dark body {
+    color: #eee;
+}
+
+html {
+    transition:background-color 0.5s;
+}
+body.dark {
+    transition:background-color 0.5s;
+}
