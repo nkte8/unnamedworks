@@ -16,6 +16,10 @@
     background-color: #333;
     color: #ddd;
 }
+p {
+    margin:0;
+    padding: 2% 1%;
+}
 
 p img {
     display: block;
@@ -28,6 +32,8 @@ p img {
     background: url(/loading.gif) center center no-repeat;
     transition:0.3s ease-out;
     mix-blend-mode: multiply;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 @media (min-aspect-ratio: 11/16) {

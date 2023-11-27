@@ -7,14 +7,15 @@
         background: url("/ipad.png") center center no-repeat;
         background-size: 100%;
         width: auto;
-        max-height: 95vh;
-        min-height: 800px;
+        max-height: 98vh;
+        min-height: 700px;
         aspect-ratio: 605 / 757;
+        overflow: hidden;
     }
     /* safari対応 */
     .frame-padding {
         -webkit-box-sizing:border-box;
-        padding: 7% 9% 7% 6%;
+        padding: 5% 9% 5% 6%;
         height: 100%;
         box-sizing: border-box;
         overflow: hidden;
@@ -22,7 +23,7 @@
     
     .frame .in-frame {
         font-size: 1.5vmin;
-        margin: 2% 0% 1% 1%;
+        margin: 1% 0% 1% 1%;
         box-sizing: border-box;
         object-fit: cover;
         overflow-y: auto;
@@ -36,12 +37,12 @@
 
     .frame-parent {
         position: relative;
-        height: 100vh;
+        height: 99vh;
         overflow: hidden;
     }
 
     .frame {
-        transform: scale(1.45 ,1.45) translateY(5%);
+        transform: scale(1.45 , 1.45) translateY(5%);
 
         margin: auto;
         position: relative;
@@ -49,12 +50,12 @@
         background: url("/iphone.png") center center no-repeat;
         background-size: 100%;
         width: auto;
-        max-height: 100vh;
+        max-height: 99vh;
         aspect-ratio: 183 / 317;
     }
     /* safari対応 */
     .frame-padding {
-        padding: 20% 12% 40% 16%;
+        padding: 17% 8% 28% 9%;
         height: 100%;
         box-sizing: border-box;
         overflow: hidden;
@@ -62,7 +63,8 @@
     
     .frame .in-frame {
         font-size: 10px;
-        margin: 4% 4% 1% 1%;
+        margin: 2% 10% 4% 9%;
+        padding: 0% 0% 10% 0%;
         box-sizing: border-box;
         object-fit: cover;
         overflow-y: auto;
