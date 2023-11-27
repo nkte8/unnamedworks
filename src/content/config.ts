@@ -7,6 +7,7 @@ const blogCollection = defineCollection({
             title: z.string(),
             tags: z.array(z.string()),
             pubDate: z.date(),
+            fakeDate: z.date().optional(),
         }),
     });
 // 3. コレクションを登録するために、単一の`collections`オブジェクトをエクスポート
