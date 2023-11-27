@@ -16,6 +16,7 @@ a,a:visited {
     width: 100%;
     text-align: center;
     display: flex;
+    margin-top: 1%;
 }
 
 .menu-layout .menu{
