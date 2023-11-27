@@ -17,8 +17,9 @@
     color: #ddd;
 }
 p {
-    margin:0;
-    padding: 2% 1%;
+    margin: 2% 1%;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 p img {
@@ -32,8 +33,6 @@ p img {
     background: url(/loading.gif) center center no-repeat;
     transition:0.3s ease-out;
     mix-blend-mode: multiply;
-    overflow: hidden;
-    object-fit: cover;
 }
 
 @media (min-aspect-ratio: 11/16) {
@@ -44,5 +43,6 @@ p img {
 }
 
 .mdbody {
+    width: 100%;
     box-sizing: border-box;
 }
