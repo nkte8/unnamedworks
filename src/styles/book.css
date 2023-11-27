@@ -4,7 +4,7 @@
         left: 0;
         right: 0;
     
-        background: url("/ipad.png") center center no-repeat;
+        background: url("/materials/ipad.png") center center no-repeat;
         background-size: 100%;
         width: auto;
         max-height: 98vh;
@@ -47,7 +47,7 @@
         margin: auto;
         position: relative;
 
-        background: url("/iphone.png") center center no-repeat;
+        background: url("/materials/iphone.png") center center no-repeat;
         background-size: 100%;
         width: auto;
         max-height: 99vh;
