@@ -1,0 +1,36 @@
+html.dark .frame{
+    background-color: #252525;
+    transition:background-color 0.5s;
+}
+html.dark body {
+    color: #eee;
+}
+
+html .frame{
+    transition:background-color 0.5s;
+}
+body.dark {
+    transition:background-color 0.5s;
+}
+
+.dark .sun {
+    display:none;
+}
+.dark .moon {
+    display:block;
+}
+.moon{
+    display:none;
+    background: url("./dark.png") no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+.sun{
+    background: url("./light.png") no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}

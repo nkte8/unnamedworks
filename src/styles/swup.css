@@ -28,8 +28,8 @@
 
 /* 下へ移動版 */
 .is-animating.to-up .transition-main {
-  opacity:  1;
-  transform: translateY(6em);
+  opacity:  0;
+  transform: translateY(5em);
 }
 
 .is-leaving.to-up .transition-main {

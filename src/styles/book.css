@@ -1,11 +1,17 @@
 @media (min-aspect-ratio: 11/16) {
+    .frame-parent {
+        position: relative;
+        height: 99vh;
+        overflow-y: hidden;
+    }
+
     .frame {
         margin: auto;
         left: 0;
         right: 0;
     
         background: url("/materials/ipad.png") center center no-repeat;
-        background-size: 100%;
+        background-size: 101%;
         width: auto;
         max-height: 98vh;
         min-height: 700px;
@@ -15,7 +21,7 @@
     /* safari対応 */
     .frame-padding {
         -webkit-box-sizing:border-box;
-        padding: 5% 9% 5% 6%;
+        padding: 5% 8% 5% 6%;
         height: 100%;
         box-sizing: border-box;
         overflow: hidden;
@@ -37,7 +43,7 @@
 
     .frame-parent {
         position: relative;
-        height: 99vh;
+        height: 99.9vh;
         overflow: hidden;
     }
 
@@ -48,9 +54,9 @@
         position: relative;
 
         background: url("/materials/iphone.png") center center no-repeat;
-        background-size: 100%;
-        width: auto;
-        max-height: 99vh;
+        background-size: 102%;
+        width: 100%;
+        /* max-height: 99vh; */
         aspect-ratio: 183 / 317;
     }
     /* safari対応 */
