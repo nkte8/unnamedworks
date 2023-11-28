@@ -13,6 +13,8 @@ pngquant --ext .png --force $GIT_UNCOMPRESSED_FILES
 
 CARDS_SRC="./public/cards"
 for filepath in $GIT_UNCOMPRESSED_FILES;do 
+    echo "$filepath" | grep "images/" 
+    [[ $? -ne 0 ]] && continue;
     FNAME=$(basename $filepath)
     if [[ ! -e "${CARDS_SRC}/${FNAME}" ]];then
         echo "create card of $filepath";
