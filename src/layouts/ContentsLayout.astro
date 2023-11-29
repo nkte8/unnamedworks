@@ -21,7 +21,7 @@ const pageTitle = frontmatter.title;
     card_name={cardUrl}>
 
     <slot name="header" slot="header" />
-    <div style="font-style: italic;">Public date: {pageTimestamp}</div>
+    <div class="mddate">Public date: {pageTimestamp}</div>
     <div class="mdbody">
         <slot name="page"/>
         {/* <ul class="tags">{pageTags.map((item:string) => <li>{item}</li>)}</ul> */}
