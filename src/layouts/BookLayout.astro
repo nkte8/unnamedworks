@@ -2,6 +2,7 @@
 import '@/styles/book.css';
 import '@/styles/blog.css';
 import '@/styles/swup.css';
+import "@/styles/shape02.css";
 
 const { pageTitle, page_url, card_name } = Astro.props;
 import Metadatas from '../components/Metadatas.astro';
@@ -12,7 +13,7 @@ import Metadatas from '../components/Metadatas.astro';
     <div class="frame-parent">
       <div class="frame">
         <div class="frame-padding">
-          <div class="in-frame">
+          <div class="in-frame shape02">
             <slot name="header"/>
             <main id="swup" class="transition-main">
                 <slot />
