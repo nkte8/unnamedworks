@@ -18,17 +18,36 @@ const card_name = "/cards/main.png"
 import BaseLayout from '@/layouts/BookLayout.astro'
 import Menu from '@/components/menu/main.astro'
 ---
+<style>
+    ul {
+        padding: 0px;
+    }
+    ul li:before {
+        content: "*";
+        font-size: 20px;
+        position: absolute;
+        top: 0px;
+        left: 20px;
+    }
+
+    li {
+        list-style-type: none;
+        position: relative;
+        padding-left: 40px;
+        line-height: 1.8;
+    }
+</style>
 <BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
     <Menu slot="header" />
     <p>
-        新しい記事
+        新しい記事...
         <ul>
         {   entry !== undefined &&
             entry.map((item) => 
             <li><a href={baseurl + item.slug}>{item.data.title}</a></li>)
         }
         </ul>
-        古い
+        ...古い記事
 
         {/* <a href={baseurl + filteredPost.slug}>{filteredPost.data.title}</a></p> }*/}
         {/* oldestPost !== undefined &&
