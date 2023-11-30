@@ -7,7 +7,7 @@ import swup from '@swup/astro';
 // https://astro.build/config
 export default defineConfig({
   outDir: './docs',
-  site: 'https://blog.unnamedworks.com',
+  site: 'https://unnamedworks.com',
   server: {
     port: 4321,
     host: true
