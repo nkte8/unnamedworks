@@ -1,0 +1,27 @@
+---
+import '@/styles/welcome_animation.css'
+
+import { getCollection } from "astro:content";
+
+const entry = await getCollection('posts');
+entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// 日付が最も新しいエントリーを拾ってくる
+const filteredPost = entry[0];
+const prevPost = entry[1];
+const { Content } = await filteredPost.render();
+import BaseLayout from '@/layouts/ContentsLayout.astro'
+import Pagelist_buttons from '@/components/pagelink_buttons/main.astro'
+export const baseurl = "/post/"
+
+import Menu from '@/components/menu/main.astro'
+---
+<BaseLayout frontmatter={filteredPost.data}, slug={filteredPost.slug}>
+    <Menu slot="header" />
+    <Content slot="page"/>
+    <Pagelist_buttons slot="footer"
+        baseurl={baseurl}, 
+        prevlink={prevPost !== undefined && prevPost.slug}, 
+        current={filteredPost} >
+        
+</BaseLayout>

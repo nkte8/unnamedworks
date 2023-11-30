@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+
+const entry = await getCollection('posts');
+entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// 日付が最も新しいエントリーを拾ってくる
+// const filteredPost = entry[0];
+// const oldestPost = entry.at(-1);
+// const otherPosts = entry.slice(1, entry.length -1)
+
+export const baseurl = "/post/"
+
+const pageTitle = "articles";
+const url = Astro.url.pathname;
+const card_name = "/cards/main.png"
+
+import BaseLayout from '@/layouts/BookLayout.astro'
+import Menu from '@/components/menu/main.astro'
+---
+<style>
+    ul {
+        padding: 0px;
+    }
+    ul li:before {
+        content: "*";
+        font-size: 2vh;
+        position: absolute;
+        top: 0px;
+        left: 20px;
+    }
+
+    li {
+        list-style-type: none;
+        position: relative;
+        padding-left: 40px;
+        line-height: 1.8;
+    }
+</style>
+<BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
+    <Menu slot="header" />
+    <p>
+        新しい記事...
+        <ul>
+        {   entry !== undefined &&
+            entry.map((item) => 
+            <li><a href={baseurl + item.slug}>{item.data.title}</a></li>)
+        }
+        </ul>
+        ...古い記事
+
+        {/* <a href={baseurl + filteredPost.slug}>{filteredPost.data.title}</a></p> }*/}
+        {/* oldestPost !== undefined &&
+            <li><a href={baseurl + oldestPost.slug}>{oldestPost.data.title}</a></li> */}
+
+</BaseLayout>

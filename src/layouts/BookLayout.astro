@@ -1,0 +1,29 @@
+---
+import '@/styles/responsive.css';
+import '@/styles/blog.css';
+import '@/styles/swup.css';
+import "@/styles/shape02.css";
+
+const { pageTitle, page_url, card_name } = Astro.props;
+import Metadatas from '../components/Metadatas.astro';
+---
+<html lang="ja">
+  <Metadatas pageTitle={pageTitle}, page_url={page_url}, card_file={card_name} />
+  <body>
+    <div class="frame-parent">
+      <div class="frame">
+        <div class="frame-padding">
+          <div class="in-frame shape02">
+            <slot name="header"/>
+            <main id="swup" class="transition-main">
+                <slot />
+                <slot name="footer" />
+                <script is:inline src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <script is:inline src="/newiine_app/newiine.js"></script>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

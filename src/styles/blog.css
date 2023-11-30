@@ -1,0 +1,29 @@
+html {
+    background-color: #fff;
+    font-family: sans-serif;
+}
+  
+body {
+    line-height: 1.2;
+    color: #222;
+    margin: 0;
+    height: 100vh;
+}
+
+.front img {
+    max-width: 100%;
+    height: auto;
+}
+
+a,a:visited {
+    text-decoration: none;
+    color: #e88;
+    transition : all 0.2s ease 0s;
+    padding:1px;
+    font-weight: bold;
+  }
+  
+a:hover {
+    color: #f00;
+}
+

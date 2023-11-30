@@ -1,0 +1,29 @@
+---
+import './main.css';
+const links = [
+    {   
+        src: "new",
+        link: "/"},
+    {
+        src: "articles",
+        link: "/articles"},
+    {
+        src: "navisite",
+        link: "https://ln.unnamedworks.com/"},
+    // {   src: "articles",
+    //     link: "/postlist_01"},
+]
+import Darkmode from "@/components/darkmode/main.astro"
+---
+<div class="menu-layout">
+    <ul class="menu">
+        {links.map((item) =>
+            <li>
+                <a href={item.link}  data-swup-animation="up">
+                    {item.src}
+                </a>
+            </li> 
+        )}
+    </ul>
+    <Darkmode />
+</div>

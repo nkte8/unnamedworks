@@ -1,0 +1,13 @@
+---
+const pageTitle = "404 Not Found.";
+const url = Astro.url.pathname;
+const card_name = "/cards/main.png"
+
+import BaseLayout from '@/layouts/BookLayout.astro'
+import Menu from '@/components/menu/main.astro'
+
+---
+<BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
+    <img src="/materials/404.png" alt="404 not found..." width="100%" height="auto" style="margin-top: 25%;"/>
+    <Menu slot="header" />
+</BaseLayout>
