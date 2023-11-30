@@ -45,8 +45,11 @@ p img {
 } */
 
 .mdbody {
-    width: 100%;
-    box-sizing: border-box;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+
 }
 
 .mddate {

@@ -5,7 +5,7 @@
 
 .shape02 {
     font-family: shape02;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 /* フォントに合わせたカスタマイズを敬称 */
@@ -17,13 +17,19 @@
     font-size: 16px;
 }
 
-@media (min-aspect-ratio: 11/16) {
+@media (min-aspect-ratio: 247 / 196) and (min-height: 550px) {
+    .frame .in-frame.shape02 {
+        font-size: 3vh;
+    }
+}
+
+@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 550px) {
     .frame .in-frame.shape02 {
         font-size: 1.85vh;
     }
 }
 
-@media (max-aspect-ratio: 11/16) {
+@media (max-aspect-ratio: 10/16), (max-height: 550px) {
     .frame .in-frame.shape02 {
         font-size: 13px;
     }

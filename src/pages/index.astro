@@ -1,4 +1,6 @@
 ---
+import '@/styles/welcome_animation.css'
+
 import { getCollection } from "astro:content";
 
 const entry = await getCollection('posts');
@@ -11,7 +13,7 @@ const { Content } = await filteredPost.render();
 import BaseLayout from '@/layouts/ContentsLayout.astro'
 import Pagelist_buttons from '@/components/pagelink_buttons/main.astro'
 export const baseurl = "/post/"
-import '@/styles/firstload.css'
+
 import Menu from '@/components/menu/main.astro'
 ---
 <BaseLayout frontmatter={filteredPost.data}, slug={filteredPost.slug}>

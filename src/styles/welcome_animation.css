@@ -1,4 +1,25 @@
-@media (min-aspect-ratio: 11/16) {
+@media (min-aspect-ratio: 247 / 196) and (min-height: 550px) {
+    @keyframes ZoomUpInterface{
+        from {
+            opacity: 0;
+            transform: scale(0.8, 0.8);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1.0 , 1.0);
+        }
+    }
+
+    .frame {
+        animation-timing-function:ease-in-out;
+        animation-name: ZoomUpInterface;
+        animation-duration: 0.5s;
+    }
+}
+
+
+@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 550px) {
     @keyframes ZoomUpInterface{
         from {
             opacity: 0;
@@ -17,21 +38,21 @@
     }
 }
 
-@media (max-aspect-ratio: 11/16) {
+@media (max-aspect-ratio: 10/16), (max-height: 550px) {
     @keyframes ZoomUpInterface{
         from {
             opacity: 0;
-            transform: scale(0.5, 0.5);
+            transform: scale(0.1, 0.1);
         }
       
-        30% {
+        70% {
             opacity: 1;
             transform: scale(1.0 , 1.0) ;
         }
 
         to {
             opacity: 1;
-            transform: scale(1.45 , 1.45) translateY(5%);
+            transform: scale(1.45 , 1.45) translateY(2%);
         }
     }
 

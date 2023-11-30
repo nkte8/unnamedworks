@@ -1,4 +1,46 @@
-@media (min-aspect-ratio: 11/16) {
+@media (min-aspect-ratio: 247 / 196) and (min-height: 550px) {
+    .frame-parent {
+        position: relative;
+        height: 99vh;
+        overflow-y: hidden;
+    }
+
+    .frame {
+        margin: auto;
+        left: 0;
+        right: 0;
+    
+        background: url("/materials/window.png") no-repeat;
+        background-size: 100%;
+        width: auto;
+        height: 100%;
+        aspect-ratio: 247 / 196;
+        overflow: hidden;
+    }
+    /* safari対応 */
+    .frame-padding {
+        -webkit-box-sizing:border-box;
+        padding: 12% 2.5% 5% 2%;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    
+    .frame .in-frame {
+        font-size: 1.4vh;
+        box-sizing: border-box;
+        object-fit: cover;
+        overflow-y: auto;
+        overflow-wrap: break-word;
+        overflow-x: hidden;
+        height: 100%;
+        padding-left: 15px;
+    }
+}
+
+
+
+@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 550px) {
     .frame-parent {
         position: relative;
         height: 99vh;
@@ -38,8 +80,7 @@
     }
 }
 
-@media (max-aspect-ratio: 11/16) {
-
+@media (max-aspect-ratio: 10/16), (max-height: 550px) {
     .frame-parent {
         position: relative;
         height: 99.9vh;
@@ -47,11 +88,11 @@
     }
 
     .frame {
-        transform: scale(1.45 , 1.45) translateY(5%);
+        transform: scale(1.45 , 1.45) translateY(2%);
 
         margin: auto;
         position: relative;
-        background: url("/materials/iphone.png") center center no-repeat;
+        background: url("/materials/iphone.png") no-repeat;
         background-size: 100%;
         width: 100%;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         aspect-ratio: 183 / 316;
@@ -66,7 +107,7 @@
     
     .frame .in-frame {
         font-size: 10px;
-        margin: 2% 10% 4% 9%;
+        margin: 10% 10% 4% 9%;
         padding: 0% 0% 10% 0%;
         box-sizing: border-box;
         object-fit: cover;

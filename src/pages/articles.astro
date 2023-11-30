@@ -11,7 +11,7 @@ entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 export const baseurl = "/post/"
 
-const pageTitle = "- welcom;e";
+const pageTitle = "articles";
 const url = Astro.url.pathname;
 const card_name = "/cards/main.png"
 
@@ -24,7 +24,7 @@ import Menu from '@/components/menu/main.astro'
     }
     ul li:before {
         content: "*";
-        font-size: 20px;
+        font-size: 2vh;
         position: absolute;
         top: 0px;
         left: 20px;
