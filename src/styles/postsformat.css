@@ -32,7 +32,6 @@ p img {
     z-index: 0;
     background: url(/materials/loading.gif) center center no-repeat;
     transition:0.3s ease-out;
-    mix-blend-mode: multiply;
     border-radius: 10px;
 }
 
