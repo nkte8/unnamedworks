@@ -27,3 +27,6 @@ a:hover {
     color: #f00;
 }
 
+::-webkit-scrollbar{
+    width: 3px;
+}
