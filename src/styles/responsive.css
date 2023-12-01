@@ -123,4 +123,11 @@
     .pagelist-buttons {
         margin-bottom: 15%;
     }
+    .menu-layout .menu li {
+        font-size: 3.8vw;
+    }
+    .pagelist-buttons {
+        font-size: 3.8vw;
+    }
+
 }
