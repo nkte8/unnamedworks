@@ -1,0 +1,20 @@
+
+@keyframes close-from-top{
+  from {
+    clip-path: inset(0px 0px 0px 0px )
+  }
+
+  to {
+    clip-path: inset(100% 0px 0% 0px )
+  }
+}
+
+@keyframes open-from-top{
+  from {
+    clip-path: inset(0% 0px 100% 0px )
+  }
+
+  to {
+    clip-path: inset(0px 0px 0px 0px )
+  }
+}

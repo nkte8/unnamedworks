@@ -14,9 +14,5 @@ export default defineConfig({
   },
   integrations: [
     partytown(),
-    swup({
-      theme: 'false',
-      smoothScrolling: true,
-      updateBodyClass: true,
-    })]
+  ]
 });

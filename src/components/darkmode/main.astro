@@ -7,6 +7,7 @@ import "./main.css";
 </div>
 
 <script>
+  document.addEventListener('astro:page-load', () => {
     const theme = (() => {
       if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
         return localStorage.getItem('theme');
@@ -39,4 +40,12 @@ import "./main.css";
     if (documents !== null) {
         documents.addEventListener("click", handleToggleClick);
     }
+  })
+</script>
+<script>
+  document.addEventListener('astro:after-swap', () => {
+    localStorage.theme === 'dark'
+    ? document.documentElement.classList.add("dark")
+    : document.documentElement.classList.add("light");
+  });
 </script>
