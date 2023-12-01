@@ -2,17 +2,14 @@
 const { nextlink, current, prevlink, baseurl } = Astro.props;
 // const { nextlink, prevlink, baseurl } = Astro.props;
 import './main.css'
-
+import Iinebutton from '@/components/iine_button.astro';
 ---
 <div class="pagelist-buttons">
     <div class="left">
         {nextlink !== undefined && nextlink !== false && 
             <a data-swup-animation="left" href={baseurl + nextlink}>後の記事</a>}</div>
     <div class="center">
-        <button type="submit" class="newiine_btn" data-iinename={current.data.title}>
-            <span class="material-icons-round">favorite</span>
-            <span class="newiine_count"></span>
-        </button>
+        <Iinebutton name={current.data.title}/>
         {/* { current.data.title  */}
     </div>
     <div class="right">
