@@ -29,7 +29,12 @@ npm run build
 ./up_localserver.sh
 ```
 
-ftpサーバを初期化 & アップロード
+ftpサーバへのアップロード
+```sh
+./up_remoteserver.sh
+```
+
+ftpサーバを再デプロイ
 ```sh
 ./reset_server.sh
 ```
