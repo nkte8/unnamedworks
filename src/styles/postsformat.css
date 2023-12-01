@@ -29,9 +29,8 @@ p img {
     height: auto;
     max-width: 1000px;
     max-height: 1000px;
-    z-index: 0;
-    background: url(/materials/loading.gif) center center no-repeat;
-    transition:0.3s ease-out;
+    mix-blend-mode: normal;
+    /* background: url(/materials/loading.gif) center center no-repeat; */
     border-radius: 10px;
 }
 
