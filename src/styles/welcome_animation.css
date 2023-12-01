@@ -1,4 +1,4 @@
-@media (min-aspect-ratio: 247 / 196) and (min-height: 550px) {
+@media (min-aspect-ratio: 247 / 196) and (min-height: 600px) {
     @keyframes ZoomUpInterface{
         from {
             opacity: 0;
@@ -19,7 +19,7 @@
 }
 
 
-@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 550px) {
+@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 600px) {
     @keyframes ZoomUpInterface{
         from {
             opacity: 0;
@@ -38,7 +38,7 @@
     }
 }
 
-@media (max-aspect-ratio: 10/16), (max-height: 550px) {
+@media (max-aspect-ratio: 10/16), (max-height: 600px) {
     @keyframes ZoomUpInterface{
         from {
             opacity: 0;
