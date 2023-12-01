@@ -26,10 +26,10 @@ npm run build
 
 ローカルwebサーバへのデプロイ  
 ```sh
-./up2local.sh
+./up_localserver.sh
 ```
 
-ftpサーバへのアップロード
+ftpサーバを初期化 & アップロード
 ```sh
-./up2server.sh
+./reset_server.sh
 ```
