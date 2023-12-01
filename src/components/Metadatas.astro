@@ -4,7 +4,6 @@ const { pageTitle, page_url, card_file} = Astro.props;
 const url = new URL(page_url , Astro.url);
 const card_url = new URL(card_file , Astro.url);
 ---
-
 <link rel="icon" href="/materials/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/materials/app-touch-icon.png">
 <head prefix="og: https://ogp.me/ns#">
@@ -24,8 +23,6 @@ const card_url = new URL(card_file , Astro.url);
 <meta name="generator" content={Astro.generator} >
 <meta name=”robots” content=”noindex,nofollow”>
 <title>{pageTitle}</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
-<link rel="stylesheet" href="/newiine_app/newiine.css">
 <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-KPGC2P8BQL"></script>
 <script type="text/partytown">
   window.dataLayer = window.dataLayer || [];
