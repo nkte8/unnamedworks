@@ -1,4 +1,4 @@
-@media (min-aspect-ratio: 247 / 196) and (min-height: 550px) {
+@media (min-aspect-ratio: 247 / 196) and (min-height: 600px) {
     .frame-parent {
         position: relative;
         height: 99vh;
@@ -40,7 +40,7 @@
 
 
 
-@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 550px) {
+@media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 600px) {
     .frame-parent {
         position: relative;
         height: 99vh;
@@ -52,14 +52,11 @@
         margin: auto;
         left: 0;
         right: 0;
-        top: 0;
-        bottom: 0;
     
         background: url("/materials/ipad.png") center center no-repeat;
         background-size: 100%;
         width: auto;
         max-height: 98vh;
-        min-height: 700px;
         aspect-ratio: 363/454;
         overflow: hidden;
     }
@@ -83,7 +80,7 @@
     }
 }
 
-@media (max-aspect-ratio: 10/16), (max-height: 550px) {
+@media (max-aspect-ratio: 10/16), (max-height: 600px) {
     .frame-parent {
         position: relative;
         height: 99.9vh;
