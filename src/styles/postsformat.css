@@ -1,4 +1,4 @@
-.tags {
+/* .tags {
     list-style: none;
     display: flex;
     margin: 5px 0 0px 0;
@@ -15,9 +15,9 @@
     text-align: center;
     background-color: #333;
     color: #ddd;
-}
+} */
 p {
-    margin: 2% 1%;
+    margin: 1%;
     overflow: hidden;
     object-fit: cover;
 }
@@ -52,4 +52,5 @@ p img {
 
 .mddate {
     font-style: italic;
+    font-size: smaller;
 }

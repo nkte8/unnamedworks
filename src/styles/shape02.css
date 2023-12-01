@@ -10,11 +10,11 @@
 
 /* フォントに合わせたカスタマイズを敬称 */
 .shape02 .menu-layout .menu li {
-    font-size: 16px;
+    font-size: 3vmin;
 }
 
 .shape02 .pagelist-buttons {
-    font-size: 16px;
+    font-size: 3vmin;
 }
 
 @media (min-aspect-ratio: 247 / 196) and (min-height: 600px) {
@@ -31,6 +31,6 @@
 
 @media (max-aspect-ratio: 10/16), (max-height: 600px) {
     .frame .in-frame.shape02 {
-        font-size: 13px;
+        font-size: 4vw;
     }
 }
