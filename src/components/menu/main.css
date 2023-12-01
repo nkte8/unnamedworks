@@ -29,8 +29,8 @@ a,a:visited {
 }
 
 .menu-layout .menu li {
-    margin: 0px 2px;
-    padding: 5px 15px;
+    margin: 0px;
+    padding: 5px 2%;
     box-sizing: border-box;
     font-size: 14px;
     text-align: center;
