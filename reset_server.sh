@@ -6,7 +6,7 @@ if [[ ! -e .env ]];then
 fi
 source ./.env
 
-git branch --contains | grep main >/dev/null
+git branch --contains | grep "*" | grep main >/dev/null
 if [[ $? -ne 0 ]];then
     echo "ERROR: here is no main branch."
     exit 1;
