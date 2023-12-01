@@ -8,7 +8,9 @@ const { pageTitle, page_url, card_name } = Astro.props;
 import Metadatas from '@/components/Metadatas.astro';
 ---
 <html lang="ja">
-  <Metadatas pageTitle={pageTitle}, page_url={page_url}, card_file={card_name} />
+  <head>
+    <Metadatas pageTitle={pageTitle}, page_url={page_url}, card_file={card_name} />
+  </head>
   <body>
     <div class="frame-parent">
       <div class="frame">

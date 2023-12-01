@@ -4,34 +4,33 @@ const { pageTitle, page_url, card_file} = Astro.props;
 const url = new URL(page_url , Astro.url);
 const card_url = new URL(card_file , Astro.url);
 ---
-<head>
-  <link rel="icon" href="/materials/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/materials/app-touch-icon.png">
-  <head prefix="og: https://ogp.me/ns#">
-  <meta property="og:url" content={url} />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={pageTitle} />
-  <meta property="og:description" content="" />
-  <meta property="og:site_name" content="184" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@Il_______l" />
-  <meta name="twitter:title" content={pageTitle} />
-  <meta name="twitter:description" content="" />
-  <meta name="twitter:image" content={card_url} />
-  <meta property="og:image" content={card_url} />
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content={Astro.generator} >
-  <meta name=”robots” content=”noindex,nofollow”>
-  <title>{pageTitle}</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
-  <link rel="stylesheet" href="/newiine_app/newiine.css">
-  <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-KPGC2P8BQL"></script>
-  <script type="text/partytown">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-KPGC2P8BQL');
-  </script>
-</head>
+<link rel="icon" href="/materials/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/materials/app-touch-icon.png">
+<head prefix="og: https://ogp.me/ns#">
+<meta property="og:url" content={url} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="184" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Il_______l" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content="" />
+<meta name="twitter:image" content={card_url} />
+<meta property="og:image" content={card_url} />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} >
+<meta name=”robots” content=”noindex,nofollow”>
+<title>{pageTitle}</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+<link rel="stylesheet" href="/newiine_app/newiine.css">
+<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-KPGC2P8BQL"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KPGC2P8BQL');
+</script>
