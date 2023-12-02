@@ -1,7 +1,6 @@
 ---
 import '@/styles/responsive.css';
 import '@/styles/blog.css';
-import '@/styles/swup.css';
 import "@/styles/shape02.css";
 
 const { pageTitle, page_url, card_name } = Astro.props;
@@ -19,10 +18,8 @@ import Iineheader from '@/components/iine_header.astro';
         <div class="frame-padding">
           <div class="in-frame shape02">
             <slot name="header"/>
-            <main id="swup" class="transition-main">
-                <slot />
-                <slot name="footer" />
-            </main>
+              <slot />
+              <slot name="footer" />
           </div>
         </div>
       </div>
