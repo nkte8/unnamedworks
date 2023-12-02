@@ -6,7 +6,7 @@ if [[ ! -e .env ]];then
 fi
 source ./.env
 
-git branch --contains | grep main >/dev/null
+git branch --contains | grep "*" | grep main >/dev/null
 if [[ $? -ne 0 ]];then
     echo "ERROR: here is no main branch."
     exit 1;
@@ -18,6 +18,19 @@ apt list --installed 2>/dev/null | grep lftp >/dev/null
 [[ $? -ne 0 ]] && sudo apt-get install lftp -y
 lftp --version | head -1
 
+# backupディレクトリを作成
+r_ver=00$(($(find ./bak/ -name $(date +%Y-%m-%d)* | wc -l) + 1))
+DATE_SLUG=$(date +%Y-%m-%d)-r${r_ver: -2}
+mkdir -p ./bak/${DATE_SLUG}
+
+# backup工程
+lftp -u ${FTP_USER},${FTP_PASS} $FTP_URL << EOF
+cd ./${FTP_DIRECTORY}
+lcd ./bak/${DATE_SLUG}
+mirror
+EOF
+
+# upload（全て初期化）
 lftp -u ${FTP_USER},${FTP_PASS} $FTP_URL << EOF
 rm -rf ./${FTP_DIRECTORY}
 mkdir ./${FTP_DIRECTORY}
