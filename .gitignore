@@ -28,3 +28,6 @@ robots.txt
 
 # iine app
 public/newiine_app/*
+
+# backup
+bak/**
