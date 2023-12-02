@@ -27,7 +27,7 @@ EOF
 # upload（上書き）
 lftp -u ${FTP_USER},${FTP_PASS} $FTP_URL << EOF
 cd ./${FTP_DIRECTORY}
-lcd ../docs
+lcd ./docs
 mirror -R --overwrite --ignore-time
 EOF
 
