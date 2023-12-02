@@ -12,10 +12,22 @@ apt list --installed 2>/dev/null | grep lftp >/dev/null
 [[ $? -ne 0 ]] && sudo apt-get install lftp -y
 lftp --version | head -1
 
-# 記事追加の場合はリソースの削除を行わず、
+# backupディレクトリを作成
+r_ver=00$(($(find ./bak/ -name $(date +%Y-%m-%d)* | wc -l) + 1))
+DATE_SLUG=$(date +%Y-%m-%d)-r${r_ver: -2}
+mkdir -p ./bak/${DATE_SLUG}
+
+# backup工程
 lftp -u ${FTP_USER},${FTP_PASS} $FTP_URL << EOF
 cd ./${FTP_DIRECTORY}
-lcd ./docs
+lcd ./bak/${DATE_SLUG}
+mirror
+EOF
+
+# upload（上書き）
+lftp -u ${FTP_USER},${FTP_PASS} $FTP_URL << EOF
+cd ./${FTP_DIRECTORY}
+lcd ../docs
 mirror -R --overwrite --ignore-time
 EOF
 
