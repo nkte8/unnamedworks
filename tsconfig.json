@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [
-    "src/**/*", "public/newiine_app"],
+    "src/**/*"],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
