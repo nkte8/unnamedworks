@@ -1,3 +1,4 @@
+document.addEventListener('astro:page-load', () => {
 jQuery(function() {
   'use strict';
 
@@ -189,4 +190,5 @@ jQuery(function() {
     });
 });
 
+});
 });
