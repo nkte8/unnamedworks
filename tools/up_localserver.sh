@@ -1,5 +1,8 @@
 #!/bin/bash
 cd $(dirname $0)
+cd ..
+pwd
+
 USER="ubuntu"
 SERVER_IP="192.168.3.210"
 SERVER=${USER}@${SERVER_IP}
