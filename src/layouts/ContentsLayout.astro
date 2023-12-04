@@ -3,10 +3,16 @@ import '@/styles/postsformat.css';
 
 import BaseLayout from './BookLayout.astro';
 const { frontmatter, slug } = Astro.props;
-var pageTimestamp = frontmatter.pubDate.toISOString().split('T')[0];
+// var pageTimestamp = frontmatter.pubDate.toISOString().split('T')[0];
+// if (frontmatter.fakeDate !== undefined) {
+//     pageTimestamp = frontmatter.fakeDate.toISOString().split('T')[0];
+// }
+var pageTimestamp = frontmatter.pubDate;
 if (frontmatter.fakeDate !== undefined) {
-    pageTimestamp = frontmatter.fakeDate.toISOString().split('T')[0];
+    pageTimestamp = frontmatter.fakeDate;
 }
+
+
 const pageUrl = slug;
 
 // OGPカードはcards配下にファイル名と同じ名前.pngで作成する
@@ -23,7 +29,7 @@ const pageTitle = frontmatter.title;
     <slot name="header" slot="header" />
     <div class="mddate">Public date: {pageTimestamp}</div>
     <div class="mdbody">
-        <slot name="page"/>
+        <slot />
         {/* <ul class="tags">{pageTags.map((item:string) => <li>{item}</li>)}</ul> */}
         <slot name="footer" slot="footer" />
     </div>

@@ -17,6 +17,8 @@ const card_name = "/cards/main.png"
 
 import BaseLayout from '@/layouts/BookLayout.astro'
 import Menu from '@/components/menu/main.astro'
+import { getBlogs } from "../library/microcms";
+const response = await getBlogs({ fields: ["id", "title"] });
 ---
 <style>
     ul {
@@ -42,10 +44,19 @@ import Menu from '@/components/menu/main.astro'
     <p>
         新しい記事...
         <ul>
+        {/*
         {   entry !== undefined &&
             entry.map((item) => 
             <li><a href={baseurl + item.slug}>{item.data.title}</a></li>)
         }
+        */}
+            {
+            response.contents.map((content: any) => (
+                <li>
+                <a href={content.id}>{content.title}</a>
+                </li>
+            ))
+            }
         </ul>
         ...古い記事
 

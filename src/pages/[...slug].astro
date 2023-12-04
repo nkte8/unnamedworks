@@ -4,48 +4,78 @@ import { getCollection } from 'astro:content';
 // 1. コレクションエントリーごとに新しいパスを生成
 // const baseurl = String(Astro.url.pathname).split("/").slice(0,-1).join("/") + "/"
 
+import { getBlogs, getBlogDetail } from "../library/microcms";
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('posts');
-  let aroud_info:any = [];
-
-  let sorted = blogEntries.sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
-  );
-
-  aroud_info = sorted.map(entry => {
-    return {
-      slug: entry.slug,
-      title: entry.data.title,
-    }
-  })
-
-  return sorted.map((entry,index) => ({
-    params:{
-      slug: baseurl + entry.slug
+  const response = await getBlogs({ fields: ["id"] });
+  return response.contents.map((content: any) => ({
+    params: {
+      slug: content.id,
     },
-    props: {
-      entry,
-      prev: aroud_info[index +1],
-      next: aroud_info[index -1]
-    }
   }))
+
+  // const blogEntries = await getCollection('posts');
+  // let aroud_info:any = [];
+
+  // let sorted = blogEntries.sort(
+  //   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  // );
+
+  // aroud_info = sorted.map(entry => {
+  //   return {
+  //     slug: entry.slug,
+  //     title: entry.data.title,
+  //   }
+  // })
+
+  // return sorted.map((entry,index) => ({
+  //   params:{
+  //     slug: baseurl + entry.slug
+  //   },
+  //   props: {
+  //     entry,
+  //     prev: aroud_info[index +1],
+  //     next: aroud_info[index -1]
+  //   }
+  // }))
 }
 
-const { entry, prev, next } = Astro.props;
-const { Content } = await entry.render();
-import BaseLayout from '@/layouts/ContentsLayout.astro'
+// const { entry, prev, next } = Astro.props;
+// const { Content } = await entry.render();
+// import BaseLayout from '@/layouts/ContentsLayout.astro'
 import Pagelist_buttons from '@/components/pagelink_buttons/main.astro'
 
 export const baseurl = "/post/"
 import Menu from '@/components/menu/main.astro'
+
+
+import BaseLayout from '@/layouts/ContentsLayout.astro';
+
+const { slug } = Astro.params;
+const blog = await getBlogDetail(slug as string);
+
+// UTCを変換
+import dayjs from 'dayjs';
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
+
+const frontmatter = {
+  title: blog.title,
+  pubDate: dayjs(new Date(blog.pubDate)).tz().format("YYYY-MM-DD"),
+  
+}
 ---
-<BaseLayout frontmatter={entry.data}, slug={entry.slug}>
-  <Menu slot="header" />
-    <Content slot="page"/>
-    <Pagelist_buttons slot="footer"
+<!-- <BaseLayout frontmatter={entry.data}, slug={entry.slug}> -->
+<BaseLayout frontmatter={frontmatter}, slug={slug}>
+    <Menu slot="header" />
+    <div set:html={blog.content}></div>
+    <!-- <Content slot="page"/> -->
+    <!-- <Pagelist_buttons slot="footer"
       baseurl={baseurl},
       nextlink={next !== undefined && next.slug},
       prevlink={prev !== undefined && prev.slug},
-      current={entry} >
+      current={entry} > -->
 </BaseLayout>
 
