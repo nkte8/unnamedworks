@@ -34,14 +34,6 @@ p img {
     border-radius: 10px;
 }
 
-/* @media (min-aspect-ratio: 11/16) {
-    p img:hover{
-        transform:scale(1.1,1.1);
-        transition:0.3s ease-out;
-        border-radius: 10px;
-    }
-} */
-
 .mdbody {
     margin: auto;
     right: 0;

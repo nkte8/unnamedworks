@@ -1,18 +1,33 @@
 ---
-const { nextlink, current, prevlink, baseurl } = Astro.props;
+interface Props {
+    nextpage_slug: string | false;
+    currentpage_title: string;
+    prevpage_slug: string | false;
+    baseurl: string;
+}
+const { nextpage_slug, currentpage_title, prevpage_slug, baseurl } =
+    Astro.props;
 // const { nextlink, prevlink, baseurl } = Astro.props;
-import './main.css'
-import Iinebutton from '@/components/iine_button/iine_button.astro';
+import "./main.css";
+import Iinebutton from "@/components/iine_button/iine_button.astro";
 ---
+
 <div class="pagelist-buttons">
     <div class="left">
-        {nextlink !== undefined && nextlink !== false && 
-            <a href={baseurl + nextlink}>後の記事</a>}</div>
+        {
+            nextpage_slug !== false && (
+                <a href={baseurl + nextpage_slug}>後の記事</a>
+            )
+        }
+    </div>
     <div class="center">
-        <Iinebutton button_name={current.data.title}/>
-        {/* { current.data.title  */}
+        <Iinebutton button_name={currentpage_title} />
     </div>
     <div class="right">
-        {prevlink !== undefined && prevlink !== false && 
-            <a href={baseurl + prevlink}>前の記事</a>}</div>
+        {
+            prevpage_slug !== false && (
+                <a href={baseurl + prevpage_slug}>前の記事</a>
+            )
+        }
+    </div>
 </div>

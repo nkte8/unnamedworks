@@ -1,27 +1,23 @@
 ---
-import '@/styles/welcome_animation.css'
+import "@/styles/welcome_animation.css";
 
-import { getCollection } from "astro:content";
+import { getAllPosts } from "@/utils/newt.ts";
+import Data from "@/utils/data.json";
+type Post = typeof Data;
+const response = await getAllPosts();
 
-const entry = await getCollection('posts');
-entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+var posts: Post[] = response?.items;
+posts = posts.sort(
+    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+);
 
-// 日付が最も新しいエントリーを拾ってくる
-const filteredPost = entry[0];
-const prevPost = entry[1];
-const { Content } = await filteredPost.render();
-import BaseLayout from '@/layouts/ContentsLayout.astro'
-import Pagelist_buttons from '@/components/pagelink_buttons/main.astro'
-export const baseurl = "/post/"
-
-import Menu from '@/components/menu/main.astro'
+export const baseurl = "/post/";
+import Pagerender from "@/layouts/Pagerender.astro";
 ---
-<BaseLayout frontmatter={filteredPost.data}, slug={filteredPost.slug}>
-    <Menu slot="header" />
-    <Content slot="page"/>
-    <Pagelist_buttons slot="footer"
-        baseurl={baseurl}, 
-        prevlink={prevPost !== undefined && prevPost.slug}, 
-        current={filteredPost} >
-        
-</BaseLayout>
+
+<Pagerender
+    entry={posts[0]}
+    prev={posts[1]}
+    next={undefined}
+    baseurl={baseurl}
+/>
