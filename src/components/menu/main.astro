@@ -1,27 +1,33 @@
 ---
-import './main.css';
+import "./main.css";
 const links = [
-    {   
+    {
         src: "new",
-        link: "/"},
+        link: "/",
+    },
     {
         src: "articles",
-        link: "/articles"},
+        link: "/articles",
+    },
     {
         src: "navi",
-        link: "https://ln.unnamedworks.com/"},
-]
-import Darkmode from "@/components/darkmode/main.astro"
+        link: "https://ln.unnamedworks.com/",
+    },
+];
+import Darkmode from "@/components/darkmode/main.astro";
 ---
+
 <div class="menu-layout">
     <ul class="menu">
-        {links.map((item) =>
-            <li>
-                <a href={item.link}  data-swup-animation="up">
-                    {item.src}
-                </a>
-            </li> 
-        )}
+        {
+            links.map((item) => (
+                <li>
+                    <a href={item.link} data-swup-animation="up">
+                        {item.src}
+                    </a>
+                </li>
+            ))
+        }
     </ul>
     <Darkmode />
 </div>

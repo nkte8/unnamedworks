@@ -1,53 +1,58 @@
 ---
-import '@/styles/responsive.css';
-import '@/styles/blog.css';
+import "@/styles/responsive.css";
+import "@/styles/blog.css";
 import "@/styles/shape02.css";
 import "@/styles/transition.css";
 
-const { pageTitle, page_url, card_name } = Astro.props;
-import Metadatas from '@/components/Metadatas.astro';
-import { ViewTransitions } from 'astro:transitions';
+const { pageTitle, page_url, cardUrl } = Astro.props;
+import Metadatas from "@/components/Metadatas.astro";
+import { ViewTransitions } from "astro:transitions";
 
 const anim = {
-  old: {
-    name: 'close-from-top',
-    duration: '0.5s',
-    easing: 'ease-in-out',
-    fillMode: 'forwards',
-    delay: '0s',
-  },
-  new: {
-    name: 'open-from-top',
-    delay: '0s',
-    duration: '0.5s',
-    easing: 'ease-in-out',
-    fillMode: 'backwards',
-  }
+    old: {
+        name: "close-from-top",
+        duration: "0.5s",
+        easing: "ease-in-out",
+        fillMode: "forwards",
+        delay: "0s",
+    },
+    new: {
+        name: "open-from-top",
+        delay: "0s",
+        duration: "0.5s",
+        easing: "ease-in-out",
+        fillMode: "backwards",
+    },
 };
 
 const myFade = {
-  forwards: anim,
-  backwards: anim,
+    forwards: anim,
+    backwards: anim,
 };
-import Iineheader from '@/components/iine_button/iine_header.astro';
+import Iineheader from "@/components/iine_button/iine_header.astro";
 ---
+
 <html lang="ja">
-  <head>
-    <ViewTransitions />
-    <Metadatas pageTitle={pageTitle}, page_url={page_url}, card_file={card_name} />
-    <Iineheader />
-  </head>
-  <body>
-    <div class="frame-parent">
-      <div class="frame">
-        <div class="frame-padding" >
-          <div class="in-frame shape02" transition:animate={myFade} >
-              <slot name="header"/>
-              <slot />
-              <slot name="footer" />
-          </div>
+    <head>
+        <ViewTransitions />
+        <Metadatas
+            pageTitle={pageTitle}
+            page_url={page_url}
+            card_url={cardUrl}
+        />
+        <Iineheader />
+    </head>
+    <body>
+        <div class="frame-parent">
+            <div class="frame">
+                <div class="frame-padding">
+                    <div class="in-frame shape02" transition:animate={myFade}>
+                        <slot name="header" />
+                        <slot />
+                        <slot name="footer" />
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </body>
 </html>
