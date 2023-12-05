@@ -1,0 +1,29 @@
+---
+import Data from "@/utils/data.json";
+type Post = typeof Data;
+
+interface Props {
+    entry: Post;
+    prev: Post | undefined;
+    next: Post | undefined;
+    baseurl: string;
+}
+const { entry, prev, next, baseurl } = Astro.props;
+
+import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
+import Menu from "@/components/menu/main.astro";
+
+import BaseLayout from "@/layouts/ContentsLayout.astro";
+---
+
+<BaseLayout entry={entry}>
+    <Menu slot="header" />
+    <div set:html={entry.content} />
+    <Pagelist_buttons
+        slot="footer"
+        baseurl={baseurl}
+        nextpage_slug={next !== undefined && next.slug}
+        prevpage_slug={prev !== undefined && prev.slug}
+        currentpage_title={entry.title}
+    />
+</BaseLayout>

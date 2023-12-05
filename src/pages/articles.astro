@@ -1,25 +1,27 @@
 ---
-import { getCollection } from "astro:content";
-
-const entry = await getCollection('posts');
-entry.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
-// 日付が最も新しいエントリーを拾ってくる
-// const filteredPost = entry[0];
-// const oldestPost = entry.at(-1);
-// const otherPosts = entry.slice(1, entry.length -1)
-
-export const baseurl = "/post/"
+export const baseurl = "/post/";
 
 const pageTitle = "articles";
 const url = Astro.url.pathname;
-const card_name = "/cards/main.png"
+const card_name = "/cards/main.png";
 
-import BaseLayout from '@/layouts/BookLayout.astro'
-import Menu from '@/components/menu/main.astro'
-import { getBlogs } from "../library/microcms";
-const response = await getBlogs({ fields: ["id", "title"] });
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+
+import { getAllPosts } from "@/utils/newt.ts";
+import Data from "@/utils/data.json";
+type Post = typeof Data;
+
+const response = await getAllPosts();
+var posts: Post[] = response?.items;
+
+// そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
+
+posts = posts.sort(
+    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+);
 ---
+
 <style>
     ul {
         padding: 0px;
@@ -39,29 +41,19 @@ const response = await getBlogs({ fields: ["id", "title"] });
         line-height: 1.8;
     }
 </style>
-<BaseLayout pageTitle={pageTitle}, page_url={url}, card_name={card_name}>
+<BaseLayout pageTitle={pageTitle} , page_url={url} , card_name={card_name}>
     <Menu slot="header" />
     <p>
         新しい記事...
         <ul>
-        {/*
-        {   entry !== undefined &&
-            entry.map((item) => 
-            <li><a href={baseurl + item.slug}>{item.data.title}</a></li>)
-        }
-        */}
             {
-            response.contents.map((content: any) => (
-                <li>
-                <a href={content.id}>{content.title}</a>
-                </li>
-            ))
+                posts.map((content: any) => (
+                    <li>
+                        <a href={baseurl + content.slug}>{content.title}</a>
+                    </li>
+                ))
             }
         </ul>
-        ...古い記事
-
-        {/* <a href={baseurl + filteredPost.slug}>{filteredPost.data.title}</a></p> }*/}
-        {/* oldestPost !== undefined &&
-            <li><a href={baseurl + oldestPost.slug}>{oldestPost.data.title}</a></li> */}
-
+         ...古い記事
+    </p>
 </BaseLayout>

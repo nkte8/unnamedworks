@@ -14,7 +14,7 @@
     "@astrojs/partytown": "^2.0.2",
     "astro": "^3.4.3",
     "dayjs": "^1.11.10",
-    "microcms-js-sdk": "^2.7.0",
+    "newt-client-js": "^3.2.8",
     "typescript": "^5.2.2"
   }
 }
