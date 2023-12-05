@@ -6,7 +6,6 @@ type Post = typeof Data;
 export async function getStaticPaths() {
     const response = await getAllPosts();
     var posts: Post[] = response?.items;
-    var staticpaths = [];
     posts = posts.sort(
         (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
     );
