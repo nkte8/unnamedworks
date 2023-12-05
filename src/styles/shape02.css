@@ -1,10 +1,10 @@
 @font-face {
-    font-family: "shape02";
-    src: url('/materials/shape02.ttf');
+	font-family: 'shape02';
+	src: url('//2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf') format('truetype');
 }
 
 .shape02 {
-    font-family: shape02;
+    font-family: 'shape02';
     line-height: 1.2;
 }
 
