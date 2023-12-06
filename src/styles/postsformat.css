@@ -22,16 +22,52 @@ p {
     object-fit: cover;
 }
 
-p img {
+img.mdimg {
     display: block;
     margin: 0;
     width: 100%;
     height: auto;
-    max-width: 1000px;
-    max-height: 1000px;
     mix-blend-mode: normal;
-    /* background: url(/materials/loading.gif) center center no-repeat; */
     border-radius: 10px;
+    cursor: pointer;
+}
+
+img.mdpreview {
+    max-height: 90vh;
+    max-width: 90vw;
+    width: auto;
+    overflow: hidden;
+}
+
+dialog.image-dialog {
+    padding: 0;
+    border: 0px;
+    opacity: 0;
+}
+
+dialog.image-dialog::backdrop {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+
+dialog.image-dialog.image-dialog-open {
+    opacity: 1;
+    animation: fadein 0.2s linear;
+}
+
+dialog.image-dialog.image-dialog-open::backdrop {
+    opacity: 1;
+    animation: fadein 0.2s linear;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .mdbody {
