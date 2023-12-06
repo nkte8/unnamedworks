@@ -27,8 +27,6 @@ p img {
     margin: 0;
     width: 100%;
     height: auto;
-    max-width: 1000px;
-    max-height: 1000px;
     mix-blend-mode: normal;
     /* background: url(/materials/loading.gif) center center no-repeat; */
     border-radius: 10px;

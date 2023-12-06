@@ -12,9 +12,15 @@
   "dependencies": {
     "@astrojs/check": "^0.3.1",
     "@astrojs/partytown": "^2.0.2",
+    "@astrojs/react": "^3.0.7",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
     "astro": "^3.4.3",
     "dayjs": "^1.11.10",
+    "html-react-parser": "^5.0.7",
     "newt-client-js": "^3.2.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.2.2"
   }
 }
