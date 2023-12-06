@@ -19,7 +19,7 @@ import { Parsedpost } from "@/utils/parsedpost.tsx";
 
 <BaseLayout entry={entry}>
     <Menu slot="header" />
-    <Parsedpost html={entry.content} />
+    <Parsedpost client:load html={entry.content} />
     <Pagelist_buttons
         slot="footer"
         baseurl={baseurl}

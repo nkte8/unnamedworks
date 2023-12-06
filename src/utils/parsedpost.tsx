@@ -1,9 +1,10 @@
 import parse from 'html-react-parser'
+import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
 const replace = (node:any) => {
   if (node.name === 'img') {
     return (
-      <a data-lightbox="group" href={node.attribs.src}><img src={node.attribs.src}/></a>
+      <ImageDialog src={node.attribs.src} />
     )
   }
 }
