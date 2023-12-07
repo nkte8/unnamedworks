@@ -30,7 +30,20 @@ const myFade = {
     backwards: anim,
 };
 import Iineheader from "@/components/iine_button/iine_header.astro";
+import "@/styles/welcome_animation.css";
 ---
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        let doc = document.getElementById("transition-area");
+        var nowhost = location.hostname;
+        var referrer = document.referrer;
+        if(referrer.indexOf( nowhost ) == -1) {
+            if (doc !== null) {
+            doc.classList.add("welcome");
+            }
+        }
+    });
+</script>
 
 <html lang="ja">
     <head prefix="og: https://ogp.me/ns#">
@@ -44,7 +57,7 @@ import Iineheader from "@/components/iine_button/iine_header.astro";
     </head>
     <body>
         <div class="frame-parent">
-            <div class="frame">
+            <div id="transition-area" class="frame">
                 <div class="frame-padding">
                     <div class="in-frame shape02" transition:animate={myFade}>
                         <slot name="header" />
