@@ -5,15 +5,20 @@ const card_name = "/cards/main.png";
 
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
+
+import { Image } from 'astro:assets';
+import img_404 from "@/images/404.png"
 ---
 
+<style>
+    img {
+        width: 100%;
+        height: auto;
+        margin: auto;
+        margin-top: 10%;
+    }
+</style>
 <BaseLayout pageTitle={pageTitle} , page_url={url} , card_name={card_name}>
-    <img
-        src="/materials/404.png"
-        alt="404 not found..."
-        width="100%"
-        height="auto"
-        style="margin-top: 25%;"
-    />
+    <Image src={img_404} alt="404 not found..."/>
     <Menu slot="header" />
 </BaseLayout>

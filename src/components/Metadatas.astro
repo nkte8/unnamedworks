@@ -15,34 +15,33 @@ const url = new URL(page_url, Astro.url);
     sizes="180x180"
     href="/materials/app-touch-icon.png"
 />
-<head prefix="og: https://ogp.me/ns#">
-    <meta property="og:url" content={url} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content="" />
-    <meta property="og:site_name" content="noname" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Il_______l" />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content={card_url} />
-    <meta property="og:image" content={card_url} />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="”robots”" content="”noindex,nofollow”" />
-    <title>{pageTitle}</title>
-    <script
-        type="text/partytown"
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-KPGC2P8BQL"></script>
-    <script type="text/partytown">
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
+<meta property="og:url" content={url} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="noname" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Il_______l" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content="" />
+<meta name="twitter:image" content={card_url} />
+<meta property="og:image" content={card_url} />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+<meta name="”robots”" content="”noindex,nofollow”" />
+<title>{pageTitle}</title>
+<script
+    type="text/partytown"
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-KPGC2P8BQL"></script>
+<script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-        gtag("config", "G-KPGC2P8BQL");
-    </script>
-</head>
+    gtag("config", "G-KPGC2P8BQL");
+</script>
+<script src="../utils/modernizr-custom.js"></script>
