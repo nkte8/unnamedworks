@@ -4,7 +4,7 @@ import { ImageDialog } from '@/utils/ImageDialog.tsx'
 const replace = (node:any) => {
   if (node.name === 'img') {
     return (
-      <ImageDialog src={node.attribs.src} />
+      <ImageDialog src={node.attribs.src + "?format=auto"} />
     )
   }
 }
