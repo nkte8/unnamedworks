@@ -10,14 +10,19 @@
         left: 0;
         right: 0;
 
-        background: url("/materials/window.png") no-repeat;
-        background-size: 100%;
+        background-image: url("../images/window.png");
+        background-size: cover;
         width: auto;
         height: 100%;
         aspect-ratio: 247 / 196;
         overflow: hidden;
     }
 
+    html.webp div.frame {
+        background-image: url("../images/window.webp");
+        background-size: cover;
+    }
+    
     /* safari対応 */
     .frame-padding {
         -webkit-box-sizing: border-box;
@@ -52,12 +57,17 @@
         left: 0;
         right: 0;
 
-        background: url("/materials/ipad.png") center center no-repeat;
-        background-size: 100.1%;
+        background-image: url("../images/ipad.png");
+        background-size: cover;
         width: auto;
         max-height: 98vh;
         aspect-ratio: 363/454;
         overflow: hidden;
+    }
+
+    html.webp div.frame {
+        background-image: url("../images/ipad.webp");
+        background-size: cover;
     }
 
     /* safari対応 */
@@ -92,13 +102,18 @@
 
         margin: auto;
         position: relative;
-        background: url("/materials/iphone.png") no-repeat;
-        background-size: 100%;
+        background: url("../images/iphone.png") no-repeat;
+        background-size: cover;
         width: 100%;
         aspect-ratio: 183 / 316;
         overflow: hidden;
     }
 
+    html.webp div.frame {
+        background-image: url("../images/iphone.webp");
+        background-size: cover;
+    }
+    
     /* safari対応 */
     .frame-padding {
         padding: 17% 8% 28% 9%;
