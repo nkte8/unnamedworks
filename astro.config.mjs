@@ -3,6 +3,8 @@ import partytown from "@astrojs/partytown";
 
 // const isProduction = process.env.NODE_ENV === "production"
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   outDir: './docs',
@@ -11,7 +13,5 @@ export default defineConfig({
     port: 4321,
     host: true
   },
-  integrations: [
-    partytown(),
-  ]
+  integrations: [partytown(), react()]
 });

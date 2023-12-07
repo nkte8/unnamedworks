@@ -1,11 +1,14 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [
-    "src/**/*"],
+    "src/**/*"
+  ],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*" :["src/*"],
+      "@/*": [
+        "src/*"
+      ]
     },
     "target": "es5",
     "lib": [
@@ -26,6 +29,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "verbatimModuleSyntax": true,
-    "jsx": "react-jsx"
-  },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }
