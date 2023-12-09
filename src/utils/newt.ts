@@ -2,7 +2,7 @@ import { createClient } from 'newt-client-js';
 
 const client = createClient({
     spaceUid: import.meta.env.NEWT_SPACE_UID,
-    token: import.meta.env.NEWT_CDN_API_TOKEN,
+    token: import.meta.env.NEWT_API_TOKEN,
     apiType: import.meta.env.NEWT_API_TYPE,
 });
 
