@@ -4,7 +4,7 @@ cd $(dirname $0)
 apt list --installed 2>/dev/null | grep pngquant >/dev/null
 [[ $? -ne 0 ]] && sudo apt-get install pngquant -y
 
-apt list --installed 2>/dev/null | grep convert >/dev/null
+apt list --installed 2>/dev/null | grep imagemagick >/dev/null
 [[ $? -ne 0 ]] && sudo apt install imagemagick -y
 
 GIT_UNCOMPRESSED_FILES=$(git status | grep .png | xargs)
