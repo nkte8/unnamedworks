@@ -6,6 +6,7 @@
 .shape02 {
     font-family: 'shape02';
     line-height: 1.2;
+    font-display: block;
 }
 
 /* フォントに合わせたカスタマイズを継承 */

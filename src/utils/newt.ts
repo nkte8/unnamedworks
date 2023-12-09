@@ -9,8 +9,11 @@ const client = createClient({
 export const getAllPosts = async () => {
     const allPosts = client
         .getContents({
-            appUid: import.meta.env.NEWT_APP_UID,
-            modelUid: import.meta.env.NEWT_MODEL_UID,
+            appUid: import.meta.env.NEWT_POSTS_APP_UID,
+            modelUid: import.meta.env.NEWT_POSTS_MODEL_UID,
+            query: {
+                order: ['-pubDate'],
+            }
         })
         .then((content) => content)
         .catch((err) => {
@@ -20,4 +23,20 @@ export const getAllPosts = async () => {
     return allPosts;
 };
 
-
+export const getLatestHighlight = async () => {
+    const allPosts = client
+    .getContents({
+        appUid: import.meta.env.NEWT_HIGHLIGHTS_APP_UID,
+        modelUid: import.meta.env.NEWT_HIGHLIGHTS_MODEL_UID,
+        query: {
+            limit: 1,
+            order: ['-pubDate'],
+        }
+    })
+    .then((content) => content)
+    .catch((err) => {
+        console.log(err);
+        return err;
+    });
+    return allPosts;
+  }
