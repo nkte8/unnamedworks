@@ -1,7 +1,7 @@
 ---
 const pageTitle = "404 Not Found.";
 const url = Astro.url.pathname;
-const card_name = "/cards/main.png";
+const cardUrl = new URL("/cards/main.png", Astro.url);
 
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
@@ -18,7 +18,7 @@ import img_404 from "@/images/404.png"
         margin-top: 10%;
     }
 </style>
-<BaseLayout pageTitle={pageTitle} , page_url={url} , card_name={card_name}>
+<BaseLayout pageTitle={pageTitle} , page_url={url} , cardUrl={cardUrl}>
     <Image src={img_404} alt="404 not found..."/>
     <Menu slot="header" />
 </BaseLayout>
