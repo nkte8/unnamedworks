@@ -1,22 +1,45 @@
 ---
+// import { getAllPosts } from "@/utils/newt.ts";
+// import Data from "@/utils/data.json";
+// type Post = typeof Data;
+// const response = await getAllPosts();
 
-import { getAllPosts } from "@/utils/newt.ts";
-import Data from "@/utils/data.json";
-type Post = typeof Data;
-const response = await getAllPosts();
+// var posts: Post[] = response?.items;
+// posts = posts.sort(
+//     (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+// );
 
-var posts: Post[] = response?.items;
-posts = posts.sort(
-    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-);
+// export const baseurl = "/post/";
+// import Pagerender from "@/layouts/Pagerender.astro";
 
-export const baseurl = "/post/";
-import Pagerender from "@/layouts/Pagerender.astro";
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
+
+const pageTitle = "ㅤ";
+const pageUrl = "/";
+const cardUrl = new URL("/", Astro.url);
+
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.baseurl;
 ---
 
+<BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>
+    <Menu slot="header" />
+
+    <Pagelist_buttons
+        slot="footer"
+        baseurl={baseurl}
+        nextpage_slug={false}
+        prevpage_slug={false}
+        currentpage_title={pageTitle}
+    />
+</BaseLayout>
+
+<!-- 
 <Pagerender
     entry={posts[0]}
     prev={posts[1]}
     next={undefined}
     baseurl={baseurl}
-/>
+/> -->

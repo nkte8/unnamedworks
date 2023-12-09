@@ -1,6 +1,4 @@
 ---
-export const baseurl = "/post/";
-
 const pageTitle = "articles";
 const url = Astro.url.pathname;
 const card_name = "/cards/main.png";
@@ -20,6 +18,9 @@ var posts: Post[] = response?.items;
 posts = posts.sort(
     (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 );
+
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.baseurl;
 ---
 
 <style>

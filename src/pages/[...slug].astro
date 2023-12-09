@@ -37,7 +37,8 @@ interface Props {
 const { entry, prev, next } = Astro.props;
 
 import Pagerender from "@/layouts/Pagerender.astro";
-export const baseurl = "/post/";
----
 
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.baseurl;
+---
 <Pagerender entry={entry} prev={prev} next={next} baseurl={baseurl} />
