@@ -12,6 +12,7 @@
 
         background-image: url("../images/window.png");
         background-size: cover;
+        background-color: #fff;
         width: auto;
         height: 100%;
         aspect-ratio: 247 / 196;
@@ -59,6 +60,7 @@
 
         background-image: url("../images/ipad.png");
         background-size: cover;
+        background-color: #fff;
         width: auto;
         max-height: 98vh;
         aspect-ratio: 363/454;
@@ -104,6 +106,7 @@
         position: relative;
         background: url("../images/iphone.png") no-repeat;
         background-size: cover;
+        background-color: #fff;
         width: 100%;
         aspect-ratio: 183 / 316;
         overflow: hidden;
