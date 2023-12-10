@@ -1,14 +1,11 @@
 ---
 import { getAllPosts } from "@/utils/newt.ts";
-import Data from "@/utils/data.json";
+import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 
 export async function getStaticPaths() {
     const response = await getAllPosts();
-    var posts: Post[] = response?.items;
-    posts = posts.sort(
-        (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-    );
+    const posts: Post[] = response?.items;
 
     let aroud_info = posts.map((entry) => {
         return {
