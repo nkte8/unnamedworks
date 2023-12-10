@@ -41,9 +41,9 @@ export const getLatestHighlight = async () => {
     return allPosts;
 }
 
-export function create_ogp_urlquery(width: number, height: number, focus_bottom: boolean):string {
+export function genOgpUrlquery(width: number, height: number, focus_bottom: boolean):string {
     // ogpカードは変換により開けなくなる可能性があるため、formatを行わない。
-    var assert_api_function:string = "?width=600"
+    var assert_api_function:string = "?width=1200"
     var ogp_width = width - 1
     var ogp_height = Math.floor(height / 2)
     var ogp_top = Math.floor(height / 8)
@@ -53,4 +53,18 @@ export function create_ogp_urlquery(width: number, height: number, focus_bottom:
     assert_api_function += 
         "&extract=1," + ogp_top + "," + ogp_width  + "," + ogp_height 
     return assert_api_function
+}
+
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
+
+export function genPostSlug(pubDate: string, createdDate: string):string{
+    var hour_raw = new Date(createdDate).getHours() + 97;
+    var hour_code = String.fromCharCode(hour_raw);
+    return dayjs(pubDate).tz().format("YYYY-MM-DD") + hour_code;
 }

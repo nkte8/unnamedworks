@@ -1,10 +1,11 @@
 ---
-import { getAllPosts, getLatestHighlight, create_ogp_urlquery } from "@/utils/newt.ts";
+import { getAllPosts, getLatestHighlight, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 // 最新記事取得部分
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 const post_response = await getAllPosts();
 const posts: Post[] = post_response?.items;
+const postslug = genPostSlug(posts[0].pubDate,posts[0]._sys.createdAt)
 
 // ハイライト取得部分
 import Highlight from "@/utils/model/highlightformat.json";
@@ -21,7 +22,7 @@ import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
 const pageUrl = "/";
 
 // cardは切り抜いて自動生成
-const card_urlquery = create_ogp_urlquery(
+const card_urlquery = genOgpUrlquery(
                         hightlight.image.width,
                         hightlight.image.height,
                         hightlight.ogp_focus_bottom)
@@ -61,7 +62,7 @@ const css = "background-image: " + img_highlight
         slot="footer"
         baseurl={baseurl}
         nextpage_slug={false}
-        prevpage_slug={posts[0].slug}
+        prevpage_slug={postslug}
         currentpage_title={pageTitle}
     />
 </BaseLayout>
