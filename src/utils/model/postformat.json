@@ -14,7 +14,7 @@
     "slug": "text",
     "pubDate": "2023-04-01T00:00:00.000Z",
     "content": "<p>Plain text is available using the fmt operator.</p>",
-    "ogp": {
+    "image": {
         "_id": "imageId",
         "src": "imageUrl",
         "fileName": "example.png",
@@ -26,5 +26,6 @@
         "altText": "example image",
         "description": "",
         "metadata": {}
-    }
+    },
+    "ogp_focus_bottom": true
 }
