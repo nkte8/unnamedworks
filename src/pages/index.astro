@@ -1,5 +1,5 @@
 ---
-import { getAllPosts, getLatestHighlight, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
+import { getAllPosts, getHighlights, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 // 最新記事取得部分
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
@@ -10,7 +10,7 @@ const postslug = genPostSlug(posts[0].pubDate,posts[0]._sys.createdAt)
 // ハイライト取得部分
 import Highlight from "@/utils/model/highlightformat.json";
 type Highlight = typeof Highlight;
-const highlight_respose = await getLatestHighlight();
+const highlight_respose = await getHighlights();
 const hightlight: Highlight = highlight_respose?.items[0];
 const img_highlight = "url(" + hightlight.image.src + "?format=auto)";
 

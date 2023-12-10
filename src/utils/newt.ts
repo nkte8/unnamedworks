@@ -23,13 +23,12 @@ export const getAllPosts = async () => {
     return allPosts;
 };
 
-export const getLatestHighlight = async () => {
+export const getHighlights = async () => {
     const allPosts = client
         .getContents({
             appUid: import.meta.env.NEWT_HIGHLIGHTS_APP_UID,
             modelUid: import.meta.env.NEWT_HIGHLIGHTS_MODEL_UID,
             query: {
-                limit: 1,
                 order: ['-pubDate'],
             }
         })
