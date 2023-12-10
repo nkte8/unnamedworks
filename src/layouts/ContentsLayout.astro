@@ -2,6 +2,7 @@
 import "@/styles/postsformat.css";
 import BaseLayout from "./BookLayout.astro";
 
+import { genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 interface Props {
@@ -18,10 +19,16 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
 const pageTimestamp = dayjs(entry.pubDate).tz().format("YYYY-MM-DD");
-const pageUrl = entry.slug;
+const pageUrl = genPostSlug(entry.pubDate, entry._sys.createdAt);
 
 const pageTitle = entry.title;
-const cardUrl = entry.ogp.src;
+
+// cardを切り抜いて自動生成
+const card_urlquery = genOgpUrlquery(
+                        entry.image.width,
+                        entry.image.height,
+                        entry.ogp_focus_bottom)
+const cardUrl = entry.image.src + card_urlquery;
 ---
 
 <BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>

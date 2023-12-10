@@ -1,5 +1,5 @@
 ---
-import { getAllPosts } from "@/utils/newt.ts";
+import { getAllPosts, genPostSlug } from "@/utils/newt.ts";
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 
@@ -7,21 +7,14 @@ export async function getStaticPaths() {
     const response = await getAllPosts();
     const posts: Post[] = response?.items;
 
-    let aroud_info = posts.map((entry) => {
-        return {
-            slug: entry.slug,
-            title: entry.title,
-        };
-    });
-
     return posts.map((entry, index) => ({
         params: {
-            slug: baseurl + entry.slug,
+            slug: baseurl + genPostSlug(entry.pubDate, entry._sys.createdAt),
         },
         props: {
             entry,
-            prev: aroud_info[index + 1],
-            next: aroud_info[index - 1],
+            prev: posts[index + 1],
+            next: posts[index - 1],
         },
     }));
 }

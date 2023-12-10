@@ -1,15 +1,16 @@
 ---
-import { getAllPosts, getLatestHighlight } from "@/utils/newt.ts";
+import { getAllPosts, getHighlights, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 // 最新記事取得部分
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 const post_response = await getAllPosts();
 const posts: Post[] = post_response?.items;
+const postslug = genPostSlug(posts[0].pubDate,posts[0]._sys.createdAt)
 
 // ハイライト取得部分
 import Highlight from "@/utils/model/highlightformat.json";
 type Highlight = typeof Highlight;
-const highlight_respose = await getLatestHighlight();
+const highlight_respose = await getHighlights();
 const hightlight: Highlight = highlight_respose?.items[0];
 const img_highlight = "url(" + hightlight.image.src + "?format=auto)";
 
@@ -19,7 +20,13 @@ import Menu from "@/components/menu/main.astro";
 import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
 
 const pageUrl = "/";
-const cardUrl = new URL("/", Astro.url);
+
+// cardは切り抜いて自動生成
+const card_urlquery = genOgpUrlquery(
+                        hightlight.image.width,
+                        hightlight.image.height,
+                        hightlight.ogp_focus_bottom)
+const cardUrl = hightlight.image.src + card_urlquery
 
 import { global_vars } from "@/utils/vars.ts";
 export const baseurl = global_vars.baseurl;
@@ -55,7 +62,7 @@ const css = "background-image: " + img_highlight
         slot="footer"
         baseurl={baseurl}
         nextpage_slug={false}
-        prevpage_slug={posts[0].slug}
+        prevpage_slug={postslug}
         currentpage_title={pageTitle}
     />
 </BaseLayout>
