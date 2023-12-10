@@ -1,7 +1,4 @@
 ---
-import Data from "@/utils/data.json";
-type Post = typeof Data;
-
 interface Props {
     entry: Post;
     prev: Post | undefined;
@@ -9,6 +6,19 @@ interface Props {
     baseurl: string;
 }
 const { entry, prev, next, baseurl } = Astro.props;
+
+import { genPostSlug } from "@/utils/newt.ts";
+import Data from "@/utils/model/postformat.json";
+type Post = typeof Data;
+
+var nextslug: undefined | string = undefined
+var prevslug: undefined | string = undefined
+if (next !== undefined){
+    nextslug = genPostSlug(next.pubDate,next._sys.createdAt)
+}
+if (prev !== undefined){
+    prevslug = genPostSlug(prev.pubDate,prev._sys.createdAt)
+}
 
 import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
 import Menu from "@/components/menu/main.astro";
@@ -23,8 +33,8 @@ import { Parsedpost } from "@/utils/parsedpost.tsx";
     <Pagelist_buttons
         slot="footer"
         baseurl={baseurl}
-        nextpage_slug={next !== undefined && next.slug}
-        prevpage_slug={prev !== undefined && prev.slug}
+        nextpage_slug={nextslug !== undefined && nextslug}
+        prevpage_slug={prevslug !== undefined && prevslug}
         currentpage_title={entry.title}
     />
 </BaseLayout>

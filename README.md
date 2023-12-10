@@ -4,13 +4,15 @@ README.md
 ## astroの実行方法
 
 - astroのセットアップ
+    - nodeのバージョンはCloudflareと合わせること。
 ```
-docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:lts npm install
+docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:18.17.1 npm install
 ```
 
 - node.jsコンテナを起動
+    - nodeのバージョンはCloudflareと合わせること。
 ```
-docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:lts /bin/bash
+docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:18.17.1 /bin/bash
 ```
 
 - nodejs実行方法

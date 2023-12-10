@@ -1,30 +1,20 @@
 ---
-import { getAllPosts } from "@/utils/newt.ts";
-import Data from "@/utils/data.json";
+import { getAllPosts, genPostSlug } from "@/utils/newt.ts";
+import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 
 export async function getStaticPaths() {
     const response = await getAllPosts();
-    var posts: Post[] = response?.items;
-    posts = posts.sort(
-        (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-    );
-
-    let aroud_info = posts.map((entry) => {
-        return {
-            slug: entry.slug,
-            title: entry.title,
-        };
-    });
+    const posts: Post[] = response?.items;
 
     return posts.map((entry, index) => ({
         params: {
-            slug: baseurl + entry.slug,
+            slug: baseurl + genPostSlug(entry.pubDate, entry._sys.createdAt),
         },
         props: {
             entry,
-            prev: aroud_info[index + 1],
-            next: aroud_info[index - 1],
+            prev: posts[index + 1],
+            next: posts[index - 1],
         },
     }));
 }
@@ -37,7 +27,8 @@ interface Props {
 const { entry, prev, next } = Astro.props;
 
 import Pagerender from "@/layouts/Pagerender.astro";
-export const baseurl = "/post/";
----
 
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.baseurl;
+---
 <Pagerender entry={entry} prev={prev} next={next} baseurl={baseurl} />

@@ -10,13 +10,28 @@ const { nextpage_slug, currentpage_title, prevpage_slug, baseurl } =
 // const { nextlink, prevlink, baseurl } = Astro.props;
 import "./main.css";
 import Iinebutton from "@/components/iine_button/iine_button.astro";
----
 
+import { global_vars } from "@/utils/vars.ts";
+const website_title = global_vars.website_title;
+const prevlink_title = () => {
+    if(currentpage_title !== website_title){
+        return "前の記事"
+    } else {
+        return "最新記事"
+    }
+}
+---
 <div class="pagelist-buttons">
     <div class="left">
         {
             nextpage_slug !== false && (
                 <a href={baseurl + nextpage_slug}>後の記事</a>
+            )
+        }
+        {
+            nextpage_slug === false && 
+            currentpage_title !== website_title && (
+                <a href="/">ホーム</a>
             )
         }
     </div>
@@ -26,7 +41,7 @@ import Iinebutton from "@/components/iine_button/iine_button.astro";
     <div class="right">
         {
             prevpage_slug !== false && (
-                <a href={baseurl + prevpage_slug}>前の記事</a>
+                <a href={baseurl + prevpage_slug}>{prevlink_title}</a>
             )
         }
     </div>

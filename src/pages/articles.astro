@@ -1,6 +1,4 @@
 ---
-export const baseurl = "/post/";
-
 const pageTitle = "articles";
 const url = Astro.url.pathname;
 const card_name = "/cards/main.png";
@@ -9,17 +7,15 @@ import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
 
 import { getAllPosts } from "@/utils/newt.ts";
-import Data from "@/utils/data.json";
+import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 
 const response = await getAllPosts();
-var posts: Post[] = response?.items;
+const posts: Post[] = response?.items;
 
 // そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
-
-posts = posts.sort(
-    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-);
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.baseurl;
 ---
 
 <style>
