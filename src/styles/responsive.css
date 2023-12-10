@@ -1,7 +1,7 @@
 @media (min-aspect-ratio: 247 / 196) and (min-height: 600px) {
     .frame-parent {
         position: relative;
-        height: 99vh;
+        height: 100dvh;
         overflow-y: hidden;
     }
 
@@ -48,7 +48,7 @@
 @media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 600px) {
     .frame-parent {
         position: relative;
-        height: 99vh;
+        height: 100dvh;
         overflow-y: hidden;
     }
 
