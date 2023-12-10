@@ -23,5 +23,6 @@
         "altText": "example image",
         "description": "",
         "metadata": {}
-    }
+    },
+    "focus_bottom": true
 }

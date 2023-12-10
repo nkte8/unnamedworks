@@ -1,5 +1,5 @@
 ---
-import { getAllPosts, getLatestHighlight } from "@/utils/newt.ts";
+import { getAllPosts, getLatestHighlight, create_ogp_urlquery } from "@/utils/newt.ts";
 // 最新記事取得部分
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
@@ -19,7 +19,13 @@ import Menu from "@/components/menu/main.astro";
 import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
 
 const pageUrl = "/";
-const cardUrl = new URL("/", Astro.url);
+
+// cardは切り抜いて自動生成
+const card_urlquery = create_ogp_urlquery(
+                        hightlight.image.width,
+                        hightlight.image.height,
+                        hightlight.focus_bottom)
+const cardUrl = hightlight.image.src + card_urlquery
 
 import { global_vars } from "@/utils/vars.ts";
 export const baseurl = global_vars.baseurl;
