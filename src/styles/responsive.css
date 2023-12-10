@@ -135,7 +135,7 @@
         overflow-y: auto;
         overflow-wrap: break-word;
         overflow-x: hidden;
-        height: 63vh;
+        height: 95%;
     }
 
     /* スマートフォンの表現領域対応 */
