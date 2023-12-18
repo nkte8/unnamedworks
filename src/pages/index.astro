@@ -29,35 +29,80 @@ const card_urlquery = genOgpUrlquery(
 const cardUrl = hightlight.image.src + card_urlquery
 
 import { global_vars } from "@/utils/vars.ts";
+import { ImageDialog } from '@/utils/ImageDialog.tsx'
 export const baseurl = global_vars.baseurl;
 const pageTitle = global_vars.website_title;
 
 import { Image } from 'astro:assets';
-import img_cover from "@/images/cover.png"
-const css = "background-image: " + img_highlight
+import img_cover_top_right from "@/images/cover_top_right.png"
+import img_cover_top_center from "@/images/cover_top_center.png"
+import img_cover_bottom from "@/images/cover_bottom.png"
+import img_hint_msg from "@/images/hint_msg.png"
+import "@/styles/postsformat.css";
 ---
-<style define:vars={{ img_highlight }}>
-    img {
-        width: 100%;
+<style>
+    .div-parent{
+        width: 100%; 
+        display: flex;
+        justify-content: flex-end;
+    }
+    .cover-top-center {
+        max-width: 500px;
+        
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cover-top-right {
+        max-width: 200px;
+    }
+    .cover-top {
         height: auto;
-        margin-top:-0.5%;
-        margin-bottom: 1%;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center bottom 20%;
-        {/* 
-            Imageコンポーネントだとdefine:vars定義の変数が効かないらしく(素のimgは可)
-            以下は設定しても正常に作用しない。そのためImageを使いつつbackgroundを表示するには
-            styleに直接記載するしかない。
-        */}
-        {/* 
-            background-image: var(--img_highlight);
-        */}
+        max-width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: 0px;
+    }
+    .cover-bottom {
+        height: auto;
+        width: 100%;
+    }
+    .cover-bottom-center {
+        width: 60%;
+        max-width: 250px;
+        
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hint-msg {
+        width: 40%;
+        height: auto;
+        max-width: 300px;
+        position: absolute;
+        left: 2%;
+        top: 5%;
     }
 </style>
 <BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>
     <Menu slot="header" />
-    <Image src={img_cover} alt="" style={css} />
+    <div class="div-parent">
+        <div class="cover-top-center">
+            <Image src={img_cover_top_center} alt="" class="cover-top" />
+        </div>
+        <div class="cover-top-right">
+            <Image src={img_cover_top_right} alt="" class="cover-top" />
+        </div>
+    </div>
+    <div style="position: relative">
+        <Image src={img_hint_msg} alt="" class="hint-msg" />
+        <ImageDialog client:load src={hightlight.image.src + "?format=auto"} />
+    </div>
+    <div class="div-parent">
+        <div class="cover-bottom-center">
+            <Image src={img_cover_bottom} alt="" class="cover-bottom" />
+        </div>
+    </div>
+
+
     <Pagelist_buttons
         slot="footer"
         baseurl={baseurl}
