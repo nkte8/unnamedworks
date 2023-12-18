@@ -1,0 +1,40 @@
+---
+const pageTitle = "タグ一覧";
+const url = Astro.url.pathname;
+const card_name = "/cards/main.png";
+
+import "@/styles/listformat.css";
+
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+
+import { getAllPosts, genPostSlug } from "@/utils/newt.ts";
+import Data from "@/utils/model/postformat.json";
+type Post = typeof Data;
+const response = await getAllPosts();
+const posts: Post[] = response?.items;
+
+const uniqueTags = [
+    ...new Set(posts.map((post) => post.tags.split(",")).flat())
+];
+
+// そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.post_baseurl;
+export const tags_baseurl = global_vars.tags_baseurl;
+---
+<BaseLayout pageTitle={pageTitle} , page_url={url} , card_name={card_name}>
+    <Menu slot="header" />
+    <p>タグ一覧</p>
+    <ul class="common-list">
+        {
+            uniqueTags.map((tag) => (
+                <li>
+                    <a href={tags_baseurl + tag}>
+                        {tag}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</BaseLayout>

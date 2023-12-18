@@ -14,6 +14,8 @@ const highlight_respose = await getHighlights();
 const hightlight: Highlight = highlight_respose?.items[0];
 
 // 以降レイアウト関連
+import "@/styles/postsformat.css";
+
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
 import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
@@ -29,7 +31,7 @@ const cardUrl = hightlight.image.src + card_urlquery
 
 import { global_vars } from "@/utils/vars.ts";
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
-export const baseurl = global_vars.baseurl;
+export const baseurl = global_vars.post_baseurl;
 const pageTitle = global_vars.website_title;
 
 import { Image } from 'astro:assets';
@@ -37,7 +39,6 @@ import img_cover_top_right from "@/images/cover_top_right.png"
 import img_cover_top_center from "@/images/cover_top_center.png"
 import img_cover_bottom from "@/images/cover_bottom.png"
 import img_hint_msg from "@/images/hint_msg.png"
-import "@/styles/postsformat.css";
 ---
 <style>
     .div-parent{

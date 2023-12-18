@@ -1,0 +1,59 @@
+---
+const url = Astro.url.pathname;
+const card_name = "/cards/main.png";
+
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+
+import "@/styles/listformat.css";
+
+import { getAllPosts, genPostSlug } from "@/utils/newt.ts";
+import Data from "@/utils/model/postformat.json";
+type Post = typeof Data;
+
+export async function getStaticPaths() {
+    const response = await getAllPosts();
+    const posts: Post[] = response?.items;
+
+    const uniqueTags = [
+        ...new Set(posts.map((post) => post.tags.split(",")).flat()),
+    ];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = posts.filter((post) =>
+            post.tags.split(",").includes(tag),
+        );
+        return {
+            params: { tag: tags_baseurl + tag },
+            props: { 
+                tag_name: tag,
+                posts: filteredPosts },
+        };
+    });
+}
+
+const { tag } = Astro.params;
+const { tag_name, posts } = Astro.props;
+
+// そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
+import { global_vars } from "@/utils/vars.ts";
+export const baseurl = global_vars.post_baseurl;
+export const tags_baseurl = global_vars.tags_baseurl;
+---
+<BaseLayout pageTitle={tag_name} , page_url={url} , card_name={card_name}>
+    <Menu slot="header" />
+    <p>{tag_name}のタグが付いた記事</p>
+    <ul class="common-list">
+        {
+            posts.map((post) => (
+                <li><a
+                    href={
+                        baseurl + genPostSlug(post.pubDate, post._sys.createdAt)
+                    }>
+                    {post.title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</BaseLayout>
