@@ -12,7 +12,6 @@ import Highlight from "@/utils/model/highlightformat.json";
 type Highlight = typeof Highlight;
 const highlight_respose = await getHighlights();
 const hightlight: Highlight = highlight_respose?.items[0];
-const img_highlight = "url(" + hightlight.image.src + "?format=auto)";
 
 // 以降レイアウト関連
 import BaseLayout from "@/layouts/BookLayout.astro";
