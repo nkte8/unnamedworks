@@ -32,7 +32,7 @@ import { ImageDialog } from '@/utils/ImageDialog.tsx'
 export const baseurl = global_vars.baseurl;
 const pageTitle = global_vars.website_title;
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import img_cover_top_right from "@/images/cover_top_right.png"
 import img_cover_top_center from "@/images/cover_top_center.png"
 import img_cover_bottom from "@/images/cover_bottom.png"
@@ -85,19 +85,19 @@ import "@/styles/postsformat.css";
     <Menu slot="header" />
     <div class="div-parent">
         <div class="cover-top-center">
-            <Image src={img_cover_top_center} alt="" class="cover-top" />
+            <Picture src={img_cover_top_center} alt="" class="cover-top" />
         </div>
         <div class="cover-top-right">
-            <Image src={img_cover_top_right} alt="" class="cover-top" />
+            <Picture src={img_cover_top_right} alt="" class="cover-top" />
         </div>
     </div>
     <div style="position: relative">
-        <Image src={img_hint_msg} alt="" class="hint-msg" />
+        <Picture src={img_hint_msg} alt="" class="hint-msg" />
         <ImageDialog client:load src={hightlight.image.src + "?format=auto"} />
     </div>
     <div class="div-parent">
         <div class="cover-bottom-center">
-            <Image src={img_cover_bottom} alt="" class="cover-bottom" />
+            <Picture src={img_cover_bottom} alt="" class="cover-bottom" />
         </div>
     </div>
 
