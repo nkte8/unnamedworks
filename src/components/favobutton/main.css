@@ -1,0 +1,29 @@
+button {
+    appearance: button;
+    border: none;
+    box-sizing: border-box;
+}
+
+button.likeButton {
+    font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
+    cursor: pointer;
+    background: transparent;
+    border: 1.5px solid;
+    color: #aaa;
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 3px 13px;
+    transition: 0.05s linear;
+}
+
+button:active  {
+    transform: scale(0.90);
+}
+
+button.clicked {
+    color: #e44;
+}
+
+svg {
+    width: 13px;
+}

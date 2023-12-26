@@ -1,25 +1,29 @@
 ---
 interface Props {
     nextpage_slug: string | false;
-    currentpage_title: string;
+    currentpage_slug: string;
     prevpage_slug: string | false;
     baseurl: string;
 }
-const { nextpage_slug, currentpage_title, prevpage_slug, baseurl } =
+const { nextpage_slug, currentpage_slug, prevpage_slug, baseurl } =
     Astro.props;
 // const { nextlink, prevlink, baseurl } = Astro.props;
 import "./main.css";
-import Iinebutton from "@/components/iine_button/iine_button.astro";
 
-import { global_vars } from "@/utils/vars.ts";
-const website_title = global_vars.website_title;
+import { global_vars, lambdaurl } from "@/utils/vars.ts";
+const indexpage_slug = global_vars.index_slug;
 const prevlink_title = () => {
-    if(currentpage_title !== website_title){
+    if(currentpage_slug !== indexpage_slug){
         return "前の記事"
     } else {
         return "最新記事"
     }
 }
+
+import Favobutton from "@/components/favobutton/main.tsx";
+
+const api_url = lambdaurl
+const user_name = null
 ---
 <div class="pagelist-buttons">
     <div class="left">
@@ -30,13 +34,17 @@ const prevlink_title = () => {
         }
         {
             nextpage_slug === false && 
-            currentpage_title !== website_title && (
+            currentpage_slug !== indexpage_slug && (
                 <a href="/">ホーム</a>
             )
         }
     </div>
     <div class="center">
-        <Iinebutton button_name={currentpage_title} />
+        <Favobutton client:load
+            api_url={api_url}
+            page_name={currentpage_slug}
+            user_name={user_name}
+        />
     </div>
     <div class="right">
         {
