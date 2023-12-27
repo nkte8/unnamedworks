@@ -10,13 +10,37 @@ const links = [
         link: "/articles",
     },
     {
+        src: "secret",
+        link: "/secret",
+    },
+    {
         src: "navi",
         link: "https://ln.unnamedworks.com/",
     },
 ];
-import Darkmode from "@/components/darkmode/main.astro";
----
+import { localstorage_id_key_name } from "@/utils/vars.ts";
 
+import Darkmode from "@/components/darkmode/main.astro";
+import Userlabel from "@/components/userlabel/main.tsx"
+---
+<style>
+    .userlabel {
+        font-size: medium;
+        margin: auto 0 auto auto;
+        padding-right: 10px;
+    }
+</style>
+
+<div class="menu-layout">
+    <div class="userlabel">
+        <span style="font-size: smaller;">Welcome</span>
+        <Userlabel 
+            client:load 
+            localstorage_id_key={localstorage_id_key_name}
+        />!
+    </div>
+    <Darkmode />
+</div>
 <div class="menu-layout">
     <ul class="menu">
         {
@@ -29,5 +53,4 @@ import Darkmode from "@/components/darkmode/main.astro";
             ))
         }
     </ul>
-    <Darkmode />
 </div>

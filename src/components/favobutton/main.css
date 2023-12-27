@@ -1,16 +1,15 @@
-button {
+button.likeButton {
     appearance: button;
     border: none;
     box-sizing: border-box;
-}
 
-button.likeButton {
     font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
     cursor: pointer;
     background: transparent;
     border: 1.5px solid;
     color: #aaa;
     font-size: 13px;
+    font-weight: bold;
     border-radius: 20px;
     padding: 3px 13px;
     transition: 0.05s linear;

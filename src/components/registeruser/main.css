@@ -1,0 +1,42 @@
+.register_user {
+    display:block;
+    width: auto;
+}
+
+.register_user button.submit {
+    appearance: button;
+    border: none;
+    box-sizing: border-box;
+}
+
+.register_user button.submit {
+    font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
+    cursor: pointer;
+    background: transparent;
+    border: 1.5px solid;
+    font-weight: bold;
+    color: #aaa;
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 3px 13px;
+    transition: 0.05s linear;
+}
+
+.register_user button.submit:active  {
+    transform: scale(0.90);
+}
+
+.register_user input.textbox {
+    font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
+    border-radius: 20px;
+    padding: 3px 10px;
+    margin-right: 5px;
+
+    border: 1px solid;
+    border-color: #aaa;
+    box-sizing: border-box;
+}
+
+.register_user label {
+    font-size: 13px;
+}
