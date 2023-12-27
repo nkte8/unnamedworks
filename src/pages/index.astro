@@ -27,11 +27,8 @@ const card_urlquery = genOgpUrlquery(
                         hightlight.ogp_focus_bottom)
 const cardUrl = hightlight.image.src + card_urlquery
 
-import { global_vars } from "@/utils/vars.ts";
+import { baseurl, website_title, indexpage_slug } from "@/utils/vars.ts";
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
-export const baseurl = global_vars.baseurl;
-const pageTitle = global_vars.website_title;
-const indexpage_slug = global_vars.index_slug;
 
 import { Picture } from 'astro:assets';
 import img_cover_top_right from "@/images/cover_top_right.png"
@@ -82,7 +79,7 @@ import "@/styles/postsformat.css";
         top: 5%;
     }
 </style>
-<BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>
+<BaseLayout pageTitle={website_title} page_url={pageUrl} cardUrl={cardUrl}>
     <Menu slot="header" />
     <div class="div-parent">
         <div class="cover-top-center">
