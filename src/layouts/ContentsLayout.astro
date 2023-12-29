@@ -19,7 +19,7 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
 const pageTimestamp = dayjs(entry.pubDate).tz().format("YYYY-MM-DD");
-const pageUrl = genPostSlug(entry.pubDate, entry._sys.createdAt);
+const pageUrl = genPostSlug(entry.pubDate, entry._id);
 
 const pageTitle = entry.title;
 

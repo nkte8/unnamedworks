@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 
     return posts.map((entry, index) => ({
         params: {
-            slug: baseurl + genPostSlug(entry.pubDate, entry._sys.createdAt),
+            slug: baseurl + genPostSlug(entry.pubDate, entry._id),
         },
         props: {
             entry,

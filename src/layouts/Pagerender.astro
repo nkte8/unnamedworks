@@ -13,12 +13,12 @@ type Post = typeof Data;
 
 var nextslug: undefined | string = undefined
 var prevslug: undefined | string = undefined
-var currentslug: undefined | string = genPostSlug(entry.pubDate,entry._sys.createdAt)
+var currentslug: undefined | string = genPostSlug(entry.pubDate,entry._id)
 if (next !== undefined){
-    nextslug = genPostSlug(next.pubDate,next._sys.createdAt)
+    nextslug = genPostSlug(next.pubDate,next._id)
 }
 if (prev !== undefined){
-    prevslug = genPostSlug(prev.pubDate,prev._sys.createdAt)
+    prevslug = genPostSlug(prev.pubDate,prev._id)
 }
 
 import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";

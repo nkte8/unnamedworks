@@ -5,7 +5,7 @@ import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 const post_response = await getAllPosts();
 const posts: Post[] = post_response?.items;
-const postslug = genPostSlug(posts[0].pubDate,posts[0]._sys.createdAt)
+const postslug = genPostSlug(posts[0].pubDate,posts[0]._id)
 
 // ハイライト取得部分
 import Highlight from "@/utils/model/highlightformat.json";

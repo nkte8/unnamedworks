@@ -62,8 +62,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
-export function genPostSlug(pubDate: string, createdDate: string):string{
-    var hour_raw = new Date(createdDate).getHours() + 97;
-    var hour_code = String.fromCharCode(hour_raw);
-    return dayjs(pubDate).tz().format("YYYY-MM-DD") + hour_code;
+export function genPostSlug(pubDate: string, hash: string):string{
+    // let matchedParts = hash.match(/[a-zA-Z]/g); 
+    return `${dayjs(pubDate).tz().format("YYYY-MM-DD")}_${hash.substr(-2)}`;
 }
