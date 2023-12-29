@@ -6,8 +6,9 @@ import { favo_api, get_auth_local, set_auth_local, rm_auth_local } from '@/utils
 interface Props {
     api_url: string,
     arg: "auth" | "register",
+    login_path: string,
 }
-export default function LoginUserBox({ api_url, arg }: Props) {
+export default function LoginUserBox({ api_url, arg , login_path }: Props) {
 
     const localstorage_val = get_auth_local()
     const [userid, setUserid] = useState(localstorage_val.id);
@@ -39,7 +40,7 @@ export default function LoginUserBox({ api_url, arg }: Props) {
                             return
                         }
                         set_auth_local({ id: userid, secret: sec_local })
-                        window.location.reload();
+                        window.location.href = login_path + "?login";
                         break;
                     case 401:
                         setMsg("ID/PWの組み合わせが誤っています。");
@@ -58,7 +59,7 @@ export default function LoginUserBox({ api_url, arg }: Props) {
     }
     const onClickLogout = async () => {
         rm_auth_local();
-        window.location.reload();
+        window.location.href = login_path + "?logout";
     }
 
     const checkUserByApi = async () => {

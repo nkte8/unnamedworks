@@ -8,6 +8,7 @@ const cardUrl = new URL("/card/main.png", Astro.url);
 import {
     lambdaurl,
     website_title,
+    login_page_path,
 } from "@/utils/vars.ts";
 import RegisterUser from "@/components/userform/main.tsx";
 ---
@@ -23,6 +24,6 @@ import RegisterUser from "@/components/userform/main.tsx";
     <Menu slot="header" />
     <p />
     <div class="registeruser_box">
-        <RegisterUser client:load api_url={lambdaurl} arg="register" /><br />
+        <RegisterUser client:load api_url={lambdaurl} arg="register" login_path={login_page_path} /><br />
     </div>
 </BaseLayout>
