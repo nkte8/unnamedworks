@@ -10,7 +10,6 @@ import {
     website_title,
 } from "@/utils/vars.ts";
 import RegisterUser from "@/components/userform/main.tsx";
-import Favolabel from "@/components/favolabel/main.tsx";
 ---
 
 <style>
@@ -22,15 +21,8 @@ import Favolabel from "@/components/favolabel/main.tsx";
 
 <BaseLayout pageTitle={website_title} page_url={pageUrl} cardUrl={cardUrl}>
     <Menu slot="header" />
+    <p />
     <div class="registeruser_box">
-        <RegisterUser client:load api_url={lambdaurl} arg="auth" />
+        <RegisterUser client:load api_url={lambdaurl} arg="register" /><br />
     </div>
-    <div class="registeruser_box">
-        <Favolabel client:load
-            api_url={lambdaurl}
-        />
-    </div>
-    <p>
-        <a href="/register">新規ユーザー登録</a>
-    </p>
 </BaseLayout>
