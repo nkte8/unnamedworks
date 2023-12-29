@@ -13,6 +13,7 @@ type Post = typeof Data;
 
 var nextslug: undefined | string = undefined
 var prevslug: undefined | string = undefined
+var currentslug: undefined | string = genPostSlug(entry.pubDate,entry._sys.createdAt)
 if (next !== undefined){
     nextslug = genPostSlug(next.pubDate,next._sys.createdAt)
 }
@@ -35,6 +36,6 @@ import { Parsedpost } from "@/utils/parsedpost.tsx";
         baseurl={baseurl}
         nextpage_slug={nextslug !== undefined && nextslug}
         prevpage_slug={prevslug !== undefined && prevslug}
-        currentpage_title={entry.title}
+        currentpage_slug={currentslug}
     />
 </BaseLayout>
