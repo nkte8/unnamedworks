@@ -18,7 +18,7 @@ const links = [
         link: "https://ln.unnamedworks.com/",
     },
 ];
-import { localstorage_id_key_name } from "@/utils/vars.ts";
+import { lambdaurl } from "@/utils/vars.ts";
 
 import Darkmode from "@/components/darkmode/main.astro";
 import Userlabel from "@/components/userlabel/main.tsx"
@@ -36,7 +36,7 @@ import Userlabel from "@/components/userlabel/main.tsx"
         <span style="font-size: smaller;">Welcome</span>
         <Userlabel 
             client:load 
-            localstorage_id_key={localstorage_id_key_name}
+            api_url={lambdaurl}
         />!
     </div>
     <Darkmode />

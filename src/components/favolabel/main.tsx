@@ -1,42 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
+import { favo_api, get_auth_local } from '@/utils/favoapi'
+
 interface Props {
     api_url: string,
-    localstorage_id_key: string
 }
-export default function Favolabel({api_url, localstorage_id_key}:Props) {
-    
-    // 初期値の設定
-    var load_user_name: string | null = null
-    if (typeof localStorage !== "undefined"){
-        const value = localStorage.getItem(localstorage_id_key);
-        if (value !== null) {
-            load_user_name = value
+
+export default function Favolabel({ api_url }: Props) {
+    const auth = get_auth_local()
+
+    const [label, setLabel] = useState("now loading...")
+    useEffect(() => {
+        setCountFromApi()
+    }, [])
+
+    const setCountFromApi = async () => {
+        try { 
+            let c = await favo_api(api_url, null, auth.id, auth.secret, "read")
+            if (c.favcount !== null) {
+                setLabel(`${auth.id}さんは${c.favcount}回いいねしました。ありがとう！`)
+            }else{
+                setLabel("ログイン中の場合、ここに情報が表示されます。")
+            }
+        } catch (e) {
+            setLabel("ログイン中の場合、ここに情報が表示されます。")
         }
     }
-    const [count, setCount] = useState(null);
-
-    useEffect(() => {
-        fetch(api_url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(
-                {
-                    user: load_user_name,
-                    arg: "read",
-                }
-            )
-        }
-        ).then((response) => response.json()
-        ).then((data) => { setCount(data.favcount) }
-        ).catch(() => {
-            console.log("error");
-        })
-    }, [])
 
     return (
         <span>
-            {count}
+            {label}
         </span>
     );
 };

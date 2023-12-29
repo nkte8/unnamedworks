@@ -10,7 +10,7 @@ const { nextpage_slug, currentpage_slug, prevpage_slug, baseurl } =
 // const { nextlink, prevlink, baseurl } = Astro.props;
 import "./main.css";
 
-import { indexpage_slug, lambdaurl, localstorage_id_key_name } from "@/utils/vars.ts";
+import { indexpage_slug, lambdaurl } from "@/utils/vars.ts";
 const prevlink_title = () => {
     if(currentpage_slug !== indexpage_slug){
         return "前の記事"
@@ -22,7 +22,6 @@ const prevlink_title = () => {
 import Favobutton from "@/components/favobutton/main.tsx";
 
 const api_url = lambdaurl
-const user_name = null
 ---
 <div class="pagelist-buttons">
     <div class="left">
@@ -41,9 +40,7 @@ const user_name = null
     <div class="center">
         <Favobutton client:load
             api_url={api_url}
-            page_name={currentpage_slug}
-            localstorage_id_key={localstorage_id_key_name}
-        />
+            page_name={currentpage_slug} />
     </div>
     <div class="right">
         {

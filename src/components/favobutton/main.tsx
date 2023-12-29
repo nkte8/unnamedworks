@@ -1,70 +1,40 @@
 import React, { useState, useEffect } from 'react';
 
 import './main.css';
+import { favo_api, get_auth_local } from '@/utils/favoapi'
 
 interface Props {
-    api_url: string;
-    page_name: string;
-    localstorage_id_key: string;
+    api_url: string,
+    page_name: string,
 }
+export default function Favobutton({ api_url, page_name }: Props) {
 
-export default function Favobutton({ api_url, page_name, localstorage_id_key }: Props) {
-
-    // user情報をlocalstorageから取得
-    var user_name: string | null = null
-    if (typeof localStorage !== "undefined"){
-        const value = localStorage.getItem(localstorage_id_key);
-        if (value !== null) {
-            user_name = value
-        }
-    }
+    const auth = get_auth_local()
 
     const [count, setCount] = useState(0);
     const [active, setActive] = useState(false);
-    const get_result = async () => fetch(api_url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(
-            {
-                id: page_name,
-                user: user_name,
-                arg: "read",
-            }
-        )
-    }
-    ).then((response) => response.json()
-    ).then((data) => { setCount(data.favcount) }
-    ).catch(() => {
-        console.log("error");
-    })
 
-    const post_result = async () => fetch(api_url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(
-            {
-                id: page_name,
-                user: user_name,
-                arg: "push",
+    const runFavoApi = async (arg: "read" | "push") => {
+        try {
+            let c = await favo_api(api_url, page_name, auth.id, auth.secret, arg)
+            if (c.favcount !== null) {
+                setCount(c.favcount)
             }
-        )
-
+            return (c.favcount !== null)
+        } catch (e) {
+            return false
+        }
     }
-    ).then((response) => response.json()
-    ).then((data) => { setCount(data.favcount) }
-    ).catch(() => {
-        console.log("error");
-    })
 
     useEffect(() => {
         // 非同期処理の場合は、関数を定義しそれを呼び出すような形式で記述すること
-        get_result()
+        runFavoApi("read")
     }, [])
 
-    const handleClick = () => {
-        // setCount(count + 1);
-        setActive(true);
-        post_result();
+    const handleClick = async () => {
+        if (await runFavoApi("push")) {
+            setActive(true);
+        }
     };
 
     return (

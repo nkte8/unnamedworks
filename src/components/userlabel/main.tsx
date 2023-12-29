@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { favo_api, get_auth_local, rm_auth_local } from '@/utils/favoapi'
 
 interface Props {
-    localstorage_id_key: string
+    api_url: string
 }
-export default function Userlabel({localstorage_id_key}:Props) {
-    
-    // 初期値の設定
-    var load_user_name = ""
-    if (typeof localStorage !== "undefined"){
-        const value = localStorage.getItem(localstorage_id_key);
-        if (value !== null) {
-            load_user_name = value
+export default function Userlabel({api_url}:Props) {
+    const [username, setUsername] = useState<string | null>(null);
+
+    let auth = get_auth_local()
+    const checkUserByApi = async () => {
+        if (auth.id !== null && auth.secret !== null){
+            try {
+                let r = await favo_api(api_url, null, auth.id, auth.secret, "auth")
+                if (r.statusCode == 200){
+                    setUsername(auth.id)
+                } else {
+                    rm_auth_local()
+                }
+            } catch (e) {
+                rm_auth_local()
+            } 
         }
     }
 
+    useEffect(() => {
+        checkUserByApi()
+    }, [])
+
     return (
         <span>
-            {load_user_name}
+            {username}
         </span>
     );
 };

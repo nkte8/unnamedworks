@@ -1,15 +1,14 @@
-.register_user {
+.user_form {
     display:block;
-    width: auto;
 }
 
-.register_user button.submit {
+.user_form button.submit {
     appearance: button;
     border: none;
     box-sizing: border-box;
 }
 
-.register_user button.submit {
+.user_form button.submit {
     font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
     cursor: pointer;
     background: transparent;
@@ -22,21 +21,32 @@
     transition: 0.05s linear;
 }
 
-.register_user button.submit:active  {
+.user_form button.submit:active  {
     transform: scale(0.90);
 }
 
-.register_user input.textbox {
+.user_form input.textbox {
     font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
     border-radius: 20px;
-    padding: 3px 10px;
+    padding: 0% 10px;
     margin-right: 5px;
-
-    border: 1px solid;
-    border-color: #aaa;
-    box-sizing: border-box;
 }
 
-.register_user label {
-    font-size: 13px;
+.user_form label {
+    font-size: medium;
+}
+
+.user_form input[type=text]:invalid, input[type=password]:invalid {
+    background: pink;
+}
+
+.user_form .context {
+    font-size: medium;
+    margin: 10px;
+}
+
+.user_form .alert {
+    background: #e77;
+    border-radius: 5px;
+    padding: 3px;
 }
