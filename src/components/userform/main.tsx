@@ -9,10 +9,11 @@ interface Props {
 }
 export default function LoginUserBox({ api_url, arg }: Props) {
 
-    const localstorage_val =  get_auth_local()
+    const localstorage_val = get_auth_local()
     const [userid, setUserid] = useState(localstorage_val.id);
     const [secret, setSecret] = useState(localstorage_val.secret);
     const [islogin, setLoginStatus] = useState(false);
+    const [isOpenpw, setOpenPW] = useState("password");
 
     const [msg, setMsg] = useState<string | null>(null);
 
@@ -20,15 +21,24 @@ export default function LoginUserBox({ api_url, arg }: Props) {
     const button_msg = arg == "auth" ? "Login" : "Register"
 
     const userid_pattern = "^([a-zA-Z0-9]{4,10})$"
-    const secret_pattern = "^([a-zA-Z0-9]{5,20})$"
+    const secret_pattern = "^([a-zA-Z0-9]{20,20})$"
 
     const onClickLogin = async () => {
-        if (userid.match(userid_pattern) && secret.match(secret_pattern)) {
+        if (userid.match(userid_pattern)) {
+            if (arg === "auth" && !secret.match(secret_pattern)) {
+                setMsg("IDは4~10文字の半角英数で指定してください")
+                return
+            }
             try {
                 let result = await favo_api(api_url, null, userid, secret, arg);
                 switch (result.rc) {
                     case 200:
-                        set_auth_local({ id: userid, secret: secret })
+                        let sec_local = arg === "register" ? result.msg : secret
+                        if (sec_local == null) { 
+                            setMsg("不明なサーバーエラーが発生しました。");
+                            return
+                        }
+                        set_auth_local({ id: userid, secret: sec_local })
                         window.location.reload();
                         break;
                     case 401:
@@ -44,8 +54,6 @@ export default function LoginUserBox({ api_url, arg }: Props) {
             } catch (e) {
                 setMsg("不明なサーバーエラーが発生しました。")
             }
-        } else {
-            setMsg("IDは4~10文字/PWは5~20文字の半角英数で指定してください")
         }
     }
     const onClickLogout = async () => {
@@ -54,17 +62,17 @@ export default function LoginUserBox({ api_url, arg }: Props) {
     }
 
     const checkUserByApi = async () => {
-        if (userid !== null && secret !== null){
+        if (userid !== null && secret !== null) {
             try {
                 let r = await favo_api(api_url, null, userid, secret, "auth")
-                if (r.rc == 200){
+                if (r.rc == 200) {
                     setLoginStatus(true)
                 } else {
                     rm_auth_local()
                 }
             } catch (e) {
                 rm_auth_local()
-            } 
+            }
         }
     }
 
@@ -81,10 +89,24 @@ export default function LoginUserBox({ api_url, arg }: Props) {
         <div className="user_form">
             {
                 islogin !== true &&
+                <div className="context">
+                    {form_msg}
+                </div>
+            }
+            {
+                islogin === true &&
                 <React.StrictMode>
-                    <div className="context">
-                        {form_msg}
-                    </div>
+                <div className="context">
+                    {userid}はログイン中です。
+                </div>
+                <div className="context">
+                    再ログインする場合は以下のパスワードをご利用ください。
+                </div>
+                </React.StrictMode>
+            }
+            {
+                islogin !== true &&
+                <React.StrictMode>
                     {msg !== null &&
                         <span className='context alert'>
                             {msg}
@@ -100,22 +122,26 @@ export default function LoginUserBox({ api_url, arg }: Props) {
                             onChange={(event) => setUserid(event.target.value)}
                         />
                     </div>
-                    <div>
-                        <label>PW:</label><input
-                            type='password'
-                            className='textbox'
-                            pattern={secret_pattern}
-                            value={secret}
-                            onKeyDown={handleKeyDown}
-                            onChange={(event) => setSecret(event.target.value)}
-                        />
-                    </div>
-                    {
-                        arg == "register" &&
-                        <div className="context">
-                            IDは4~10文字/PWは5~20文字の半角英数が使えます。
-                        </div>
-                    }
+                </React.StrictMode>
+            }
+            {
+                (arg === "auth" || islogin == true) &&
+                <div>
+                    <label>PW:</label><input
+                        type={isOpenpw}
+                        className='textbox'
+                        pattern={secret_pattern}
+                        value={secret}
+                        onFocus={() => setOpenPW("text")}
+                        onBlur={() => setOpenPW("password")}
+                        onKeyDown={handleKeyDown}
+                        onChange={(event) => setSecret(event.target.value)}
+                    />
+                </div>
+            }
+            {
+                islogin !== true &&
+                <React.StrictMode>
                     <div>
                         <button className='submit' onClick={onClickLogin}>
                             {button_msg}
@@ -126,9 +152,6 @@ export default function LoginUserBox({ api_url, arg }: Props) {
             {
                 islogin === true &&
                 <React.StrictMode>
-                    <div className="context">
-                        {userid}はログイン中です。
-                    </div>
                     <div>
                         <button className='submit' onClick={onClickLogout}>
                             Logout

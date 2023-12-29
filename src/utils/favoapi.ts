@@ -2,6 +2,7 @@
 type ApiResponse = {
     rc: number;
     favcount: number | null;
+    msg: string | null;
 }
 
 export const favo_api = async (
