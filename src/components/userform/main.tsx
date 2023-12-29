@@ -26,7 +26,7 @@ export default function LoginUserBox({ api_url, arg }: Props) {
         if (userid.match(userid_pattern) && secret.match(secret_pattern)) {
             try {
                 let result = await favo_api(api_url, null, userid, secret, arg);
-                switch (result.statusCode) {
+                switch (result.rc) {
                     case 200:
                         set_auth_local({ id: userid, secret: secret })
                         window.location.reload();
@@ -57,7 +57,7 @@ export default function LoginUserBox({ api_url, arg }: Props) {
         if (userid !== null && secret !== null){
             try {
                 let r = await favo_api(api_url, null, userid, secret, "auth")
-                if (r.statusCode == 200){
+                if (r.rc == 200){
                     setLoginStatus(true)
                 } else {
                     rm_auth_local()

@@ -1,6 +1,6 @@
 // APIからのリスポンスを定義
 type ApiResponse = {
-    statusCode: number;
+    rc: number;
     favcount: number | null;
 }
 
