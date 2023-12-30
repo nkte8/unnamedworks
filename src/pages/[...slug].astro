@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 
     return posts.map((entry, index) => ({
         params: {
-            slug: baseurl + genPostSlug(entry.pubDate, entry._sys.createdAt),
+            slug: baseurl + genPostSlug(entry.pubDate, entry._id),
         },
         props: {
             entry,
@@ -28,7 +28,6 @@ const { entry, prev, next } = Astro.props;
 
 import Pagerender from "@/layouts/Pagerender.astro";
 
-import { global_vars } from "@/utils/vars.ts";
-export const baseurl = global_vars.post_baseurl;
+import { baseurl } from "@/utils/vars.ts";
 ---
 <Pagerender entry={entry} prev={prev} next={next} baseurl={baseurl} />

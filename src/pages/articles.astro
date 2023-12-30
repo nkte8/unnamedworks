@@ -14,8 +14,7 @@ const response = await getAllPosts();
 const posts: Post[] = response?.items;
 
 // そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
-import { global_vars } from "@/utils/vars.ts";
-export const baseurl = global_vars.baseurl;
+import { baseurl } from "@/utils/vars.ts";
 ---
 
 <style>
@@ -48,7 +47,7 @@ export const baseurl = global_vars.baseurl;
                         <a href={
                             baseurl + genPostSlug(
                                 content.pubDate,
-                                content._sys.createdAt
+                                content._id
                                 )
                         }>{content.title}</a>
                     </li>

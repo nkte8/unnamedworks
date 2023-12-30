@@ -5,7 +5,7 @@ import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 const post_response = await getAllPosts();
 const posts: Post[] = post_response?.items;
-const postslug = genPostSlug(posts[0].pubDate,posts[0]._sys.createdAt)
+const postslug = genPostSlug(posts[0].pubDate,posts[0]._id)
 
 // ハイライト取得部分
 import Highlight from "@/utils/model/highlightformat.json";
@@ -20,7 +20,7 @@ import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
 import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
 
-const pageUrl = "/";
+const pageUrl = Astro.url.pathname;
 
 // cardは切り抜いて自動生成
 const card_urlquery = genOgpUrlquery(
@@ -29,12 +29,10 @@ const card_urlquery = genOgpUrlquery(
                         hightlight.ogp_focus_bottom)
 const cardUrl = hightlight.image.src + card_urlquery
 
-import { global_vars } from "@/utils/vars.ts";
+import { baseurl, website_title, indexpage_slug } from "@/utils/vars.ts";
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
-export const baseurl = global_vars.post_baseurl;
-const pageTitle = global_vars.website_title;
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import img_cover_top_right from "@/images/cover_top_right.png"
 import img_cover_top_center from "@/images/cover_top_center.png"
 import img_cover_bottom from "@/images/cover_bottom.png"
@@ -82,32 +80,30 @@ import img_hint_msg from "@/images/hint_msg.png"
         top: 5%;
     }
 </style>
-<BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>
+<BaseLayout pageTitle={website_title} page_url={pageUrl} cardUrl={cardUrl}>
     <Menu slot="header" />
     <div class="div-parent">
         <div class="cover-top-center">
-            <Image src={img_cover_top_center} alt="" class="cover-top" />
+            <Picture src={img_cover_top_center} alt="" class="cover-top" />
         </div>
         <div class="cover-top-right">
-            <Image src={img_cover_top_right} alt="" class="cover-top" />
+            <Picture src={img_cover_top_right} alt="" class="cover-top" />
         </div>
     </div>
     <div style="position: relative">
-        <Image src={img_hint_msg} alt="" class="hint-msg" />
+        <Picture src={img_hint_msg} alt="" class="hint-msg" />
         <ImageDialog client:load src={hightlight.image.src + "?format=auto"} />
     </div>
     <div class="div-parent">
         <div class="cover-bottom-center">
-            <Image src={img_cover_bottom} alt="" class="cover-bottom" />
+            <Picture src={img_cover_bottom} alt="" class="cover-bottom" />
         </div>
     </div>
-
-
     <Pagelist_buttons
         slot="footer"
         baseurl={baseurl}
         nextpage_slug={false}
         prevpage_slug={postslug}
-        currentpage_title={pageTitle}
+        currentpage_slug={indexpage_slug}
     />
 </BaseLayout>

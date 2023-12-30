@@ -18,7 +18,7 @@ const anim = {
     },
     new: {
         name: "open-from-top",
-        delay: "0s",
+        delay: "0.0s",
         duration: "0.5s",
         easing: "linear",
         fillMode: "backwards",
@@ -29,7 +29,6 @@ const myFade = {
     forwards: anim,
     backwards: anim,
 };
-import Iineheader from "@/components/iine_button/iine_header.astro";
 import "@/styles/welcome_animation.css";
 ---
 <script>
@@ -53,7 +52,6 @@ import "@/styles/welcome_animation.css";
             page_url={page_url}
             card_url={cardUrl}
         />
-        <Iineheader />
     </head>
     <body>
         <div class="frame-parent">

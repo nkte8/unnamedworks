@@ -19,17 +19,17 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
 const pageTimestamp = dayjs(entry.pubDate).tz().format("YYYY-MM-DD");
-const pageUrl = genPostSlug(entry.pubDate, entry._sys.createdAt);
+const pageUrl = genPostSlug(entry.pubDate, entry._id);
 
 const pageTitle = entry.title;
 const pageTags = entry.tags.split(",");
 
 // cardを切り抜いて自動生成
 const card_urlquery = genOgpUrlquery(
-                        entry.image.width,
-                        entry.image.height,
+                        entry.image?.width,
+                        entry.image?.height,
                         entry.ogp_focus_bottom)
-const cardUrl = entry.image.src + card_urlquery;
+const cardUrl = entry.image?.src + card_urlquery;
 ---
 
 <BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>
