@@ -1,12 +1,16 @@
 @font-face {
-	font-family: 'shape02';
+	font-family: 'shape02_cloud';
 	src: url('//2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf') format('truetype');
 }
 
+@font-face {
+	font-family: 'shape02';
+	src: url('/materials/shape02.ttf') format('truetype');
+}
+
 .shape02 {
-    font-family: 'shape02';
+    font-family: 'shape02', 'shape02_cloud';
     line-height: 1.2;
-    font-display: block;
 }
 
 /* フォントに合わせたカスタマイズを継承 */
