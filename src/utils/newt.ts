@@ -70,5 +70,5 @@ dayjs.tz.setDefault("Asia/Tokyo");
 
 export function genPostSlug(pubDate: string, hash: string):string{
     // let matchedParts = hash.match(/[a-zA-Z]/g); 
-    return `${dayjs(pubDate).tz().format("YYYY-MM-DD")}_${hash.substr(-2)}`;
+    return `${dayjs(pubDate).tz().format("YYYY-MM-DD")}_${hash.slice(-2)}`;
 }
