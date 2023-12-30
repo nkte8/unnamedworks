@@ -1,0 +1,52 @@
+.user_form {
+    display:block;
+}
+
+.user_form button.submit {
+    appearance: button;
+    border: none;
+    box-sizing: border-box;
+}
+
+.user_form button.submit {
+    font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
+    cursor: pointer;
+    background: transparent;
+    border: 1.5px solid;
+    font-weight: bold;
+    color: #aaa;
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 3px 13px;
+    transition: 0.05s linear;
+}
+
+.user_form button.submit:active  {
+    transform: scale(0.90);
+}
+
+.user_form input.textbox {
+    font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
+    border-radius: 20px;
+    padding: 0% 10px;
+    margin-right: 5px;
+}
+
+.user_form label {
+    font-size: medium;
+}
+
+.user_form input[type=text]:invalid, input[type=password]:invalid {
+    background: pink;
+}
+
+.user_form .context {
+    font-size: medium;
+    margin: 10px;
+}
+
+.user_form .alert {
+    background: #e77;
+    border-radius: 5px;
+    padding: 3px;
+}

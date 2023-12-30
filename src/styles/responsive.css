@@ -10,7 +10,7 @@
         left: 0;
         right: 0;
 
-        background-image: url("../images/window.png");
+        background-image: url("../images/window.webp");
         background-size: cover;
         background-color: #fff;
         width: auto;
@@ -19,8 +19,8 @@
         overflow: hidden;
     }
 
-    html.webp div.frame {
-        background-image: url("../images/window.webp");
+    html.no-webp div.frame {
+        background-image: url("../images/window.png");
         background-size: cover;
     }
     
@@ -58,7 +58,7 @@
         left: 0;
         right: 0;
 
-        background-image: url("../images/ipad.png");
+        background-image: url("../images/ipad.webp");
         background-size: cover;
         background-color: #fff;
         width: auto;
@@ -67,8 +67,8 @@
         overflow: hidden;
     }
 
-    html.webp div.frame {
-        background-image: url("../images/ipad.webp");
+    html.no-webp div.frame {
+        background-image: url("../images/ipad.png");
         background-size: cover;
     }
 
@@ -104,7 +104,7 @@
 
         margin: auto;
         position: relative;
-        background: url("../images/iphone.png") no-repeat;
+        background: url("../images/iphone.webp");
         background-size: cover;
         background-color: #fff;
         width: 100%;
@@ -112,8 +112,8 @@
         overflow: hidden;
     }
 
-    html.webp div.frame {
-        background-image: url("../images/iphone.webp");
+    html.no-webp div.frame {
+        background-image: url("../images/iphone.png");
         background-size: cover;
     }
     

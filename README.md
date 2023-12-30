@@ -5,13 +5,13 @@ README.md
 
 - astroのセットアップ
     - nodeのバージョンはCloudflareと合わせること。
-```
+```sh
 docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:18.17.1 npm install
 ```
 
 - node.jsコンテナを起動
     - nodeのバージョンはCloudflareと合わせること。
-```
+```sh
 docker run --rm -v $PWD:/src -w /src -u `id -u`:`id -g` -p 80:4321 -it node:18.17.1 /bin/bash
 ```
 
