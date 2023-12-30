@@ -25,10 +25,10 @@ const pageTitle = entry.title;
 
 // cardを切り抜いて自動生成
 const card_urlquery = genOgpUrlquery(
-                        entry.image.width,
-                        entry.image.height,
+                        entry.image?.width,
+                        entry.image?.height,
                         entry.ogp_focus_bottom)
-const cardUrl = entry.image.src + card_urlquery;
+const cardUrl = entry.image?.src + card_urlquery;
 ---
 
 <BaseLayout pageTitle={pageTitle} page_url={pageUrl} cardUrl={cardUrl}>
