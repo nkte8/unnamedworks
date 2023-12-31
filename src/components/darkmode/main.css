@@ -1,14 +1,27 @@
-html.dark .frame {
-    background-color: #252525;
+html.dark {
+    background-color: rgba(0,0,0,0.9);
     transition: none;
+}
+
+html.dark .frame {
+    background-color: rgba(0,0,0,0.9);
+    transition: none;
+}
+
+html.dark .mdimg {
+    filter: opacity(80%);
 }
 
 html .frame {
     transition: background-color 0.3s;
 }
 
+html {
+    transition: background-color 0.3s;
+}
+
 html.dark body {
-    color: #eee;
+    color: #ccc;
 }
 
 .dark .sun {

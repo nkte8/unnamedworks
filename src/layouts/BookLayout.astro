@@ -55,12 +55,14 @@ import "@/styles/welcome_animation.css";
     </head>
     <body>
         <div class="frame-parent">
-            <div id="transition-area" class="frame">
+            <div class="frame" id="transition-area">
                 <div class="frame-padding">
                     <div class="in-frame shape02" transition:animate={myFade}>
-                        <slot name="header" />
-                        <slot />
-                        <slot name="footer" />
+                        <div class="contents">
+                            <slot name="header" />
+                            <slot />
+                            <slot name="footer" />
+                        </div>
                     </div>
                 </div>
             </div>
