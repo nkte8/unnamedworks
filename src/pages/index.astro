@@ -31,9 +31,10 @@ import { baseurl, website_title, indexpage_slug } from "@/utils/vars.ts";
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
 import { Picture } from 'astro:assets';
-import img_cover_top_right from "@/images/cover_top_right.png"
-import img_cover_top_center from "@/images/cover_top_center.png"
-import img_cover_bottom from "@/images/cover_bottom.png"
+import img_hint_darkmode from "@/images/hint_darkmode.png"
+import img_hint_menu from "@/images/hint_menu.png"
+import img_hint_favo from "@/images/hint_favo.png"
+import img_hint_responsive from "@/images/hint_responsive.png"
 import img_hint_msg from "@/images/hint_msg.png"
 import "@/styles/postsformat.css";
 ---
@@ -42,15 +43,7 @@ import "@/styles/postsformat.css";
         width: 100%; 
         display: flex;
         justify-content: flex-end;
-    }
-    .cover-top-center {
-        max-width: 450px;
-        
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .cover-top-right {
-        max-width: 170px;
+        position: relative;
     }
     .cover-top {
         height: auto;
@@ -63,12 +56,27 @@ import "@/styles/postsformat.css";
         height: auto;
         width: 100%;
     }
-    .cover-bottom-center {
-        width: 60%;
-        max-width: 250px;
+
+    .hint-darkmode {
+        max-width: 170px;
+    }
+    .hint-menu {
+        max-width: 450px;
         
         margin-left: auto;
         margin-right: auto;
+    }
+    .hint-favo {
+        width: 60%;
+        max-width: 250px;
+        margin: auto;
+    }
+    .hint-responsive {
+        position: absolute;
+        width: 40%;
+        max-width: 200px;
+        right: 2%;
+        top: -70%;
     }
     .hint-msg {
         width: 40%;
@@ -83,11 +91,11 @@ import "@/styles/postsformat.css";
 <BaseLayout pageTitle={website_title} page_url={pageUrl} cardUrl={cardUrl}>
     <Menu slot="header" />
     <div class="div-parent">
-        <div class="cover-top-center">
-            <Picture src={img_cover_top_center} alt="" class="cover-top" />
+        <div class="hint-menu">
+            <Picture src={img_hint_menu} alt="" class="cover-top" />
         </div>
-        <div class="cover-top-right">
-            <Picture src={img_cover_top_right} alt="" class="cover-top" />
+        <div class="hint-darkmode">
+            <Picture src={img_hint_darkmode} alt="" class="cover-top" />
         </div>
     </div>
     <div style="position: relative">
@@ -95,8 +103,11 @@ import "@/styles/postsformat.css";
         <ImageDialog client:load alt="TopPage" src={hightlight.image.src + "?format=auto"} />
     </div>
     <div class="div-parent">
-        <div class="cover-bottom-center">
-            <Picture src={img_cover_bottom} alt="" class="cover-bottom" />
+        <div class="hint-responsive">
+            <Picture src={img_hint_responsive} alt="PC Tablet Phone different design" class="cover-bottom" />
+        </div>
+        <div class="hint-favo">
+            <Picture src={img_hint_favo} alt="infinity favorite ok;)" class="cover-bottom" />
         </div>
     </div>
     <Pagelist_buttons

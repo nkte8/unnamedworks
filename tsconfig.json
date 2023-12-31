@@ -4,13 +4,13 @@
     "src/**/*"
   ],
   "compilerOptions": {
+    "target": "es5",
     "baseUrl": "./",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -29,7 +29,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "verbatimModuleSyntax": true,
+    // "verbatimModuleSyntax": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
