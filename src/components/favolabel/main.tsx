@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { favo_api, get_auth_local } from '@/utils/favoapi'
 
