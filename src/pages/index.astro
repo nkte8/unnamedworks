@@ -77,6 +77,7 @@ import "@/styles/postsformat.css";
         position: absolute;
         left: 2%;
         top: 5%;
+        z-index: 2;
     }
 </style>
 <BaseLayout pageTitle={website_title} page_url={pageUrl} cardUrl={cardUrl}>
@@ -90,8 +91,8 @@ import "@/styles/postsformat.css";
         </div>
     </div>
     <div style="position: relative">
-        <Picture src={img_hint_msg} alt="" class="hint-msg" />
-        <ImageDialog client:load src={hightlight.image.src + "?format=auto"} />
+        <Picture src={img_hint_msg} alt="Tap illust zoomin" class="hint-msg" />
+        <ImageDialog client:load alt="TopPage" src={hightlight.image.src + "?format=auto"} />
     </div>
     <div class="div-parent">
         <div class="cover-bottom-center">
