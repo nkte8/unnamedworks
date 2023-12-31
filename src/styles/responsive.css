@@ -10,6 +10,7 @@
         left: 0;
         right: 0;
 
+        background-blend-mode: darken;
         background-image: url("../images/window.webp");
         background-size: cover;
         background-color: #fff;
@@ -43,6 +44,11 @@
         height: 100%;
         padding-left: 15px;
     }
+
+    .frame .contents {
+        max-width: 1000px;
+        margin: auto;
+    }
 }
 
 @media (min-aspect-ratio: 10/16) and (max-aspect-ratio: 247 / 196) and (min-height: 600px) {
@@ -58,6 +64,7 @@
         left: 0;
         right: 0;
 
+        background-blend-mode: darken;
         background-image: url("../images/ipad.webp");
         background-size: cover;
         background-color: #fff;
@@ -104,6 +111,8 @@
 
         margin: auto;
         position: relative;
+
+        background-blend-mode: darken;
         background: url("../images/iphone.webp");
         background-size: cover;
         background-color: #fff;
