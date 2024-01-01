@@ -1,5 +1,5 @@
 .userform {
-    display:block;
+    display: block;
 }
 
 .userform button.submit {
@@ -21,7 +21,7 @@
     transition: 0.05s linear;
 }
 
-.userform button.submit:active  {
+.userform button.submit:active {
     transform: scale(0.90);
 }
 
@@ -48,15 +48,23 @@
     margin-right: 5px;
 }
 
-.userform input[type=text]:invalid, input[type=password]:invalid {
+.userform input[type=text]:invalid,
+input[type=password]:invalid {
     background: pink;
 }
+
 .userform .context {
     margin: 10px 0 10px 0;
 }
-.userform .component{
+
+.userform .context.smaller {
+    font-size: smaller;
+}
+
+.userform .component {
     margin: 0 0 5px 0;
 }
+
 .userform .alert {
     background: #e77;
     border-radius: 5px;
