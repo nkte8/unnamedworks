@@ -7,12 +7,12 @@ import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
 
 // 12
-export const onepagePostcount = 6;
+export const onepagePostcount = 8;
 export async function getStaticPaths() {
     const response = await getAllPosts();
     const pagetotal = response.items.length;
     const range = (start: number, end: number) =>
-        Array.from({ length: end - start + 1 }, (v, k) => k + start);
+        Array.from({ length: end - start + 1 }, (_, k) => k + start);
     const lastpage_index = Math.floor(pagetotal / onepagePostcount) + 1;
     const pagelist = range(1, lastpage_index);
     const pg = (index: number): string =>
