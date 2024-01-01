@@ -42,12 +42,9 @@ import { post_url } from "@/utils/vars.ts";
             {
                 posts.map((content) => (
                     <li>
-                        <a href={
-                            post_url + genPostSlug(
-                                content.pubDate,
-                                content._id
-                                )
-                        }>{content.title}</a>
+                        <a href={post_url + "/" + genPostSlug(content)}>
+                            {content.title}
+                        </a>
                     </li>
                 ))
             }

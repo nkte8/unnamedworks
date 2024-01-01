@@ -3,13 +3,15 @@ import { getAllPosts, getHighlight, genOgpUrlquery, genPostSlug } from "@/utils/
 // 最新記事取得部分
 const post_response = await getAllPosts();
 const posts = post_response.items;
-const postslug = genPostSlug(posts[0].pubDate,posts[0]._id)
+const postslug = genPostSlug(posts[0])
 
 // ハイライト取得部分
 const highlight_respose = await getHighlight();
 const hightlight = highlight_respose;
 
 // 以降レイアウト関連
+import "@/styles/postsformat.css";
+
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
 import Pagerefbuttons from "@/components/pagerefbuttons.astro";
@@ -32,7 +34,6 @@ import img_hint_menu from "@/images/hint_menu.png"
 import img_hint_favo from "@/images/hint_favo.png"
 import img_hint_responsive from "@/images/hint_responsive.png"
 import img_hint_msg from "@/images/hint_msg.png"
-import "@/styles/postsformat.css";
 ---
 <style>
     .div-parent{
