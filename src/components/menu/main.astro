@@ -1,6 +1,6 @@
 ---
 import "./main.css";
-import { lambdaurl } from "@/utils/vars.ts";
+import { lambdaurl, gallery_url } from "@/utils/vars.ts";
 
 import Darkmode from "@/components/darkmode/main.astro";
 import Userlabel from "@/components/userlabel/main.tsx"
@@ -13,15 +13,11 @@ const links = [
     },
     {
         src: "gallery",
-        link: "/gallery/page_01",
-    },
-    {
-        src: "tags",
-        link: "/tags",
+        link: gallery_url + "/",
     },
     {
         src: "secret",
-        link: login_link,
+        link: login_link + "/",
     },
     {
         src: "navi",

@@ -12,7 +12,7 @@
         right: 0;
 
         background-blend-mode: darken;
-        background-image: url("../images/ipad.webp");
+        background-image: url("./images/ipad.webp");
         background-size: cover;
         background-color: #fff;
         width: auto;
@@ -22,7 +22,7 @@
     }
 
     html.no-webp div.frame {
-        background-image: url("../images/ipad.png");
+        background-image: url("./images/ipad.png");
         background-size: cover;
     }
 

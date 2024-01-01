@@ -19,12 +19,12 @@ const get_prevlink = (): link | null => {
     if (currentpage_slug !== indexpage_slug) {
         return {
             msg: "前の記事",
-            href: baseurl + prevpage_slug,
+            href: baseurl + "/" + prevpage_slug,
         };
     } else {
         return {
             msg: "最新記事",
-            href: baseurl + prevpage_slug,
+            href: baseurl + "/" + prevpage_slug,
         };
     }
 };
@@ -41,7 +41,7 @@ const get_nextlink = (): link | null => {
     }
     return {
         msg: "後の記事",
-        href: baseurl + nextpage_slug,
+        href: baseurl + "/" + nextpage_slug,
     };
 };
 const prevlink = get_prevlink();

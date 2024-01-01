@@ -20,9 +20,11 @@ export const getAllPosts = async (tag: string | null = null): Promise<Contents<P
         }
     }
     if (tag !== null) {
-        param.query.tags = {
-            match: tag,
-        }
+        Object.assign(param.query, {
+            tags: {
+                match: tag,
+            }
+        })
     }
     const allPosts: Promise<Contents<Post>> = client
         .getContents(
@@ -101,7 +103,8 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
 export const genPostSlug = (
-    pubDate: string, hash: string): string => {
-    // let matchedParts = hash.match(/[a-zA-Z]/g); 
-    return `${dayjs(pubDate).tz().format("YYYY-MM-DD")}_${hash.slice(-2)}`;
+    content: Post): string => {
+    // let matchedParts = hash.match(/[a-zA-Z]/g);
+    const hash:string = content._id
+    return `${dayjs(content.pubDate).tz().format("YYYY-MM-DD")}_${hash.slice(-2)}`;
 }

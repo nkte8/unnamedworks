@@ -3,7 +3,7 @@ import { getAllPosts, getHighlight, genOgpUrlquery, genPostSlug } from "@/utils/
 // 最新記事取得部分
 const post_response = await getAllPosts();
 const posts = post_response.items;
-const postslug = genPostSlug(posts[0].pubDate,posts[0]._id)
+const postslug = genPostSlug(posts[0])
 
 // ハイライト取得部分
 const highlight_respose = await getHighlight();
