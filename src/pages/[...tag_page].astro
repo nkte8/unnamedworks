@@ -1,0 +1,84 @@
+---
+const url = Astro.url.pathname;
+const cardUrl = new URL("/card/main.png", Astro.url);
+
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+
+import { getAllPosts } from "@/utils/newt.ts";
+
+export async function getStaticPaths() {
+    const range = (start: number, end: number) =>
+        Array.from({ length: end - start + 1 }, (_, k) => k + start);
+    
+    const response = await getAllPosts();
+    const posts = response.items;
+    const uniqueTags = [
+        ...new Set(posts.map((post) => post.tags.split(",")).flat()),
+    ];
+
+    return uniqueTags.flatMap((tag) => {
+        const filteredPosts = posts.filter((post) =>
+            post.tags.split(",").includes(tag),
+        );
+        const lastpage_index = Math.floor(filteredPosts.length / gallery_contents_count) + 1;
+        const pagelist = range(1, lastpage_index);
+        const pg = (index: number): string =>
+            gallery_url + "/" + tag + "/page_" + String(index).padStart(2, "0");
+
+        return pagelist.map((index) => ({
+            params: {
+                tag_page: pg(index),
+            },
+            props: {
+                tag: tag,
+                index: index,
+                post_index: (index - 1) * gallery_contents_count,
+                is_nextpage: index !== lastpage_index ? pg(index + 1) : null,
+                is_prevpage: index !== 1 ? pg(index - 1) : null,
+            },
+        }))
+    })
+}
+
+interface Props {
+    tag: string;
+    index: number;
+    post_index: number;
+    is_nextpage: string | null;
+    is_prevpage: string | null;
+}
+const { index, tag, post_index, is_nextpage, is_prevpage } = Astro.props;
+
+const response = await getAllPosts();
+const filteredPosts = response.items.filter((post) =>
+            post.tags.split(",").includes(tag),
+        );
+const posts = filteredPosts.slice(post_index, post_index + gallery_contents_count);
+
+const pageTitle = tag + " gallery - " + String(index).padStart(2, "0");
+
+import Pagetaglist from "@/components/pagetaglist.astro";
+import Pagereftiles from "@/components/pagereftiles.astro";
+
+import { post_url, gallery_url, gallery_contents_count } from "@/utils/vars.ts";
+---
+<style>
+    div {
+        margin: 10px 0 10px 0;
+    }
+</style>
+<BaseLayout pageTitle={pageTitle} , page_url={url} , cardUrl={cardUrl}>
+    <Menu slot="header" />
+
+    <Pagetaglist tags_url={gallery_url} posts={response.items} />
+    <div>{tag}のタグが付いた記事</div>
+
+    <Pagereftiles
+        index={index}
+        posts={posts}
+        is_nextpage={is_nextpage}
+        is_prevpage={is_prevpage}
+        baseurl={post_url}
+    />
+</BaseLayout>

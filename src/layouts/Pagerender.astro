@@ -13,12 +13,12 @@ type Post = typeof Data;
 
 var nextslug: undefined | string = undefined
 var prevslug: undefined | string = undefined
-var currentslug: undefined | string = genPostSlug(entry.pubDate,entry._id)
+var currentslug: undefined | string = genPostSlug(entry)
 if (next !== undefined){
-    nextslug = genPostSlug(next.pubDate,next._id)
+    nextslug = genPostSlug(next)
 }
 if (prev !== undefined){
-    prevslug = genPostSlug(prev.pubDate,prev._id)
+    prevslug = genPostSlug(prev)
 }
 
 import Pagerefbuttons from "@/components/pagerefbuttons.astro";

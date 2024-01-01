@@ -19,9 +19,10 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
 const pageTimestamp = dayjs(entry.pubDate).tz().format("YYYY-MM-DD");
-const pageUrl = genPostSlug(entry.pubDate, entry._id);
+const pageUrl = genPostSlug(entry);
 
 const pageTitle = entry.title;
+// const pageTags = entry.tags.split(",");
 
 // cardを切り抜いて自動生成
 const card_urlquery = genOgpUrlquery(
@@ -36,6 +37,11 @@ const cardUrl = entry.image?.src + card_urlquery;
     <div class="mddate">Public date: {pageTimestamp}</div>
     <div class="mdbody">
         <slot />
+        {
+            /*
+            <ul class="tags">{pageTags.map((item:string) => <li>{item}</li>)}</ul>
+            */
+        }
         <slot name="footer" slot="footer" />
     </div>
 </BaseLayout>
