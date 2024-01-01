@@ -1,13 +1,19 @@
 ---
 import "./main.css";
+import { lambdaurl } from "@/utils/vars.ts";
+
+import Darkmode from "@/components/darkmode/main.astro";
+import Userlabel from "@/components/userlabel/main.tsx"
+
+const login_link = "/secret"
 const links = [
     {
         src: "home",
         link: "/",
     },
     {
-        src: "articles",
-        link: "/articles",
+        src: "gallery",
+        link: "/gallery/page_01",
     },
     {
         src: "tags",
@@ -15,17 +21,13 @@ const links = [
     },
     {
         src: "secret",
-        link: "/secret",
+        link: login_link,
     },
     {
         src: "navi",
         link: "https://ln.unnamedworks.com/",
     },
 ];
-import { lambdaurl } from "@/utils/vars.ts";
-
-import Darkmode from "@/components/darkmode/main.astro";
-import Userlabel from "@/components/userlabel/main.tsx"
 ---
 <style>
     .userlabel {
@@ -37,11 +39,11 @@ import Userlabel from "@/components/userlabel/main.tsx"
 
 <div class="menu-layout">
     <div class="userlabel">
-        <span style="font-size: smaller;">Welcome</span>
         <Userlabel 
             client:load 
             api_url={lambdaurl}
-        />!
+            login_ref={login_link}
+        />
     </div>
     <Darkmode />
 </div>

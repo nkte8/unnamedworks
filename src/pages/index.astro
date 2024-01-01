@@ -1,24 +1,20 @@
 ---
-import { getAllPosts, getHighlights, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
+import { getAllPosts, getHighlight, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 // 最新記事取得部分
-import Data from "@/utils/model/postformat.json";
-type Post = typeof Data;
 const post_response = await getAllPosts();
-const posts: Post[] = post_response?.items;
+const posts = post_response.items;
 const postslug = genPostSlug(posts[0].pubDate,posts[0]._id)
 
 // ハイライト取得部分
-import Highlight from "@/utils/model/highlightformat.json";
-type Highlight = typeof Highlight;
-const highlight_respose = await getHighlights();
-const hightlight: Highlight = highlight_respose?.items[0];
+const highlight_respose = await getHighlight();
+const hightlight = highlight_respose;
 
 // 以降レイアウト関連
 import "@/styles/postsformat.css";
 
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
-import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
+import Pagerefbuttons from "@/components/pagerefbuttons.astro";
 
 const pageUrl = Astro.url.pathname;
 
@@ -29,13 +25,14 @@ const card_urlquery = genOgpUrlquery(
                         hightlight.ogp_focus_bottom)
 const cardUrl = hightlight.image.src + card_urlquery
 
-import { baseurl, website_title, indexpage_slug } from "@/utils/vars.ts";
+import { post_url, website_title, indexpage_slug } from "@/utils/vars.ts";
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
 import { Picture } from 'astro:assets';
-import img_cover_top_right from "@/images/cover_top_right.png"
-import img_cover_top_center from "@/images/cover_top_center.png"
-import img_cover_bottom from "@/images/cover_bottom.png"
+import img_hint_darkmode from "@/images/hint_darkmode.png"
+import img_hint_menu from "@/images/hint_menu.png"
+import img_hint_favo from "@/images/hint_favo.png"
+import img_hint_responsive from "@/images/hint_responsive.png"
 import img_hint_msg from "@/images/hint_msg.png"
 ---
 <style>
@@ -43,15 +40,7 @@ import img_hint_msg from "@/images/hint_msg.png"
         width: 100%; 
         display: flex;
         justify-content: flex-end;
-    }
-    .cover-top-center {
-        max-width: 450px;
-        
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .cover-top-right {
-        max-width: 170px;
+        position: relative;
     }
     .cover-top {
         height: auto;
@@ -64,12 +53,27 @@ import img_hint_msg from "@/images/hint_msg.png"
         height: auto;
         width: 100%;
     }
-    .cover-bottom-center {
-        width: 60%;
-        max-width: 250px;
+
+    .hint-darkmode {
+        max-width: 170px;
+    }
+    .hint-menu {
+        max-width: 450px;
         
         margin-left: auto;
         margin-right: auto;
+    }
+    .hint-favo {
+        width: 60%;
+        max-width: 250px;
+        margin: auto;
+    }
+    .hint-responsive {
+        position: absolute;
+        width: 40%;
+        max-width: 200px;
+        right: 2%;
+        top: -70%;
     }
     .hint-msg {
         width: 40%;
@@ -78,30 +82,34 @@ import img_hint_msg from "@/images/hint_msg.png"
         position: absolute;
         left: 2%;
         top: 5%;
+        z-index: 2;
     }
 </style>
 <BaseLayout pageTitle={website_title} page_url={pageUrl} cardUrl={cardUrl}>
     <Menu slot="header" />
     <div class="div-parent">
-        <div class="cover-top-center">
-            <Picture src={img_cover_top_center} alt="" class="cover-top" />
+        <div class="hint-menu">
+            <Picture src={img_hint_menu} alt="" class="cover-top" />
         </div>
-        <div class="cover-top-right">
-            <Picture src={img_cover_top_right} alt="" class="cover-top" />
+        <div class="hint-darkmode">
+            <Picture src={img_hint_darkmode} alt="" class="cover-top" />
         </div>
     </div>
     <div style="position: relative">
-        <Picture src={img_hint_msg} alt="" class="hint-msg" />
-        <ImageDialog client:load src={hightlight.image.src + "?format=auto"} />
+        <Picture src={img_hint_msg} alt="Tap illust zoomin" class="hint-msg" />
+        <ImageDialog client:load alt="TopPage" src={hightlight.image.src + "?format=auto"} />
     </div>
     <div class="div-parent">
-        <div class="cover-bottom-center">
-            <Picture src={img_cover_bottom} alt="" class="cover-bottom" />
+        <div class="hint-responsive">
+            <Picture src={img_hint_responsive} alt="PC Tablet Phone different design" class="cover-bottom" />
+        </div>
+        <div class="hint-favo">
+            <Picture src={img_hint_favo} alt="infinity favorite ok;)" class="cover-bottom" />
         </div>
     </div>
-    <Pagelist_buttons
+    <Pagerefbuttons
         slot="footer"
-        baseurl={baseurl}
+        baseurl={post_url}
         nextpage_slug={false}
         prevpage_slug={postslug}
         currentpage_slug={indexpage_slug}

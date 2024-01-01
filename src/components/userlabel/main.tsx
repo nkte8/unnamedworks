@@ -3,8 +3,9 @@ import { favo_api, get_auth_local, rm_auth_local } from '@/utils/favoapi'
 
 interface Props {
     api_url: string
+    login_ref: string
 }
-export default function Userlabel({api_url}:Props) {
+export default function Userlabel({ api_url , login_ref }:Props) {
     const [username, setUsername] = useState<string | null>(null);
 
     let auth = get_auth_local()
@@ -29,7 +30,19 @@ export default function Userlabel({api_url}:Props) {
 
     return (
         <span>
-            {username}
+            {
+                username !== null &&
+                <React.StrictMode>
+                    Welcome <b>{username}!</b>
+                </React.StrictMode>
+            }
+            {
+                username === null &&
+                <React.StrictMode>
+                    <a href={login_ref}>未ログイン</a>
+                </React.StrictMode>
+            }
         </span>
+        
     );
 };

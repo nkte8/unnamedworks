@@ -1,4 +1,4 @@
-button.likeButton {
+button.favobutton {
     appearance: button;
     border: none;
     box-sizing: border-box;
@@ -13,6 +13,7 @@ button.likeButton {
     border-radius: 20px;
     padding: 3px 13px;
     transition: 0.05s linear;
+    vertical-align: middle;
 }
 
 button:active  {

@@ -1,14 +1,14 @@
-.user_form {
-    display:block;
+.userform {
+    display: block;
 }
 
-.user_form button.submit {
+.userform button.submit {
     appearance: button;
     border: none;
     box-sizing: border-box;
 }
 
-.user_form button.submit {
+.userform button.submit {
     font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
     cursor: pointer;
     background: transparent;
@@ -21,31 +21,51 @@
     transition: 0.05s linear;
 }
 
-.user_form button.submit:active  {
+.userform button.submit:active {
     transform: scale(0.90);
 }
 
-.user_form input.textbox {
+.userform input {
+    width: 55%;
+    max-width: 200px;
+}
+
+.userform input.textbox {
     font-family: Meiryo, "Hiragino Sans", "Noto Sans", sans-serif;
     border-radius: 20px;
     padding: 0% 10px;
     margin-right: 5px;
+    border: 1.5px solid;
+    border-color: #aaa;
+    font-size: 15px;
 }
 
-.user_form label {
-    font-size: medium;
+.userform label {
+    font-size: 15px;
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+    margin-right: 5px;
 }
 
-.user_form input[type=text]:invalid, input[type=password]:invalid {
+.userform input[type=text]:invalid,
+input[type=password]:invalid {
     background: pink;
 }
 
-.user_form .context {
-    font-size: medium;
-    margin: 10px;
+.userform .context {
+    margin: 10px 0 10px 0;
 }
 
-.user_form .alert {
+.userform .context.smaller {
+    font-size: smaller;
+}
+
+.userform .component {
+    margin: 0 0 5px 0;
+}
+
+.userform .alert {
     background: #e77;
     border-radius: 5px;
     padding: 3px;
