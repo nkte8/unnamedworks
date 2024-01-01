@@ -72,7 +72,6 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
                     rm_auth_local()
                 }
             } catch (e) {
-                rm_auth_local()
             }
         }
     }
@@ -102,6 +101,9 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
                 </div>
                 <div className="context">
                     再ログインする場合は以下のパスワードをご利用ください。
+                </div>
+                <div className="context smaller">
+                    パスワードの再発行はできません。ブラウザへの保存をお願いします。
                 </div>
                 </React.StrictMode>
             }
