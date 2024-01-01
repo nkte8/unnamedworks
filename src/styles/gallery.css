@@ -1,0 +1,26 @@
+.pagereftile {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0px;
+    height: 100%;
+}
+
+.pagereftile .item {
+    text-align: center;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 100%;
+    width: 100%;
+}
+
+.pagereftile .item img {
+    width: 100%;
+    height: 100%;
+    transition: 0.2s all;
+    object-fit: cover;
+}
+
+.pagereftile .item img:hover {
+    transform: scale(1.1, 1.1);
+    transition: 0.2s all;
+}

@@ -21,10 +21,10 @@ export default function Favolabel({ api_url }: Props) {
                 let thx = c.favcount > 0 ? "ありがとうございます！" : "これからよろしくね。"
                 setLabel(`${auth.id}さんは${c.favcount}回いいねしました。${thx}`)
             }else{
-                setLabel("ログイン中の場合、ここに情報が表示されます。")
+                setLabel("ログインしていません。")
             }
         } catch (e) {
-            setLabel("ログイン中の場合、ここに情報が表示されます。")
+            setLabel("ログインしていません。")
         }
     }
 

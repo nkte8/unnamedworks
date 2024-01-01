@@ -82,7 +82,7 @@
     /* safari対応 */
     .frame-padding {
         -webkit-box-sizing: border-box;
-        padding: 5% 8% 5% 6%;
+        padding: 5% 9.5% 5% 6.5%;
         height: 100%;
         box-sizing: border-box;
         overflow: hidden;
@@ -156,8 +156,11 @@
         font-size: 3.8vw;
     }
 
-    .pagelist-buttons {
+    .contents .pagerefbuttons {
         font-size: 3.8vw;
+    }
+    .contents .pagereftile {
+        grid-template-columns: 1fr 1fr;
     }
 
 }
