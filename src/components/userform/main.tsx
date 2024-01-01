@@ -87,7 +87,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
     }
 
     return (
-        <div className="user_form">
+        <div className="userform">
             {
                 islogin !== true &&
                 <div className="context">
@@ -113,7 +113,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
                             {msg}
                         </span>
                     }
-                    <div>
+                    <div className='component'>
                         <label>ID:</label><input
                             type='text'
                             className='textbox'
@@ -127,7 +127,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
             }
             {
                 (arg === "auth" || islogin == true) &&
-                <div>
+                <div className='component'>
                     <label>PW:</label><input
                         type={isOpenpw}
                         className='textbox'
@@ -143,7 +143,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
             {
                 islogin !== true &&
                 <React.StrictMode>
-                    <div>
+                    <div className='component'>
                         <button className='submit' onClick={onClickLogin}>
                             {button_msg}
                         </button>
@@ -153,7 +153,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
             {
                 islogin === true &&
                 <React.StrictMode>
-                    <div>
+                    <div className='component'>
                         <button className='submit' onClick={onClickLogout}>
                             Logout
                         </button>

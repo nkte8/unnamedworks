@@ -1,5 +1,8 @@
 ---
+import "@/styles/responsive_pad.css";
+import "@/styles/responsive_phone.css";
 import "@/styles/responsive.css";
+
 import "@/styles/blog.css";
 import "@/styles/shape02.css";
 import "@/styles/transition.css";
@@ -11,7 +14,7 @@ import { ViewTransitions } from "astro:transitions";
 const anim = {
     old: {
         name: "close-from-top",
-        duration: "0.5s",
+        duration: "0.4s",
         easing: "linear",
         fillMode: "forwards",
         delay: "0s",
@@ -19,7 +22,7 @@ const anim = {
     new: {
         name: "open-from-top",
         delay: "0.0s",
-        duration: "0.5s",
+        duration: "0.4s",
         easing: "linear",
         fillMode: "backwards",
     },

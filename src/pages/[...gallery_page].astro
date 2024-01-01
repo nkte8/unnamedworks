@@ -1,0 +1,82 @@
+---
+import { getAllPosts, genPostSlug } from "@/utils/newt.ts";
+const url = Astro.url.pathname;
+const cardUrl = new URL("/card/main.png", Astro.url);
+
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+
+// 12
+export const onepagePostcount = 8;
+export async function getStaticPaths() {
+    const response = await getAllPosts();
+    const pagetotal = response.items.length;
+    const range = (start: number, end: number) =>
+        Array.from({ length: end - start + 1 }, (_, k) => k + start);
+    const lastpage_index = Math.floor(pagetotal / onepagePostcount) + 1;
+    const pagelist = range(1, lastpage_index);
+    const pg = (index: number): string =>
+        gallery_url + "page_" + String(index).padStart(2, "0");
+
+    return pagelist.map((index) => ({
+        params: {
+            gallery_page: pg(index),
+        },
+        props: {
+            index: index,
+            post_index: (index - 1) * onepagePostcount,
+            is_nextpage: index !== lastpage_index ? pg(index + 1) : null,
+            is_prevpage: index !== 1 ? pg(index - 1) : null,
+        },
+    }));
+}
+
+interface Props {
+    index: number;
+    post_index: number;
+    is_nextpage: string | null;
+    is_prevpage: string | null;
+}
+const { index, post_index, is_nextpage, is_prevpage } = Astro.props;
+const pageTitle = "gallery - " + String(index).padStart(2, "0");
+
+const response = await getAllPosts();
+const posts = response.items.slice(post_index, post_index + onepagePostcount);
+
+// そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
+import { post_url, gallery_url } from "@/utils/vars.ts";
+import "@/styles/pagerefbuttons.css";
+import "@/styles/gallery.css";
+---
+
+<BaseLayout pageTitle={pageTitle} , page_url={url} , cardUrl={cardUrl}>
+    <Menu slot="header" />
+    <p></p>
+    <div class="pagereftile">
+        {
+            posts.map((content) => (
+                <a href={post_url + genPostSlug(content.pubDate, content._id)}>
+                    <div class="item">
+                        <img
+                            alt={content.title}
+                            src={content.image?.src + "?width=330&height=330"}
+                            class="mdimg"
+                        />
+                    </div>
+                </a>
+            ))
+        }
+    </div>
+    <p />
+    <div class="pagerefbuttons">
+        <div class="left">
+            {is_prevpage !== null && <a href={is_prevpage}>prev</a>}
+        </div>
+        <div class="center">
+            page {index}
+        </div>
+        <div class="right">
+            {is_nextpage !== null && <a href={is_nextpage}>next</a>}
+        </div>
+    </div>
+</BaseLayout>
