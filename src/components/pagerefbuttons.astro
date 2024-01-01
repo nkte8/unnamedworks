@@ -16,17 +16,20 @@ type link = {
     href: string;
 };
 const get_prevlink = (): link | null => {
-    if (currentpage_slug !== indexpage_slug) {
-        return {
-            msg: "前の記事",
-            href: baseurl + "/" + prevpage_slug,
-        };
-    } else {
-        return {
-            msg: "最新記事",
-            href: baseurl + "/" + prevpage_slug,
-        };
+    if (prevpage_slug) {
+        if (currentpage_slug !== indexpage_slug) {
+            return {
+                msg: "前の記事",
+                href: baseurl + "/" + prevpage_slug,
+            };
+        } else {
+            return {
+                msg: "最新記事",
+                href: baseurl + "/" + prevpage_slug,
+            };
+        }
     }
+    return null
 };
 const get_nextlink = (): link | null => {
     if (!nextpage_slug) {
