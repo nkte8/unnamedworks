@@ -1,7 +1,7 @@
 ---
 import { getAllPosts, genPostSlug } from "@/utils/newt.ts";
 const url = Astro.url.pathname;
-const card_name = "/cards/main.png";
+const cardUrl = new URL("/card/main.png", Astro.url);
 
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
@@ -49,7 +49,7 @@ import "@/styles/pagerefbuttons.css";
 import "@/styles/gallery.css";
 ---
 
-<BaseLayout pageTitle={pageTitle} , page_url={url} , card_name={card_name}>
+<BaseLayout pageTitle={pageTitle} , page_url={url} , cardUrl={cardUrl}>
     <Menu slot="header" />
     <p></p>
     <div class="pagereftile">

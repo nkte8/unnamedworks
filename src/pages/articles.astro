@@ -1,7 +1,7 @@
 ---
 const pageTitle = "articles";
 const url = Astro.url.pathname;
-const card_name = "/cards/main.png";
+const cardUrl = new URL("/card/main.png", Astro.url);
 
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
@@ -34,7 +34,7 @@ import { post_url } from "@/utils/vars.ts";
         line-height: 1.8;
     }
 </style>
-<BaseLayout pageTitle={pageTitle} , page_url={url} , card_name={card_name}>
+<BaseLayout pageTitle={pageTitle} , page_url={url} , cardUrl={cardUrl}>
     <Menu slot="header" />
     <p>
         新しい記事...
