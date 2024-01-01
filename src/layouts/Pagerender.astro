@@ -21,17 +21,18 @@ if (prev !== undefined){
     prevslug = genPostSlug(prev.pubDate,prev._id)
 }
 
-import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
+import Pagerefbuttons from "@/components/pagerefbuttons.astro";
 import Menu from "@/components/menu/main.astro";
 
 import BaseLayout from "@/layouts/ContentsLayout.astro";
+
 import { Parsedpost } from "@/utils/parsedpost.tsx";
 ---
 
 <BaseLayout entry={entry}>
     <Menu slot="header" />
     <Parsedpost client:load html={entry.content} />
-    <Pagelist_buttons
+    <Pagerefbuttons
         slot="footer"
         baseurl={baseurl}
         nextpage_slug={nextslug !== undefined && nextslug}

@@ -1,22 +1,18 @@
 ---
-import { getAllPosts, getHighlights, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
+import { getAllPosts, getHighlight, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 // 最新記事取得部分
-import Data from "@/utils/model/postformat.json";
-type Post = typeof Data;
 const post_response = await getAllPosts();
-const posts: Post[] = post_response?.items;
+const posts = post_response.items;
 const postslug = genPostSlug(posts[0].pubDate,posts[0]._id)
 
 // ハイライト取得部分
-import Highlight from "@/utils/model/highlightformat.json";
-type Highlight = typeof Highlight;
-const highlight_respose = await getHighlights();
-const hightlight: Highlight = highlight_respose?.items[0];
+const highlight_respose = await getHighlight();
+const hightlight = highlight_respose;
 
 // 以降レイアウト関連
 import BaseLayout from "@/layouts/BookLayout.astro";
 import Menu from "@/components/menu/main.astro";
-import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
+import Pagerefbuttons from "@/components/pagerefbuttons.astro";
 
 const pageUrl = Astro.url.pathname;
 
@@ -27,7 +23,7 @@ const card_urlquery = genOgpUrlquery(
                         hightlight.ogp_focus_bottom)
 const cardUrl = hightlight.image.src + card_urlquery
 
-import { baseurl, website_title, indexpage_slug } from "@/utils/vars.ts";
+import { post_url, website_title, indexpage_slug } from "@/utils/vars.ts";
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
 import { Picture } from 'astro:assets';
@@ -110,9 +106,9 @@ import "@/styles/postsformat.css";
             <Picture src={img_hint_favo} alt="infinity favorite ok;)" class="cover-bottom" />
         </div>
     </div>
-    <Pagelist_buttons
+    <Pagerefbuttons
         slot="footer"
-        baseurl={baseurl}
+        baseurl={post_url}
         nextpage_slug={false}
         prevpage_slug={postslug}
         currentpage_slug={indexpage_slug}
