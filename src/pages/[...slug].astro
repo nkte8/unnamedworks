@@ -5,11 +5,11 @@ type Post = typeof Data;
 
 export async function getStaticPaths() {
     const response = await getAllPosts();
-    const posts: Post[] = response?.items;
+    const posts = response.items;
 
     return posts.map((entry, index) => ({
         params: {
-            slug: baseurl + genPostSlug(entry.pubDate, entry._id),
+            slug: post_url + "/" + genPostSlug(entry),
         },
         props: {
             entry,
@@ -28,6 +28,6 @@ const { entry, prev, next } = Astro.props;
 
 import Pagerender from "@/layouts/Pagerender.astro";
 
-import { baseurl } from "@/utils/vars.ts";
+import { post_url } from "@/utils/vars.ts";
 ---
-<Pagerender entry={entry} prev={prev} next={next} baseurl={baseurl} />
+<Pagerender entry={entry} prev={prev} next={next} baseurl={post_url} />

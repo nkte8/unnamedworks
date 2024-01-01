@@ -1,0 +1,44 @@
+---
+import Data from "@/utils/model/postformat.json";
+type Post = typeof Data;
+interface Props {
+    posts: Post[];
+    tags_url: string;
+}
+const { posts, tags_url } = Astro.props;
+const allTags = [...new Set(posts.map((post) => post.tags.split(",")).flat())];
+import "@/styles/pagerefbuttons.css";
+import "@/styles/pagereftiles.css";
+---
+
+<style>
+    ul.common-list {
+        display: flex;
+        vertical-align: middle;
+        padding: 0px;
+        margin: 10px 0 10px 0;
+        flex-wrap: wrap;
+    }
+    .common-list li:before {
+        font-size: 2vh;
+        position: absolute;
+        top: 0px;
+    }
+    .common-list li {
+        list-style-type: none;
+        position: relative;
+        line-height: 1.5;
+        margin: 0 10px 0 0;
+    }
+</style>
+
+<ul class="common-list">
+    <li>タグ:</li>
+    {
+        allTags.map((tag) => (
+            <li>
+                <a href={tags_url + "/" + tag + "/page_01"}>{tag}</a>
+            </li>
+        ))
+    }
+</ul>

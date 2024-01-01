@@ -1,0 +1,72 @@
+@media (max-aspect-ratio: 10/16),(max-height: 600px) {
+    .frame-parent {
+        position: relative;
+        height: 99.9vh;
+        overflow: hidden;
+    }
+
+    .frame {
+        transform: scale(1.45, 1.45) translateY(2%);
+
+        margin: auto;
+        position: relative;
+
+        background-blend-mode: darken;
+        background: url("./images/iphone.webp");
+        background-size: cover;
+        background-color: #fff;
+        width: 100%;
+        aspect-ratio: 183 / 316;
+        overflow: hidden;
+    }
+
+    html.no-webp div.frame {
+        background-image: url("./images/iphone.png");
+        background-size: cover;
+    }
+    
+    /* safari対応 */
+    .frame-padding {
+        padding: 17% 8% 28% 9%;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .frame .in-frame {
+        display: block;
+        font-size: 3.6vw;
+        margin: 10% 10% 4% 9%;
+        padding: 0% 0% 10% 0%;
+        box-sizing: border-box;
+        object-fit: cover;
+        overflow-y: auto;
+        overflow-wrap: break-word;
+        overflow-x: hidden;
+        height: 63vh;
+    }
+    
+    /* 極端に画面縦長が小さくなった際、
+    例えば横画面表示にした際、heightの比較値が親のframe-paddingを参照するため
+    画面表示域外にもレンダリングを行ってしまいスクロールできなくなる。
+    だからといってディスプレイサイズ(vh)で指定すると、
+    極端に画面が大きくなった際（例えばiPadのマルチタスク時の縦長Window）に
+    frame画像を突き抜けて表示してしまう。
+    最も、縦長になった際に非常に見た目が悪い（表示可能域に対して表示域が少なすぎる）
+    ため、根本的にスマホレイアウトを修正すべきである。
+        */
+    
+    /* スマートフォンの表現領域対応 */
+    .pagelist-buttons {
+        margin-bottom: 15%;
+    }
+
+    .menu-layout .menu li {
+        font-size: 3.8vw;
+    }
+
+    .contents .pagerefbuttons {
+        font-size: 3.8vw;
+    }
+
+}

@@ -1,0 +1,69 @@
+---
+interface Props {
+    nextpage_slug: string | false;
+    currentpage_slug: string;
+    prevpage_slug: string | false;
+    baseurl: string;
+}
+const { nextpage_slug, currentpage_slug, prevpage_slug, baseurl } = Astro.props;
+
+import "@/styles/pagerefbuttons.css";
+
+import { indexpage_slug, lambdaurl } from "@/utils/vars.ts";
+
+type link = {
+    msg: string;
+    href: string;
+};
+const get_prevlink = (): link | null => {
+    if (currentpage_slug !== indexpage_slug) {
+        return {
+            msg: "前の記事",
+            href: baseurl + "/" + prevpage_slug,
+        };
+    } else {
+        return {
+            msg: "最新記事",
+            href: baseurl + "/" + prevpage_slug,
+        };
+    }
+};
+const get_nextlink = (): link | null => {
+    if (!nextpage_slug) {
+        if (currentpage_slug !== indexpage_slug) {
+            return {
+                msg: "ホーム",
+                href: "/",
+            };
+        } else {
+            return null;
+        }
+    }
+    return {
+        msg: "後の記事",
+        href: baseurl + "/" + nextpage_slug,
+    };
+};
+const prevlink = get_prevlink();
+const nextlink = get_nextlink();
+
+import Favobutton from "@/components/favobutton/main.tsx";
+
+const api_url = lambdaurl;
+---
+
+<div class="pagerefbuttons">
+    <div class="left">
+        {nextlink !== null && <a href={nextlink.href}>{nextlink.msg}</a>}
+    </div>
+    <div class="center">
+        <Favobutton
+            client:load
+            api_url={api_url}
+            page_name={currentpage_slug}
+        />
+    </div>
+    <div class="right">
+        {prevlink !== null && <a href={prevlink.href}>{prevlink.msg}</a>}
+    </div>
+</div>

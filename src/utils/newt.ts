@@ -1,4 +1,9 @@
-import { createClient } from 'newt-client-js';
+import { createClient, type Contents } from 'newt-client-js';
+import Data from "@/utils/model/postformat.json";
+type Post = typeof Data;
+
+import Highlight from "@/utils/model/highlightformat.json";
+type Highlight = typeof Highlight;
 
 const client = createClient({
     spaceUid: import.meta.env.NEWT_SPACE_UID,
@@ -6,15 +11,25 @@ const client = createClient({
     apiType: import.meta.env.NEWT_API_TYPE,
 });
 
-export const getAllPosts = async () => {
-    const allPosts = client
-        .getContents({
-            appUid: import.meta.env.NEWT_POSTS_APP_UID,
-            modelUid: import.meta.env.NEWT_POSTS_MODEL_UID,
-            query: {
-                order: ['-pubDate'],
+export const getAllPosts = async (tag: string | null = null): Promise<Contents<Post>> => {
+    let param = {
+        appUid: import.meta.env.NEWT_POSTS_APP_UID,
+        modelUid: import.meta.env.NEWT_POSTS_MODEL_UID,
+        query: {
+            order: ['-pubDate'],
+        }
+    }
+    if (tag !== null) {
+        Object.assign(param.query, {
+            tags: {
+                match: tag,
             }
         })
+    }
+    const allPosts: Promise<Contents<Post>> = client
+        .getContents(
+            param
+        )
         .then((content) => content)
         .catch((err) => {
             console.log(err);
@@ -23,9 +38,26 @@ export const getAllPosts = async () => {
     return allPosts;
 };
 
-export const getHighlights = async () => {
-    const allPosts = client
-        .getContents({
+export const getHighlight = async (): Promise<Highlight> => {
+    const Post: Promise<Highlight> = client
+        .getContents<Highlight>({
+            appUid: import.meta.env.NEWT_HIGHLIGHTS_APP_UID,
+            modelUid: import.meta.env.NEWT_HIGHLIGHTS_MODEL_UID,
+            query: {
+                order: ['-pubDate'],
+            }
+        })
+        .then((content) => content.items[0])
+        .catch((err) => {
+            console.log(err);
+            return err;
+        });
+    return Post;
+}
+
+export const getHighlights = async (): Promise<Contents<Highlight>> => {
+    const allPosts: Promise<Contents<Highlight>> = client
+        .getContents<Highlight>({
             appUid: import.meta.env.NEWT_HIGHLIGHTS_APP_UID,
             modelUid: import.meta.env.NEWT_HIGHLIGHTS_MODEL_UID,
             query: {
@@ -40,8 +72,10 @@ export const getHighlights = async () => {
     return allPosts;
 }
 
-export function genOgpUrlquery(
-    width: number | null, height: number | null, focus_bottom: boolean): string {
+export const genOgpUrlquery = (
+    width: number | null,
+    height: number | null,
+    focus_bottom: boolean): string => {
 
     // 開発環境等、imageが設定されていない場合のエラー回避処理
     if (width === null || height === null) {
@@ -68,7 +102,9 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Tokyo");
 
-export function genPostSlug(pubDate: string, hash: string):string{
-    // let matchedParts = hash.match(/[a-zA-Z]/g); 
-    return `${dayjs(pubDate).tz().format("YYYY-MM-DD")}_${hash.slice(-2)}`;
+export const genPostSlug = (
+    content: Post): string => {
+    // let matchedParts = hash.match(/[a-zA-Z]/g);
+    const hash:string = content._id
+    return `${dayjs(content.pubDate).tz().format("YYYY-MM-DD")}_${hash.slice(-2)}`;
 }

@@ -13,5 +13,12 @@ export default defineConfig({
     port: 4321,
     host: true
   },
-  integrations: [partytown(), react()]
+  integrations: [partytown(
+    {
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    })
+    , react()
+  ]
 });

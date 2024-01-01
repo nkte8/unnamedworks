@@ -1,0 +1,43 @@
+---
+import { getAllPosts } from "@/utils/newt.ts";
+const url = Astro.url.pathname;
+const cardUrl = new URL("/card/main.png", Astro.url);
+
+import BaseLayout from "@/layouts/BookLayout.astro";
+import Menu from "@/components/menu/main.astro";
+
+const response = await getAllPosts();
+
+const lastpage_index =
+    Math.floor(response.items.length / gallery_contents_count) + 1;
+const pg = (index: number): string =>
+    gallery_url + "/page_" + String(index).padStart(2, "0");
+
+const index = 1;
+const post_index = 0;
+const is_nextpage = index !== lastpage_index ? pg(index + 1) : null;
+const is_prevpage = null;
+
+const pageTitle = "gallery";
+const posts = response.items.slice(
+    post_index,
+    post_index + gallery_contents_count,
+);
+
+import Pagetaglist from "@/components/pagetaglist.astro";
+import Pagereftiles from "@/components/pagereftiles.astro";
+
+// そのうちローカルデータとマージする仕組み（アーカイブシステム）を作る
+import { post_url, gallery_url, gallery_contents_count } from "@/utils/vars.ts";
+---
+<BaseLayout pageTitle={pageTitle} , page_url={url} , cardUrl={cardUrl}>
+    <Menu slot="header" />
+    <Pagetaglist tags_url={gallery_url} posts={response.items} />
+    <Pagereftiles
+        index={index}
+        posts={posts}
+        is_nextpage={is_nextpage}
+        is_prevpage={is_prevpage}
+        baseurl={post_url}
+    />
+</BaseLayout>

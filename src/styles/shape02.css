@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'shape02_cloud';
 	src: url('//2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf') format('truetype');
-    font-display: block;
+    font-display: swap;
 }
 
 @font-face {
@@ -16,7 +16,7 @@
 }
 
 /* フォントに合わせたカスタマイズを継承 */
-.shape02 .pagelist-buttons {
+.shape02 .pagerefbuttons {
     font-size: 2.5vmin;
 }
 
@@ -47,7 +47,7 @@
         font-size: 4vw;
     }
 
-    .shape02 .pagelist-buttons {
+    .shape02 .pagerefbuttons {
         font-size: 4vw;
     }
 }

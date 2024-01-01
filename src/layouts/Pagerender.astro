@@ -13,25 +13,26 @@ type Post = typeof Data;
 
 var nextslug: undefined | string = undefined
 var prevslug: undefined | string = undefined
-var currentslug: undefined | string = genPostSlug(entry.pubDate,entry._id)
+var currentslug: undefined | string = genPostSlug(entry)
 if (next !== undefined){
-    nextslug = genPostSlug(next.pubDate,next._id)
+    nextslug = genPostSlug(next)
 }
 if (prev !== undefined){
-    prevslug = genPostSlug(prev.pubDate,prev._id)
+    prevslug = genPostSlug(prev)
 }
 
-import Pagelist_buttons from "@/components/pagelink_buttons/main.astro";
+import Pagerefbuttons from "@/components/pagerefbuttons.astro";
 import Menu from "@/components/menu/main.astro";
 
 import BaseLayout from "@/layouts/ContentsLayout.astro";
+
 import { Parsedpost } from "@/utils/parsedpost.tsx";
 ---
 
 <BaseLayout entry={entry}>
     <Menu slot="header" />
     <Parsedpost client:load html={entry.content} />
-    <Pagelist_buttons
+    <Pagerefbuttons
         slot="footer"
         baseurl={baseurl}
         nextpage_slug={nextslug !== undefined && nextslug}

@@ -1,0 +1,45 @@
+---
+import { genPostSlug } from "@/utils/newt.ts";
+import Data from "@/utils/model/postformat.json";
+type Post = typeof Data;
+interface Props {
+    index: number;
+    posts: Post[];
+    is_nextpage: string | null;
+    is_prevpage: string | null;
+    baseurl: string;
+}
+const { index, posts, is_nextpage, is_prevpage, baseurl } =
+    Astro.props;
+
+import "@/styles/pagerefbuttons.css";
+import "@/styles/pagereftiles.css";
+---
+
+<div class="pagereftile">
+    {
+        posts.map((content) => (
+            <a href={baseurl + "/" + genPostSlug(content)}>
+                <div class="item">
+                    <img
+                        alt={content.title}
+                        src={content.image?.src + "?width=330&height=330"}
+                        class="mdimg"
+                    />
+                </div>
+            </a>
+        ))
+    }
+</div>
+<p />
+<div class="pagerefbuttons">
+    <div class="left">
+        {is_prevpage !== null && <a href={is_prevpage}>prev</a>}
+    </div>
+    <div class="center">
+        page {index}
+    </div>
+    <div class="right">
+        {is_nextpage !== null && <a href={is_nextpage}>next</a>}
+    </div>
+</div>

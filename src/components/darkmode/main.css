@@ -1,39 +1,53 @@
-html.dark .frame {
-    background-color: #252525;
+html.dark {
+    background-color: rgba(0,0,0,0.9);
     transition: none;
+}
+
+html.dark .frame {
+    background-color: rgba(0,0,0,0.9);
+    transition: none;
+}
+
+html.dark .mdimg {
+    filter: opacity(80%);
+    background-color: #000;
 }
 
 html .frame {
     transition: background-color 0.3s;
 }
 
-html.dark body {
-    color: #eee;
+html {
+    transition: background-color 0.3s;
 }
 
-.dark .sun {
+html.dark body {
+    color: #ccc;
+}
+
+html.dark .light-button {
     display: none;
 }
 
-.dark .moon {
+.light-button {
+    background: url("./light.png") no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+html.dark .night-button {
     display: block;
 }
 
-.moon {
+.night-button {
     display: none;
     background: url("./dark.png") no-repeat;
     background-size: 100% 100%;
     cursor: pointer;
     width: 100%;
     height: 100%;
-}
-
-.sun {
-    background: url("./light.png") no-repeat;
-    background-size: 100% 100%;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
 }
 
 #themeToggle {

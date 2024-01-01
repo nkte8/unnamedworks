@@ -1,39 +1,25 @@
-ul {
-    list-style:none;
-    padding-left: 0;
-}
-
-.pagelist-buttons {
+.pagerefbuttons {
     text-align: center;
     width: 100%;
     font-size: 3vmin;
     padding-bottom: 2%;
 }
 
-.pagelist-buttons .left {
-    /* position: absolute;
-    left: 0; */
+.pagerefbuttons .left {
     display: inline-block;
     width: 30%;
     text-align: right;
     vertical-align: middle;
 }
 
-.pagelist-buttons .center {
-    /* position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto; */
+.pagerefbuttons .center {
     display: inline-block;
     width: 30%;
     text-align: center;
     vertical-align: middle;
 
 }
-.pagelist-buttons .right {
-    /* position: absolute;
-    right: 0;
-    margin: auto; */
+.pagerefbuttons .right {
     display: inline-block;
     width: 30%;
     text-align: left;
