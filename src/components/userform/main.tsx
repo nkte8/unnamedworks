@@ -63,7 +63,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
     }
 
     const checkUserByApi = async () => {
-        if (userid !== null && secret !== null) {
+        if (userid !== "" && secret !== "") {
             try {
                 let r = await favo_api(api_url, null, userid, secret, "auth")
                 if (r.rc === 200) {
@@ -73,6 +73,7 @@ export default function LoginUserBox({ api_url, arg , login_path }: Props) {
                     setMsg("再ログインをお願いします。");
                 }
             } catch (e) {
+                rm_auth_local()
                 setMsg("不明なサーバーエラーが発生しました。");
             }
         }
