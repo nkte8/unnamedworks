@@ -13,7 +13,7 @@ export default function Userlabel({ api_url , login_ref }:Props) {
         if (auth.id !== null && auth.secret !== null){
             try {
                 let r = await favo_api(api_url, null, auth.id, auth.secret, "auth")
-                if (r.rc == 200){
+                if (r.rc === 200){
                     setUsername(auth.id)
                 } else {
                     rm_auth_local()

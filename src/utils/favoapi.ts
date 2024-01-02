@@ -45,7 +45,7 @@ export const get_auth_local = ():LocalStorageInfo => {
         let __uid = localStorage.getItem(localstorage_id_key_name);
         let __sec = localStorage.getItem(localstorage_secret_key_name);
         load_user_name = __uid !== null ? __uid : ""
-        load_user_secret = __sec !== null && __uid !== "" ? __sec : ""
+        load_user_secret = __sec !== null && __uid !== null ? __sec : ""
     }
     return {
         id: load_user_name,
