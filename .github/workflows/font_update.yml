@@ -31,7 +31,7 @@ jobs:
           /tmp/woff2_compress webfont.ttf
       - name: Inspect files before checkout
         env:
-            HOOK_URL: ${{CLOUDFLARE_CMS_DEPLOY_HOOK_URL}}
+            HOOK_URL: ${{secrets.CLOUDFLARE_CMS_DEPLOY_HOOK_URL}}
         run: | 
           cp -f /tmp/webfont.ttf ./public/materials/shape02.woff2
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
