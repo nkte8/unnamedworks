@@ -1,5 +1,9 @@
 name: command
 on: [push]
+permissions:
+  actions: write
+  checks: write
+  contents: write
 jobs:
   command:
     name: Use Linux commands
