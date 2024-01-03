@@ -12,7 +12,7 @@ jobs:
     name: Convert ttf to woff2
     runs-on: ubuntu-20.04
     steps:
-      - name: build woff2 
+      - name: Build woff2 
         run: |
           git clone -b v1.0.2 --single-branch https://github.com/google/woff2.git
           cd woff2
@@ -20,16 +20,16 @@ jobs:
           git submodule update
           LFLAGS="--static -s" make clean all
           cp woff2_compress /tmp/
-      - name: checkout parent branch
+      - name: Checkout parent branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: download shape02
+      - name: Download shape02
         run: | 
           cd /tmp/
           wget https://2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf
           /tmp/woff2_compress webfont.ttf
-      - name: Inspect files before checkout
+      - name: Commit webfont and hook Cloudflare
         env:
             HOOK_URL: ${{secrets.CLOUDFLARE_CMS_DEPLOY_HOOK_URL}}
         run: | 
