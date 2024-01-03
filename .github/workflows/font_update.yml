@@ -30,13 +30,19 @@ jobs:
           wget https://2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf
           /tmp/woff2_compress webfont.ttf
       - name: Inspect files before checkout
+        env:
+            HOOK_URL: ${{CLOUDFLARE_CMS_DEPLOY_HOOK_URL}}
         run: | 
           cp -f /tmp/webfont.ttf ./public/materials/shape02.woff2
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           if (git diff --shortstat | grep '[0-9]'); then \
+            ## if font update, update branch and cloudflare will follow
             git add .; \
             git commit -m "[github action] font update"; \
             git push origin HEAD:${GITHUB_REF}; \
+          else
+            ## if no font update, deploy only
+            curl -s -X POST "${HOOK_URL}"
           fi
