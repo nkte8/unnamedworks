@@ -1,6 +1,7 @@
 name: command
-repository_dispatch:
-  types: [update_content]
+on:
+  repository_dispatch:
+    types: [update_content]
 permissions:
   actions: write
   checks: write
