@@ -1,0 +1,35 @@
+name: command
+on: [push]
+jobs:
+  command:
+    name: Use Linux commands
+    runs-on: ubuntu-20.04
+    steps:
+      - name: build woff2 
+        run: |
+          git clone -b v1.0.2 --single-branch https://github.com/google/woff2.git
+          cd woff2
+          git submodule init
+          git submodule update
+          LFLAGS="--static -s" make clean all
+          cp woff2_compress /tmp/
+      - name: checkout parent branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: download shape02
+        run: | 
+          cd /tmp/
+          wget https://2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf
+          /tmp/woff2_compress webfont.ttf
+      - name: Inspect files before checkout
+        run: | 
+          cp -f /tmp/webfont.ttf ./public/materials/shape02.woff2
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          if (git diff --shortstat | grep '[0-9]'); then \
+            git add .; \
+            git commit -m "[github action] font update"; \
+            git push origin HEAD:${GITHUB_REF}; \
+          fi
