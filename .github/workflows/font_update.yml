@@ -1,12 +1,14 @@
 name: command
-on: [push]
+repository_dispatch:
+  types: [update_content]
 permissions:
   actions: write
   checks: write
   contents: write
+
 jobs:
   command:
-    name: Use Linux commands
+    name: Convert ttf to woff2
     runs-on: ubuntu-20.04
     steps:
       - name: build woff2 
