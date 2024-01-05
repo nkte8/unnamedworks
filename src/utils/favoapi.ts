@@ -1,8 +1,8 @@
 // APIからのリスポンスを定義
 type ApiResponse = {
-    rc: number;
-    favcount: number | null;
-    msg: string | null;
+    rc: number,
+    favcount: number | null,
+    msg: string | null,
 }
 
 export const favo_api = async (
@@ -23,11 +23,15 @@ export const favo_api = async (
                 arg: arg,
             })
     }
-    ).then((response) => response.json()
-    ).catch(() => {
-        console.log("error");
+    ).then(response => {
+        if (!response.ok) {
+            throw new Error("サーバーエラーが発生しました。")
+        }
+        return response.json()
+    }
+    ).catch(_ => {
+        console.error("通信に失敗しました。");
     })
-
 
 // localstorage関連  
 interface LocalStorageInfo {
@@ -38,7 +42,7 @@ interface LocalStorageInfo {
 const localstorage_id_key_name = "user_name"
 const localstorage_secret_key_name = "secret"
 
-export const get_auth_local = ():LocalStorageInfo => {
+export const get_auth_local = (): LocalStorageInfo => {
     let load_user_name: string = ""
     let load_user_secret: string = ""
     if (typeof localStorage !== "undefined") {
@@ -53,7 +57,7 @@ export const get_auth_local = ():LocalStorageInfo => {
     }
 }
 
-export const set_auth_local = ({id, secret}:LocalStorageInfo): boolean => {
+export const set_auth_local = ({ id, secret }: LocalStorageInfo): boolean => {
     if (typeof localStorage !== "undefined") {
         localStorage.setItem(localstorage_id_key_name, id);
         localStorage.setItem(localstorage_secret_key_name, secret);
