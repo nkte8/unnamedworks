@@ -3,8 +3,10 @@ import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
 const replace = (node: any) => {
     if (node.name === 'img') {
+        const url = new URL(node.attribs.src).pathname.split('/')
+        const filename = url[url.length -1]
         return (
-            <ImageDialog src={node.attribs.src + "?format=auto"} />
+            <ImageDialog src={node.attribs.src + "?format=auto"} alt={filename} />
         )
     }
 }
