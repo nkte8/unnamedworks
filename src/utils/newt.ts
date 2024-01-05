@@ -32,7 +32,6 @@ export const getAllPosts = async (tag: string | null = null): Promise<Contents<P
         )
         .then((content) => content)
         .catch((err) => {
-            console.log(err);
             return err;
         });
     return allPosts;
@@ -49,7 +48,6 @@ export const getHighlight = async (): Promise<Highlight> => {
         })
         .then((content) => content.items[0])
         .catch((err) => {
-            console.log(err);
             return err;
         });
     return Post;
@@ -66,7 +64,6 @@ export const getHighlights = async (): Promise<Contents<Highlight>> => {
         })
         .then((content) => content)
         .catch((err) => {
-            console.log(err);
             return err;
         });
     return allPosts;

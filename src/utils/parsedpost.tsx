@@ -1,4 +1,4 @@
-import parse from 'html-react-parser'
+import parse, { domToReact } from 'html-react-parser'
 import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
 const replace = (node: any) => {
@@ -12,6 +12,11 @@ const replace = (node: any) => {
         }
         return (
             <ImageDialog src={node.attribs.src + "?format=auto"} alt={alt} />
+        )
+    }
+    if (node.name === 'p') {
+        return (
+            <div className='_page'>{ domToReact(node.children, { replace }) }</div>
         )
     }
 }

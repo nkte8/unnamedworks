@@ -32,7 +32,7 @@ export function ImageDialog({ src, alt = '', usepicture = false }: Props) {
     );
     return (
         <React.Fragment>
-            <div
+            <span
                 role="button"
                 onClick={handleOpenDialog}
                 onKeyDown={handleOpenDialog}
@@ -50,7 +50,7 @@ export function ImageDialog({ src, alt = '', usepicture = false }: Props) {
                     !usepicture &&
                     <img src={src} decoding="auto" alt={alt} className="mdimg" />
                 }
-            </div>
+            </span>
             <dialog ref={ref} className="image-dialog" onClick={handleCloseDialog}>
                 <div onClick={handleClickInDialog} className="contents">
                     {
