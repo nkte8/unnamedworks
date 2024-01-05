@@ -20,14 +20,14 @@ import path from "path";
 // 最新記事取得部分
 const post_response = await getAllPosts();
 const posts = post_response.items;
-const postslug = genPostSlug(posts[0])
+const postslug = genPostSlug(posts[0]);
 
 // ハイライト取得部分
 const highlight_respose = await getHighlight();
 const highlight = highlight_respose;
 
 // レンダリング側で使用するファイル名のprefix
-const highlight_ref_prefix = "highlight";
+const highlight_ref_prefix = "/highlight";
 // path.parse(new URL(highlight.image.src).pathname).name + ".webp";
 
 // バックエンド側が使用する画像のダウンロード先URL
@@ -35,7 +35,7 @@ const highlight_backend_ref = () => {
     if (isProduction === true) {
         return path.join(outDir, highlight_ref_prefix);
     } else {
-        return highlight_ref_prefix;
+        return path.join(".", highlight_ref_prefix);
     }
 };
 
@@ -69,16 +69,17 @@ const cardUrl = highlight.image.src + card_urlquery;
 
 import { ImageDialog } from "@/utils/ImageDialog.tsx";
 
-import { Picture } from 'astro:assets';
-import img_hint_darkmode from "@/images/hint_darkmode.png"
-import img_hint_menu from "@/images/hint_menu.png"
-import img_hint_favo from "@/images/hint_favo.png"
-import img_hint_responsive from "@/images/hint_responsive.png"
-import img_hint_msg from "@/images/hint_msg.png"
+import { Picture } from "astro:assets";
+import img_hint_darkmode from "@/images/hint_darkmode.png";
+import img_hint_menu from "@/images/hint_menu.png";
+import img_hint_favo from "@/images/hint_favo.png";
+import img_hint_responsive from "@/images/hint_responsive.png";
+import img_hint_msg from "@/images/hint_msg.png";
 ---
+
 <style>
-    .div-parent{
-        width: 100%; 
+    .div-parent {
+        width: 100%;
         display: flex;
         justify-content: flex-end;
         position: relative;
@@ -100,7 +101,7 @@ import img_hint_msg from "@/images/hint_msg.png"
     }
     .hint-menu {
         max-width: 450px;
-        
+
         margin-left: auto;
         margin-right: auto;
     }
@@ -147,10 +148,18 @@ import img_hint_msg from "@/images/hint_msg.png"
     </div>
     <div class="div-parent">
         <div class="hint-responsive">
-            <Picture src={img_hint_responsive} alt="PC Tablet Phone different design" class="cover-bottom" />
+            <Picture
+                src={img_hint_responsive}
+                alt="PC Tablet Phone different design"
+                class="cover-bottom"
+            />
         </div>
         <div class="hint-favo">
-            <Picture src={img_hint_favo} alt="infinity favorite ok;)" class="cover-bottom" />
+            <Picture
+                src={img_hint_favo}
+                alt="infinity favorite ok;)"
+                class="cover-bottom"
+            />
         </div>
     </div>
     <Pagerefbuttons
