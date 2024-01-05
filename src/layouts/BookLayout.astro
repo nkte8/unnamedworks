@@ -37,8 +37,8 @@ import "@/styles/welcome_animation.css";
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         let doc = document.getElementById("transition-area");
-        var nowhost = location.hostname;
-        var referrer = document.referrer;
+        let nowhost = location.hostname;
+        let referrer = document.referrer;
         if(referrer.indexOf( nowhost ) == -1) {
             if (doc !== null) {
             doc.classList.add("welcome");

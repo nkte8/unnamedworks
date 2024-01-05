@@ -11,9 +11,9 @@ import { genPostSlug } from "@/utils/newt.ts";
 import Data from "@/utils/model/postformat.json";
 type Post = typeof Data;
 
-var nextslug: undefined | string = undefined
-var prevslug: undefined | string = undefined
-var currentslug: undefined | string = genPostSlug(entry)
+let nextslug: undefined | string = undefined
+let prevslug: undefined | string = undefined
+let currentslug: undefined | string = genPostSlug(entry)
 if (next !== undefined){
     nextslug = genPostSlug(next)
 }

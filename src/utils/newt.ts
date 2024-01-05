@@ -82,10 +82,10 @@ export const genOgpUrlquery = (
         return ""
     }
     // ogpカードは変換により開けなくなる可能性があるため、formatを行わない。
-    var assert_api_function: string = "?width=1200"
-    var ogp_width = width - 1
-    var ogp_height = Math.floor(height / 2)
-    var ogp_top = Math.floor(height / 8)
+    let assert_api_function: string = "?width=1200"
+    let ogp_width = width - 1
+    let ogp_height = Math.floor(height / 2)
+    let ogp_top = Math.floor(height / 8)
     if (Boolean(focus_bottom) == true) {
         ogp_top = ogp_top * 3
     }
