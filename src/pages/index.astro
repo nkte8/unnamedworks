@@ -1,27 +1,13 @@
 ---
-import {
-    getAllPosts,
-    getHighlight,
-    genOgpUrlquery,
-    genPostSlug,
-} from "@/utils/newt.ts";
-import { Buffer } from 'buffer';
-
+import { getAllPosts, getHighlight, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
 // 最新記事取得部分
 const post_response = await getAllPosts();
 const posts = post_response.items;
-const postslug = genPostSlug(posts[0]);
+const postslug = genPostSlug(posts[0])
 
 // ハイライト取得部分
 const highlight_respose = await getHighlight();
 const hightlight = highlight_respose;
-
-const response = await fetch(hightlight.image.src + "?format=webp", {
-    method: "GET",
-    headers: {},
-});
-const blob = await (await response.blob()).arrayBuffer();
-const hightlight_ref =  "data:image/webp;base64," + Buffer.from(blob).toString("base64")
 
 // 以降レイアウト関連
 import "@/styles/postsformat.css";
@@ -34,26 +20,24 @@ const pageUrl = Astro.url.pathname;
 
 // cardは切り抜いて自動生成
 const card_urlquery = genOgpUrlquery(
-    hightlight.image.width,
-    hightlight.image.height,
-    hightlight.ogp_focus_bottom,
-);
-const cardUrl = hightlight.image.src + card_urlquery;
+                        hightlight.image.width,
+                        hightlight.image.height,
+                        hightlight.ogp_focus_bottom)
+const cardUrl = hightlight.image.src + card_urlquery
 
 import { post_url, website_title, indexpage_slug } from "@/utils/vars.ts";
-import { ImageDialog } from "@/utils/ImageDialog.tsx";
+import { ImageDialog } from '@/utils/ImageDialog.tsx'
 
-import { Picture } from "astro:assets";
-import img_hint_darkmode from "@/images/hint_darkmode.png";
-import img_hint_menu from "@/images/hint_menu.png";
-import img_hint_favo from "@/images/hint_favo.png";
-import img_hint_responsive from "@/images/hint_responsive.png";
-import img_hint_msg from "@/images/hint_msg.png";
+import { Picture } from 'astro:assets';
+import img_hint_darkmode from "@/images/hint_darkmode.png"
+import img_hint_menu from "@/images/hint_menu.png"
+import img_hint_favo from "@/images/hint_favo.png"
+import img_hint_responsive from "@/images/hint_responsive.png"
+import img_hint_msg from "@/images/hint_msg.png"
 ---
-
 <style>
-    .div-parent {
-        width: 100%;
+    .div-parent{
+        width: 100%; 
         display: flex;
         justify-content: flex-end;
         position: relative;
@@ -75,7 +59,7 @@ import img_hint_msg from "@/images/hint_msg.png";
     }
     .hint-menu {
         max-width: 450px;
-
+        
         margin-left: auto;
         margin-right: auto;
     }
@@ -113,22 +97,14 @@ import img_hint_msg from "@/images/hint_msg.png";
     </div>
     <div style="position: relative">
         <Picture src={img_hint_msg} alt="Tap illust zoomin" class="hint-msg" />
-        <ImageDialog client:load alt="TopPage" src={hightlight_ref} />
+        <ImageDialog client:load alt="TopPage" src={hightlight.image.src + "?format=auto"} />
     </div>
     <div class="div-parent">
         <div class="hint-responsive">
-            <Picture
-                src={img_hint_responsive}
-                alt="PC Tablet Phone different design"
-                class="cover-bottom"
-            />
+            <Picture src={img_hint_responsive} alt="PC Tablet Phone different design" class="cover-bottom" />
         </div>
         <div class="hint-favo">
-            <Picture
-                src={img_hint_favo}
-                alt="infinity favorite ok;)"
-                class="cover-bottom"
-            />
+            <Picture src={img_hint_favo} alt="infinity favorite ok;)" class="cover-bottom" />
         </div>
     </div>
     <Pagerefbuttons
