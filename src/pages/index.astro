@@ -25,24 +25,30 @@ const postslug = genPostSlug(posts[0])
 // ハイライト取得部分
 const highlight_respose = await getHighlight();
 const highlight = highlight_respose;
-const response = await fetch(highlight.image.src + "?format=webp", {
-    method: "GET",
-    headers: {},
-});
-const blob = await (await response.blob()).arrayBuffer();
 
-// レンダリング側には通常のURLを付与
-const highlight_ref = "highlight.webp"
-    // path.parse(new URL(highlight.image.src).pathname).name + ".webp";
-// バックエンド側にはディレクトリ出力面を意識して出力
+// レンダリング側で使用するファイル名のprefix
+const highlight_ref_prefix = "highlight";
+// path.parse(new URL(highlight.image.src).pathname).name + ".webp";
+
+// バックエンド側が使用する画像のダウンロード先URL
 const highlight_backend_ref = () => {
-    if(isProduction === true){
-        return path.join(outDir, highlight_ref)
-    }else{
-        return highlight_ref
+    if (isProduction === true) {
+        return path.join(outDir, highlight_ref_prefix);
+    } else {
+        return highlight_ref_prefix;
     }
-}
-writeFileSync(highlight_backend_ref(), Buffer.from(blob));
+};
+
+// バックエンド側はファイルをダウンロード実施
+const format_type = ["webp", "png"];
+format_type.forEach(async (ext) => {
+    let response = await fetch(highlight.image.src + "?format=" + ext, {
+        method: "GET",
+        headers: {},
+    });
+    let blob = await (await response.blob()).arrayBuffer();
+    writeFileSync(highlight_backend_ref() + "." + ext, Buffer.from(blob));
+});
 
 // 以降レイアウト関連
 import "@/styles/postsformat.css";
@@ -60,7 +66,6 @@ const card_urlquery = genOgpUrlquery(
     highlight.ogp_focus_bottom,
 );
 const cardUrl = highlight.image.src + card_urlquery;
-
 
 import { ImageDialog } from "@/utils/ImageDialog.tsx";
 
@@ -133,7 +138,12 @@ import img_hint_msg from "@/images/hint_msg.png"
     </div>
     <div style="position: relative">
         <Picture src={img_hint_msg} alt="Tap illust zoomin" class="hint-msg" />
-        <ImageDialog client:load alt="TopPage" src={highlight_ref} />
+        <ImageDialog
+            client:load
+            alt="TopPage"
+            usepicture={true}
+            src={highlight_ref_prefix}
+        />
     </div>
     <div class="div-parent">
         <div class="hint-responsive">
