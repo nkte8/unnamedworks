@@ -1,5 +1,22 @@
 ---
-import { getAllPosts, getHighlight, genOgpUrlquery, genPostSlug } from "@/utils/newt.ts";
+import {
+    getAllPosts,
+    getHighlight,
+    genOgpUrlquery,
+    genPostSlug,
+} from "@/utils/newt.ts";
+import {
+    post_url,
+    website_title,
+    indexpage_slug,
+    outDir,
+    isProduction,
+} from "@/utils/vars.ts";
+
+import { Buffer } from "buffer";
+import { writeFileSync } from "fs";
+import path from "path";
+
 // 最新記事取得部分
 const post_response = await getAllPosts();
 const posts = post_response.items;
@@ -7,7 +24,25 @@ const postslug = genPostSlug(posts[0])
 
 // ハイライト取得部分
 const highlight_respose = await getHighlight();
-const hightlight = highlight_respose;
+const highlight = highlight_respose;
+const response = await fetch(highlight.image.src + "?format=webp", {
+    method: "GET",
+    headers: {},
+});
+const blob = await (await response.blob()).arrayBuffer();
+
+// レンダリング側には通常のURLを付与
+const highlight_ref = "highlight.webp"
+    // path.parse(new URL(highlight.image.src).pathname).name + ".webp";
+// バックエンド側にはディレクトリ出力面を意識して出力
+const highlight_backend_ref = () => {
+    if(isProduction === true){
+        return path.join(outDir, highlight_ref)
+    }else{
+        return highlight_ref
+    }
+}
+writeFileSync(highlight_backend_ref(), Buffer.from(blob));
 
 // 以降レイアウト関連
 import "@/styles/postsformat.css";
@@ -20,13 +55,14 @@ const pageUrl = Astro.url.pathname;
 
 // cardは切り抜いて自動生成
 const card_urlquery = genOgpUrlquery(
-                        hightlight.image.width,
-                        hightlight.image.height,
-                        hightlight.ogp_focus_bottom)
-const cardUrl = hightlight.image.src + card_urlquery
+    highlight.image.width,
+    highlight.image.height,
+    highlight.ogp_focus_bottom,
+);
+const cardUrl = highlight.image.src + card_urlquery;
 
-import { post_url, website_title, indexpage_slug } from "@/utils/vars.ts";
-import { ImageDialog } from '@/utils/ImageDialog.tsx'
+
+import { ImageDialog } from "@/utils/ImageDialog.tsx";
 
 import { Picture } from 'astro:assets';
 import img_hint_darkmode from "@/images/hint_darkmode.png"
@@ -97,7 +133,7 @@ import img_hint_msg from "@/images/hint_msg.png"
     </div>
     <div style="position: relative">
         <Picture src={img_hint_msg} alt="Tap illust zoomin" class="hint-msg" />
-        <ImageDialog client:load alt="TopPage" src={hightlight.image.src + "?format=auto"} />
+        <ImageDialog client:load alt="TopPage" src={highlight_ref} />
     </div>
     <div class="div-parent">
         <div class="hint-responsive">
