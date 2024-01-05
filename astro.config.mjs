@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import partytown from "@astrojs/partytown";
-
+// import buildinRemote from './src/integrations/buildin_remote'
 // const isProduction = process.env.NODE_ENV === "production"
 
 import react from "@astrojs/react";
@@ -20,5 +20,6 @@ export default defineConfig({
       },
     })
     , react()
+    // , buildinRemote()
   ]
 });

@@ -29,7 +29,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    // "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
