@@ -38,11 +38,11 @@ export function ImageDialog({ src, alt = '' }: Props) {
                 className="image-box"
                 tabIndex={0}
             >
-                <img src={src} decoding="auto" loading="lazy" alt={alt} className="mdimg" />
+                <img src={src} decoding="auto" alt={alt} className="mdimg" />
             </div>
             <dialog ref={ref} className="image-dialog" onClick={handleCloseDialog}>
                 <div onClick={handleClickInDialog} className="contents">
-                    <img src={src} decoding="auto" loading="lazy" alt={alt} className="mdpreview" />
+                    <img src={src} decoding="auto" alt={alt} className="mdpreview" />
                 </div>
             </dialog>
         </React.Fragment>
