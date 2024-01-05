@@ -1,13 +1,12 @@
 import { defineConfig } from 'astro/config';
 import partytown from "@astrojs/partytown";
-
-// const isProduction = process.env.NODE_ENV === "production"
+import { outDir } from "./src/utils/vars"
 
 import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  outDir: './docs',
+  outDir: outDir,
   site: 'https://unnamedworks.com',
   server: {
     port: 4321,
