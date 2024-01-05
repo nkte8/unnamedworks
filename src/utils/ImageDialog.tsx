@@ -5,8 +5,9 @@ const modal_class = "image-dialog-open"
 interface Props {
     src: string;
     alt?: string;
+    usepicture?: boolean;
 }
-export function ImageDialog({ src, alt = '' }: Props) {
+export function ImageDialog({ src, alt = '', usepicture = false }: Props) {
     const ref = useRef<HTMLDialogElement | null>(null);
 
     const handleOpenDialog = useCallback(() => {
@@ -22,7 +23,7 @@ export function ImageDialog({ src, alt = '' }: Props) {
             ref.current.close();
         }
     }, [ref]);
- 
+
     const handleClickInDialog = useCallback(
         (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
             e.stopPropagation();
@@ -38,11 +39,31 @@ export function ImageDialog({ src, alt = '' }: Props) {
                 className="image-box"
                 tabIndex={0}
             >
-                <img src={src} decoding="auto" loading="lazy" alt={alt} className="mdimg" />
+                {
+                    usepicture &&
+                    <picture>
+                        <source srcSet={src + ".webp"} type="image/webp" />
+                        <img src={src + ".png"} decoding="auto" alt={alt} className="mdimg" />
+                    </picture>
+                }
+                {
+                    !usepicture &&
+                    <img src={src} decoding="auto" alt={alt} className="mdimg" />
+                }
             </div>
             <dialog ref={ref} className="image-dialog" onClick={handleCloseDialog}>
                 <div onClick={handleClickInDialog} className="contents">
-                    <img src={src} decoding="auto" loading="lazy" alt={alt} className="mdpreview" />
+                    {
+                        usepicture &&
+                        <picture>
+                            <source srcSet={src + ".webp"} type="image/webp" />
+                            <img src={src + ".png"} decoding="auto" alt={alt} className="mdpreview" />
+                        </picture>
+                    }
+                    {
+                        !usepicture &&
+                        <img src={src} decoding="auto" alt={alt} className="mdpreview" />
+                    }
                 </div>
             </dialog>
         </React.Fragment>
