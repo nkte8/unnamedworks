@@ -39,8 +39,8 @@ const localstorage_id_key_name = "user_name"
 const localstorage_secret_key_name = "secret"
 
 export const get_auth_local = ():LocalStorageInfo => {
-    var load_user_name: string = ""
-    var load_user_secret: string = ""
+    let load_user_name: string = ""
+    let load_user_secret: string = ""
     if (typeof localStorage !== "undefined") {
         let __uid = localStorage.getItem(localstorage_id_key_name);
         let __sec = localStorage.getItem(localstorage_secret_key_name);
