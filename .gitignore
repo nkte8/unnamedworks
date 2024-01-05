@@ -32,3 +32,6 @@ public/newiine_app/*
 
 # backup
 bak/**
+
+/highlight.webp
+/highlight.png
