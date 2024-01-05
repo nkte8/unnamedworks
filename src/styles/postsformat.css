@@ -1,25 +1,13 @@
-/* .tags {
-    list-style: none;
-    display: flex;
-    margin: 5px 0 0px 0;
-    padding:0;
-}
-
-.tags li {
-    display: flex;
-    margin: 0px 2px;
-    padding: 5px 15px;
-    border-radius: 50px;
-    box-sizing: border-box;
-    font-size: 12px;
-    text-align: center;
-    background-color: #333;
-    color: #ddd;
-} */
-p {
-    margin: 1%;
+div._page {
+    display: block;
+    margin:0.5em 1% 0.5em 1%;
     overflow: hidden;
     object-fit: cover;
+    /* 通常の<p>の挙動 */
+    /* margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px; */
 }
 
 img.mdimg {
