@@ -27,7 +27,6 @@ export default function Favobutton({ api_url, page_name }: Props) {
     }
 
     useEffect(() => {
-        // 非同期処理の場合は、関数を定義しそれを呼び出すような形式で記述すること
         runFavoApi("read")
     }, [])
 
