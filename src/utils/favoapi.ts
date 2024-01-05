@@ -25,13 +25,11 @@ export const favo_api = async (
     }
     ).then(response => {
         if (!response.ok) {
-            throw new Error("サーバーエラーが発生しました。")
+            throw new Error()
         }
         return response.json()
     }
-    ).catch(_ => {
-        console.error("通信に失敗しました。");
-    })
+    ).catch()
 
 // localstorage関連  
 interface LocalStorageInfo {
