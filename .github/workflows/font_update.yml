@@ -27,7 +27,7 @@ jobs:
       - name: Download shape02
         run: | 
           cd /tmp/
-          wget https://2ttf.com/webfont/KVrGXqqCBcG/webfont.ttf
+          wget https://2ttf.com/webfont/LJVvYC1Cq00/webfont.ttf
           /tmp/woff2_compress webfont.ttf
       - name: Commit webfont and hook Cloudflare
         env:
